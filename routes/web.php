@@ -14,16 +14,16 @@ use App\Http\Controllers\Admin\LoginController;
 |
 */
 
-Route::get('/', function () { return view('site.welcome'); });
+Route::get('/', function () { return view('login'); });
 Route::get('admin', function () { return redirect('admin/login'); });
 
-Route::prefix('/')->group(function () {
+Route::prefix('admin')->group(function () {
     Route::get('login', [LoginController::class, 'login'])->name('admin.form');
     Route::post('login', [LoginController::class, 'authenticate'])->name('admin.login');
 
     Route::group(['middleware' => 'auth:web'], function () {
         Route::get('dashboard', function () {
-            return view('admin.dashboard');
+            return view('dashboard');
         });
     });
 });
