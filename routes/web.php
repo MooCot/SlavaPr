@@ -13,6 +13,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/', function () { return view('site.welcome'); });
+Route::get('admin', function () { return redirect('admin/login'); });
+
+Route::prefix('/')->group(function () {
+    Route::get('login', [SiteLogin::class, 'login'])->name('admin.form');
+    Route::post('login', [SiteLogin::class, 'authenticate'])->name('admin.login');
+
+    Route::group(['middleware' => 'auth:admin'], function () {
+        Route::get('dashboard', function () {
+            return view('admin.dashboard');
+        });
+    });
 });
