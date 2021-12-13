@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\LoginController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,10 +18,10 @@ Route::get('/', function () { return view('site.welcome'); });
 Route::get('admin', function () { return redirect('admin/login'); });
 
 Route::prefix('/')->group(function () {
-    Route::get('login', [SiteLogin::class, 'login'])->name('admin.form');
-    Route::post('login', [SiteLogin::class, 'authenticate'])->name('admin.login');
+    Route::get('login', [LoginController::class, 'login'])->name('admin.form');
+    Route::post('login', [LoginController::class, 'authenticate'])->name('admin.login');
 
-    Route::group(['middleware' => 'auth:admin'], function () {
+    Route::group(['middleware' => 'auth:web'], function () {
         Route::get('dashboard', function () {
             return view('admin.dashboard');
         });
