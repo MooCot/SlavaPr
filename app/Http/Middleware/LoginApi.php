@@ -12,11 +12,6 @@ class LoginApi
 {
     public function handle(Request $request, Closure $next)
     {
-        $user = User::where('api_token', $request->bearerToken())->first();
-        if (!empty($user)) {
-            Auth::login($user);
-            return $next($request);
-        }
 
         $basicData = $this->getType($request);
         if($basicData['typeAuth']==='Basic')
@@ -29,10 +24,17 @@ class LoginApi
                 Auth::login($user);
                 return $next($request);
             }
+            return response()->json([
+                "success" => false,
+                "code" => 1001,
+                "message" => "Пользователь с таким номером телефона не зарегистрирован"
+            ], 403);
         }
         
         return response()->json([
-            "success" => false
+            "success" => false,
+            "code" => 1002,
+            "message" => "Неправильный пароль"
         ], 403);
     }
 
