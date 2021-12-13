@@ -12,9 +12,23 @@ class LoginApi
 {
     public function handle(Request $request, Closure $next)
     {
-
         $basicData = $this->getType($request);
-        if($basicData['typeAuth']==='Basic')
+        if($basicData['typeAuth']==='Bearer'){
+            $user = User::where('api_token', $request->bearerToken())->first();
+            if (!empty($user)) {
+                Auth::login($user);
+                return $next($request);
+            }
+            else {
+                return response()->json([
+                    "success" => false,
+                    "code" => 1003,
+                    "message" => "Недействительный токен пользователя"
+                ], 403);
+            }
+        }
+
+        else if($basicData['typeAuth']==='Basic')
         {
             $dataAuth = $this->getBasicData($basicData['token']);
             $user = User::where('email', $dataAuth[0])
