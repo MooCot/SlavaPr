@@ -15,6 +15,6 @@ use App\Http\Controllers\Api\LoginController;
 |
 */
 
-Route::group(['middleware' => ['login.api:api', 'ansver']], function () {
+Route::group(['middleware' => ['login.api', 'ansver']], function () {
     Route::get('user', [LoginController::class, 'index']);
 });

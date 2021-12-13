@@ -10,11 +10,12 @@ use Illuminate\Http\Request;
 
 class LoginApi
 {
+    // refaq
     public function handle(Request $request, Closure $next)
     {
         $basicData = $this->getType($request);
         if($basicData['typeAuth']==='Bearer'){
-            $user = User::where('api_token', $request->bearerToken())->first();
+            $user = User::where('auth_token', $request->bearerToken())->first();
             if (!empty($user)) {
                 Auth::login($user);
                 return $next($request);
