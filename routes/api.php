@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\LoginController;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
+use App\Http\Controllers\Api\NotificationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,4 +21,11 @@ use Illuminate\Support\Facades\Hash;
 Route::group(['middleware' => ['check.api.token', 'login.api', 'ansver']], function () {
     Route::get('user', [LoginController::class, 'index']);
     Route::put('user', [LoginController::class, 'updateUserData']);
+    Route::prefix('user')->group(function () {
+        Route::get('notifications-history', [NotificationController::class, 'index']);
+        Route::post('notifications-history/mark-as-read', [NotificationController::class, 'markAsRead']);
+        Route::post('register-fcm-token', [NotificationController::class, 'regToken']);
+        Route::post('remove-fcm-token', [NotificationController::class, 'delToken']);
+    });
+    
 });
