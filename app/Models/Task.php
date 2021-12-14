@@ -32,4 +32,14 @@ class Task extends Model
     protected $casts = [
     ];
 
+    public function executor()
+	{
+		return $this->hasOne(Task::class, 'executor_id', 'executor_id');
+	}
+
+    public function creator()
+	{
+		return $this->hasOne(Task::class, 'creator_id', 'id');
+	}
+
 }

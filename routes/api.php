@@ -6,6 +6,7 @@ use App\Http\Controllers\Api\LoginController;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Controllers\Api\NotificationController;
+use App\Http\Controllers\Api\TaskController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,4 +28,8 @@ Route::group(['middleware' => ['check.api.token', 'login.api', 'ansver']], funct
         Route::post('register-fcm-token', [NotificationController::class, 'regToken']);
         Route::post('remove-fcm-token', [NotificationController::class, 'delToken']);
     });
+    Route::get('task', [TaskController::class, 'getUnfinishedTasks']);
+    // Route::prefix('task')->group(function () {
+        
+    // });
 });
