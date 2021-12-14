@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -10,11 +11,16 @@ use Illuminate\Support\Facades\Auth;
 class UserController extends Controller
 {
     public function index() {
-        return view('dashboard');
+        $users = User::get();
+        return view('dashboard', [
+            'users' => $users,
+        ]);
     }
 
-    public function edit() {
-        return view('user.edit');
+    public function edit(User $user) {
+        return view('user.edit', [
+            'user' => $user,
+        ]);
     }
 
     public function create() {

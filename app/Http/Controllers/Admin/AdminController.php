@@ -6,16 +6,22 @@ use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Admin;
 
 class AdminController extends Controller
 {
 
     public function index() {
-        return view('admin.index');
+        $admins = Admin::get();
+        return view('admin.index', [
+            'admins' => $admins,
+        ]);
     }
 
-    public function edit() {
-        return view('admin.edit');
+    public function edit(Admin $admin) {
+        return view('admin.edit', [
+            'admin' => $admin,
+        ]);
     }
 
     public function create() {

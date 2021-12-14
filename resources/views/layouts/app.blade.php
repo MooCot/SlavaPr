@@ -16,9 +16,7 @@
             <div class="content">
                 @yield('content')
             </div>
-            <form id="logout-form" action="{{ route('admin.logout') }}" method="POST">
-                @csrf
-            </form>
+            <a href="{{ route('admin.logout') }}">logout</a>
         @endauth
         @stack('js')
     </body>
