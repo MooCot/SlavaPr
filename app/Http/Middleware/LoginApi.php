@@ -33,11 +33,19 @@ class LoginApi
         {
             $dataAuth = $this->getBasicData($basicData['token']);
             $user = User::where('email', $dataAuth[0])
-                            ->orWhere('password', $dataAuth[1])
                             ->first();
             if (!empty($user)) {
-                Auth::login($user);
-                return $next($request);
+               if(Hash::check($dataAuth[1], $user->password)) {
+                    Auth::login($user);
+                    return $next($request);
+               }
+               else {
+                return response()->json([
+                    "success" => false,
+                    "code" => 1002,
+                    "message" => "Неправильный пароль"
+                ], 403);
+               }
             }
             return response()->json([
                 "success" => false,
@@ -48,8 +56,8 @@ class LoginApi
         
         return response()->json([
             "success" => false,
-            "code" => 1002,
-            "message" => "Неправильный пароль"
+            "code" => 1003,
+            "message" => "Недействительный токен пользователя"
         ], 403);
     }
 

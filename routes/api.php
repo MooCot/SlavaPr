@@ -3,6 +3,8 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\LoginController;
+use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,6 +17,6 @@ use App\Http\Controllers\Api\LoginController;
 |
 */
 
-Route::group(['middleware' => ['login.api', 'ansver']], function () {
+Route::group(['middleware' => ['check.api.token', 'login.api', 'ansver']], function () {
     Route::get('user', [LoginController::class, 'index']);
 });

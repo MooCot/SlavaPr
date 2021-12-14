@@ -21,7 +21,7 @@ class AnswerMiddleware
         {
             $user = $request->user();
             $myResponse = ['success'=>true];
-            return response()->json($myResponse)->header('X-API-Key', $user->api_token);
+            return response()->json($myResponse)->header('X-Auth-Token', $user->api_token);
         }
         elseif($myResponse==='plugFalse')
         {
@@ -32,7 +32,7 @@ class AnswerMiddleware
         {
             $user = $request->user();
             $myResponse = ['success'=>true,'data'=>$myResponse];
-            return response()->json($myResponse)->header('X-API-Key', $user->api_token);
+            return response()->json($myResponse)->header('X-Auth-Token', $user->auth_token);
         }
         return response()->json($myResponse);
     }

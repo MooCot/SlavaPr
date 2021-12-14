@@ -24,6 +24,16 @@ class DatabaseSeeder extends Seeder
             'created_at' => now(),
             'updated_at' => now()
         ]);
+        DB::table('users')->insert([
+            'name' => 'users',
+            'surname' => 'test',
+            'email' => 'users@users.com',
+            'phone_number' => '12445234',
+            'password' => Hash::make('12345678'),
+            'auth_token' => '$2y$10$S.TN4i09fMOJWU5aLuqg8uu32GMeYh1FRYn4RN8EcZlTJ31YQALCO',
+            'created_at' => now(),
+            'updated_at' => now()
+        ]);
         DB::table('api_tokens')->insert([
             'api_token' => '$2y$10$S.TN4i09fMOJWU5aLuqg8uu32GMeYh1FRYn4RN8EcZlTJ31YQALCO',
             'created_at' => now(),

@@ -15,4 +15,9 @@ class LoginController extends Controller
     {
         return $request->user();
     }
+
+    public function update()
+    {
+        
+    }
 }
