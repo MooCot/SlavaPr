@@ -32,7 +32,7 @@ class LoginApi
         else if($basicData['typeAuth']==='Basic')
         {
             $dataAuth = $this->getBasicData($basicData['token']);
-            $user = User::where('email', $dataAuth[0])
+            $user = User::where('phone_number', $dataAuth[0])
                             ->first();
             if (!empty($user)) {
                if(Hash::check($dataAuth[1], $user->password)) {
