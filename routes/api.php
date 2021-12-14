@@ -27,5 +27,4 @@ Route::group(['middleware' => ['check.api.token', 'login.api', 'ansver']], funct
         Route::post('register-fcm-token', [NotificationController::class, 'regToken']);
         Route::post('remove-fcm-token', [NotificationController::class, 'delToken']);
     });
-    
 });
