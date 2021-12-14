@@ -19,4 +19,5 @@ use Illuminate\Support\Facades\Hash;
 
 Route::group(['middleware' => ['check.api.token', 'login.api', 'ansver']], function () {
     Route::get('user', [LoginController::class, 'index']);
+    Route::put('user', [LoginController::class, 'updateUserData']);
 });
