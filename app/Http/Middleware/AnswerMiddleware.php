@@ -14,7 +14,17 @@ class AnswerMiddleware
         
         if(!empty($myResponse['errors']))
         {
-            $myResponse = ['success'=>false, 'errors'=>$myResponse];
+            $data=[];
+            $data2=[];
+            foreach($myResponse['errors'] as $key=>$val)
+            {
+                array_push($data, $val);
+            }
+            foreach($data as $val)
+            {
+                array_push($data2, $val[0]);
+            }
+            $myResponse = ['success'=>false, 'data'=>$data2];
             return response()->json($myResponse);
         }
         elseif($myResponse==='plugTrue')
