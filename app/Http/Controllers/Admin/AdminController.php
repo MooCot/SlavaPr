@@ -28,6 +28,16 @@ class AdminController extends Controller
         return view('admin.create');
     }
 
+    public function store(Request $request) {
+        $admin = new Admin();
+        $admin->name = $request->username;
+        $admin->surname = $request->username;
+        $admin->email = $request->email;
+        $admin->password = $request->password;
+        $admin->save();
+        return view('admin.index');
+    }
+
     public function destroy(Admin $admin)
     {
         $admin->delete();

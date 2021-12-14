@@ -34,7 +34,8 @@ Route::prefix('admin')->group(function () {
         Route::get('admin', [AdminController::class, 'index'])->name('admins');
         Route::get('admin/edit', [AdminController::class, 'edit'])->name('admin.edit');
         Route::get('admin/create', [AdminController::class, 'edit'])->name('admin.create');
-        Route::get('admin/destroy', [AdminController::class, 'edit'])->name('admin.destroy');
+        Route::post('admin/create', [AdminController::class, 'store'])->name('admin.store');
+        Route::get('admin/destroy', [AdminController::class, 'destroy'])->name('admin.destroy');
 
         Route::get('logout', [LoginController::class, 'logout'])->name('admin.logout');
     });
