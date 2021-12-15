@@ -8,7 +8,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Notification;
 use App\Models\FcmToken;
-use App\Http\Requests\Api\FcmTokenRequest;
+use App\Http\Requests\Api\TaskIdRequest;
+use App\Http\Requests\Api\CreateTaskRequest;
 use App\Models\Task;
 use Illuminate\Support\Facades\DB;
 
@@ -40,19 +41,21 @@ class TaskController extends Controller
         return "plugTrue";
     }
 
-    public function createTask(Request $request) {
+    public function createTask(CreateTaskRequest $request) {
         $task = new Task;
         $task->task_name = $request->name;
-        $task->deadline_expired = $request->deadline_date;
-        $task->deadline_expired = $request->description;
+        $deadline_date = strtotime($request->deadline_date);
+        $task->must_end_task = date('Y-m-d H:i:s',$deadline_date);
+        $task->task_description = $request->description;
         $task->executor_id = $request->executor_id;
         $task->priority = $request->priority;
+        $task->save(); 
         return "plugTrue";
     }
 
     public function getExecutorsTask(Request $request) {
         $tasks = DB::table('tasks')
-            ->join('users as executor', 'executor.id', '=', 'tasks.executor_id')
+            ->rightJoin('users as executor', 'executor.id', '=', 'tasks.executor_id')
             ->select('executor.id','executor.name as executor_name', 'executor.surname as executor_surname')    
             ->get();  
         return $tasks;   
@@ -66,10 +69,6 @@ class TaskController extends Controller
             ->select('tasks.*', 'creator.name as creator_name', 'creator.surname as creator_surname',
                                 'executor.name as executor_name', 'executor.surname as executor_surname')    
             ->first();                                
-        //     ->get();
-
-        // $task = $tasks->toArray();
-        // return $task[0];
         return $tasks;
     }
 

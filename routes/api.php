@@ -31,8 +31,8 @@ Route::group(['middleware' => ['check.api.token', 'login.api', 'ansver']], funct
     Route::get('tasks', [TaskController::class, 'getUnfinishedTasks']);
     Route::post('tasks', [TaskController::class, 'createTask']);
     Route::prefix('tasks')->group(function () {
-        Route::get('/{task_id}', [TaskController::class, 'getDetailsTask']);
         Route::get('/executors', [TaskController::class, 'getExecutorsTask']);
+        Route::get('/{task_id}', [TaskController::class, 'getDetailsTask']);
         Route::post('/finish/{task_id}', [TaskController::class, 'finishedTask']);
         Route::post('/accept/{task_id}', [TaskController::class, 'addTaskAccepted']);
     });

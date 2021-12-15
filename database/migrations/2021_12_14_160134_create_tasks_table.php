@@ -17,12 +17,12 @@ class CreateTasksTable extends Migration
             $table->id();
             $table->string('task_name');
             $table->timestamp('start_task')->nullable();
-            $table->timestamp('must_end_task')->nullable();
+            $table->timestamp('must_end_task');
             $table->timestamp('end_task')->nullable();
-            $table->text('task_description');
+            $table->text('task_description')->nullable();
             $table->string('priority');
-            $table->string('accepted');
-            $table->boolean('deadline_expired');
+            $table->boolean('accepted')->nullable();
+            $table->boolean('deadline_expired')->nullable();
             $table->foreignId('executor_id')->nullable()->constrained('users');
             $table->foreignId('creator_id')->nullable()->constrained('users');
         });
