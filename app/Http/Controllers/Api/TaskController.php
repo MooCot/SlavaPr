@@ -16,7 +16,6 @@ use Illuminate\Support\Facades\DB;
 class TaskController extends Controller
 {
     public function getUnfinishedTasks(Request $request) {
-    //  return $tasks = Task::where('end_task', NULL)->with('creator')->get();
     $tasks = DB::table('tasks')
             ->where('end_task', NULL)
             ->join('users as creator', 'creator.id', '=', 'tasks.creator_id')
@@ -37,7 +36,7 @@ class TaskController extends Controller
 
     public function finishedTask(Request $request) {
 
-        Task::where("id", $request->task_id)->update(['accepted' => 1, 'end_task'=>now()]);
+        Task::where("id", $request->task_id)->update(['end_task'=>now()]);
         return "plugTrue";
     }
 
@@ -52,22 +51,30 @@ class TaskController extends Controller
     }
 
     public function getExecutorsTask(Request $request) {
-        
+        $tasks = DB::table('tasks')
+            ->join('users as executor', 'executor.id', '=', 'tasks.executor_id')
+            ->select('executor.id','executor.name as executor_name', 'executor.surname as executor_surname')    
+            ->get();  
+        return $tasks;   
     }
 
     public function getDetailsTask(Request $request) {
         $tasks = DB::table('tasks')
-        ->where('tasks.id', $request->task_id)
-        ->join('users as creator', 'creator.id', '=', 'tasks.creator_id')
-        ->join('users as executor', 'executor.id', '=', 'tasks.executor_id')
-        ->select('tasks.*', 'creator.name as creator_name', 'creator.surname as creator_surname',
-                            'executor.name as executor_name', 'executor.surname as executor_surname')                
-        ->get();
-        $task = $tasks->toArray();
-        return $task[0];
+            ->where('tasks.id', $request->task_id)
+            ->join('users as creator', 'creator.id', '=', 'tasks.creator_id')
+            ->join('users as executor', 'executor.id', '=', 'tasks.executor_id')
+            ->select('tasks.*', 'creator.name as creator_name', 'creator.surname as creator_surname',
+                                'executor.name as executor_name', 'executor.surname as executor_surname')    
+            ->first();                                
+        //     ->get();
+
+        // $task = $tasks->toArray();
+        // return $task[0];
+        return $tasks;
     }
 
-    public function addTaskFinished(Request $request) {
-        
+    public function addTaskAccepted(Request $request) {
+        Task::where("id", $request->task_id)->update(['accepted' => 1]);
+        return "plugTrue";
     }
 }
