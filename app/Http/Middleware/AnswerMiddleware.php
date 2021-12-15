@@ -11,8 +11,7 @@ class AnswerMiddleware
     {
         $response = $next($request);
         $myResponse = $response->original;
-        
-        if(!empty($myResponse['errors']))
+        if(is_array($myResponse) &&!empty($myResponse['errors']))
         {
             $data=[];
             $data2=[];
