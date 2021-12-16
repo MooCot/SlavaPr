@@ -50,8 +50,8 @@ class DatabaseSeeder extends Seeder
 
         \App\Models\User::factory(10)->create();
         \App\Models\Admin::factory(10)->create();
-        \App\Models\FcmToken::factory(20)->create();
-        \App\Models\Notification::factory(50)->create();
-        \App\Models\Task::factory(50)->create();
+        \App\Models\FcmToken::factory(10)->create();
+        \App\Models\Notification::factory(10)->create();
+        \App\Models\Task::factory(10)->create();
     }
 }
