@@ -16,8 +16,13 @@ class NotificationController extends Controller
 {
     public function index(Request $request) {
         $user = $request->user();
-        $notification = Notification::where('user_id', $user->id)->get();
-        return $notification;
+        $notifications = Notification::where('user_id', $user->id)->get();
+        foreach($notifications as $notification) {
+            $notification->start_date = date("d.m.Y", strtotime($notification->created_at));
+            $notification->start_time = date("H:i", strtotime($notification->created_at));
+            unset($notification->created_at);
+        }
+        return $notifications;
     }
 
     public function markAsRead(Request $request) {
