@@ -17,10 +17,10 @@ class UserFactory extends Factory
         return [
             'name' => $this->faker->name(),
             'surname' => $this->faker->surname(),
-            'phone_number' => $this->faker->surname(),
-            'auth_token' => $this->sentence(20),
+            'phone_number' =>'+38066'.$this->faker->numberBetween(1000000, 9999999),
+            'auth_token' => $this->unique()->sentence(20),
             'email' => $this->faker->unique()->safeEmail(),
-            'password' => $this->sentence(20), // password
+            'password' => $this->unique()->sentence(20), // password
             'created_at' => now(),
             'updated_at' => now(),
         ];

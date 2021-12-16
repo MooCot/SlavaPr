@@ -105,35 +105,45 @@ class TaskController extends Controller
     }
 
     public function getDetailsTask(Request $request) {
-        $task = DB::table('tasks')
-            ->where('tasks.id', $request->task_id)
-            ->join('users as creator', 'creator.id', '=', 'tasks.creator_id')
-            ->join('users as executor', 'executor.id', '=', 'tasks.executor_id')
-            ->select('tasks.*', 'creator.name as creator_name', 'creator.surname as creator_surname',
-                                'executor.name as executor_name', 'executor.surname as executor_surname')    
-            ->first(); 
+        if(!empty($request->task_id)) {
+            
+            $task = DB::table('tasks')
+                ->where('tasks.id', $request->task_id)
+                ->join('users as creator', 'creator.id', '=', 'tasks.creator_id')
+                ->join('users as executor', 'executor.id', '=', 'tasks.executor_id')
+                ->select('tasks.*', 'creator.name as creator_name', 'creator.surname as creator_surname',
+                                    'executor.name as executor_name', 'executor.surname as executor_surname')    
+                ->first(); 
+            if(!empty($task)) {
+                if(!empty($task->executor_surname))
+                {
+                    $task->executor_name = $task->executor_name.' '.$task->executor_surname;
+                }
+                else {
+                    $task->executor_name = "";
+                }
+                $task->creator_name = $task->creator_name.' '.$task->creator_surname;
+                $task->start_date = date("d.m.Y", strtotime($task->start_task));
+                $task->start_time = date("H:i", strtotime($task->start_task));
+                $task->deadline_date = date("d.m.Y", strtotime($task->must_end_task));
+                $task->deadline_time = date("H:i", strtotime($task->must_end_task));
+                unset($task->executor_surname);
+                unset($task->creator_surname);
+                unset($task->executor_id);
+                unset($task->creator_id);
+                unset($task->start_task);
+                unset($task->end_task);
+                unset($task->must_end_task);   
 
-            if(!empty($task->executor_surname))
-            {
-                $task->executor_name = $task->executor_name.' '.$task->executor_surname;
+                 return $task;
             }
             else {
-                $task->executor_name = "";
+                return ['errors' => ['task_id' => [['code' => '1007', 'message' => 'Задача с указанным ID не найдена']]]];
             }
-            $task->creator_name = $task->creator_name.' '.$task->creator_surname;
-            $task->start_date = date("d.m.Y", strtotime($task->start_task));
-            $task->start_time = date("H:i", strtotime($task->start_task));
-            $task->deadline_date = date("d.m.Y", strtotime($task->must_end_task));
-            $task->deadline_time = date("H:i", strtotime($task->must_end_task));
-            unset($task->executor_surname);
-            unset($task->creator_surname);
-            unset($task->executor_id);
-            unset($task->creator_id);
-            unset($task->start_task);
-            unset($task->end_task);
-            unset($task->must_end_task);   
-
-        return $task;
+        }
+        else {
+            return ['errors' => ['task_id' => [['code' => '1007', 'message' => 'Задача с указанным ID не найдена']]]];
+        }
     }
 
     public function addTaskAccepted(Request $request) {

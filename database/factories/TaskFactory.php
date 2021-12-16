@@ -4,6 +4,7 @@ namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
+use Illuminate\Database\Seeder;
 
 class TaskFactory extends Factory
 {
@@ -15,12 +16,19 @@ class TaskFactory extends Factory
     public function definition()
     {
         return [
-            // 'name' => $this->faker->name(),
-            // 'email' => $this->faker->unique()->safeEmail(),
-            // 'email_verified_at' => now(),
-            // 'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
-            // 'remember_token' => Str::random(10),
+            'task_name' => $this->sentence(10),
+            'task_description' => $this->sentence(20),
+            'priority' => $this->randomPriority(),
+            'accepted' => $this->faker->boolean(),
+            'deadline_expired' => $this->faker->boolean(),
+            'start_task' => date('Y-m-d H:i:s', strtotime(now())),
+            'must_end_task' => date('Y-m-d H:i:s', strtotime(now())),
+            'creator_id' => \App\Models\User::factory(),
         ];
+    }
+    public function randomPriority() {
+        $data = ['high', 'normal'];
+        return $data[$this->faker->boolean()];
     }
 
     /**
