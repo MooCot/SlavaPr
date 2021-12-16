@@ -4,7 +4,6 @@ namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
-use Illuminate\Database\Seeder;
 
 class TaskFactory extends Factory
 {
@@ -16,8 +15,8 @@ class TaskFactory extends Factory
     public function definition()
     {
         return [
-            'task_name' => $this->sentence(10),
-            'task_description' => $this->sentence(20),
+            'task_name' => $this->faker->paragraph(10),
+            'task_description' => $this->faker->paragraph(20),
             'priority' => $this->randomPriority(),
             'accepted' => $this->faker->boolean(),
             'deadline_expired' => $this->faker->boolean(),

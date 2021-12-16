@@ -47,5 +47,11 @@ class DatabaseSeeder extends Seeder
             'created_at' => now(),
             'updated_at' => now()
         ]);
+
+        \App\Models\User::factory(10)->create();
+        \App\Models\Admin::factory(10)->create();
+        \App\Models\FcmToken::factory(20)->create();
+        \App\Models\Notification::factory(50)->create();
+        \App\Models\Task::factory(50)->create();
     }
 }

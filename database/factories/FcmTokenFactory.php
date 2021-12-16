@@ -15,7 +15,7 @@ class FcmTokenFactory extends Factory
     public function definition()
     {
         return [
-            'fcm_token' => $this->faker->unique()->sentence(20),
+            'fcm_token' => Str::random(30),
             'created_at' => date('Y-m-d H:i:s', strtotime(now())),
             'updated_at' => date('Y-m-d H:i:s', strtotime(now())),
             'user_id' => \App\Models\User::factory(),

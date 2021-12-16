@@ -16,9 +16,9 @@ class AdminFactory extends Factory
     {
         return [
             'name' => $this->faker->name(),
-            'surname' => $this->faker->surname(),
+            'surname' => $this->faker->name(),
             'email' => $this->faker->unique()->safeEmail(),
-            'password' => $this->unique()->sentence(20), // password
+            'password' => Str::random(30), // password
             'created_at' => now(),
             'updated_at' => now(),
         ];

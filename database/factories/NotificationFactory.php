@@ -15,8 +15,8 @@ class NotificationFactory extends Factory
     public function definition()
     {
         return [
-            'title' =>  $this->sentence(5),
-            'text' =>  $this->sentence(20),
+            'title' =>  $this->faker->paragraph(5),
+            'text' =>  $this->faker->paragraph(20),
             'marked_as_read' => 0,
             'user_id' => \App\Models\User::factory(),
             'created_at' => date('Y-m-d H:i:s', strtotime(now())),

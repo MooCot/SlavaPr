@@ -16,11 +16,11 @@ class UserFactory extends Factory
     {
         return [
             'name' => $this->faker->name(),
-            'surname' => $this->faker->surname(),
-            'phone_number' =>'+38066'.$this->faker->numberBetween(1000000, 9999999),
-            'auth_token' => $this->unique()->sentence(20),
+            'surname' => $this->faker->name(),
+            'phone_number' =>'+38066'.$this->faker->unique()->numberBetween(1000000, 9999999),
+            'auth_token' => Str::random(30),
             'email' => $this->faker->unique()->safeEmail(),
-            'password' => $this->unique()->sentence(20), // password
+            'password' => Str::random(30), // password
             'created_at' => now(),
             'updated_at' => now(),
         ];
