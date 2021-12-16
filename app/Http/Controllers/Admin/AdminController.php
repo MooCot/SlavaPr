@@ -7,6 +7,7 @@ use App\Providers\RouteServiceProvider;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Admin;
+use Illuminate\Support\Facades\Hash;
 
 class AdminController extends Controller
 {
@@ -35,6 +36,15 @@ class AdminController extends Controller
         $admin->email = $request->email;
         $admin->password = $request->password;
         $admin->save();
+        return view('admin.index');
+    }
+
+    public function update(Request $request, Admin $user)
+    {
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->password = Hash::make($request->password);
+        $user->save();
         return view('admin.index');
     }
 
