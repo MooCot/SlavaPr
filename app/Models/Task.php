@@ -25,6 +25,8 @@ class Task extends Model
      * @var array
      */
     protected $hidden = [
+        'executor_id', 
+        'creator_id'
     ];
 
     /**
@@ -33,6 +35,8 @@ class Task extends Model
      * @var array
      */
     protected $casts = [
+        'executor_id', 
+        'creator_id'
     ];
 
     public function executor()
