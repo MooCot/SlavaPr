@@ -31,26 +31,28 @@ class AdminController extends Controller
 
     public function store(Request $request) {
         $admin = new Admin();
-        $admin->name = $request->username;
-        $admin->surname = $request->username;
+        $admin->name = $request->name;
+        $admin->surname = $request->surname;
         $admin->email = $request->email;
         $admin->password = $request->password;
         $admin->save();
-        return view('admin.index');
+        return redirect('admin/admin');
     }
 
-    public function update(Request $request, Admin $user)
+    public function update(Request $request, Admin $admin)
     {
-        $user->name = $request->name;
-        $user->email = $request->email;
-        $user->password = Hash::make($request->password);
-        $user->save();
-        return view('admin.index');
+        $admin->name = $request->name;
+        $admin->surname = $request->surname;
+        $admin->email = $request->email;
+        $admin->password = Hash::make($request->password);
+        $admin->save();
+        return redirect('admin/admin');
     }
 
-    public function destroy(Admin $admin)
+    public function destroy(Request $request, Admin $admin)
     {
         $admin->delete();
+        return redirect('admin/admin');
     }
     
 }

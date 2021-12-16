@@ -26,16 +26,19 @@ Route::prefix('admin')->group(function () {
     Route::group(['middleware' => 'auth:web'], function () {
 
         Route::get('dashboard', [UserController::class, 'index'])->name('home');
-        Route::get('user/edit', [UserController::class, 'edit'])->name('user.edit');
-        Route::get('user/create', [UserController::class, 'edit'])->name('user.create');
+        Route::get('user/edit/{user}', [UserController::class, 'edit'])->name('user.edit');
+        Route::put('user/edit/{user}', [UserController::class, 'update'])->name('user.update');
+        Route::get('user/create', [UserController::class, 'create'])->name('user.create');
+        Route::post('user/create', [UserController::class, 'store'])->name('user.store');
 
         Route::get('task', [TaskController::class, 'index'])->name('tasks');
 
         Route::get('admin', [AdminController::class, 'index'])->name('admins');
-        Route::get('admin/edit', [AdminController::class, 'edit'])->name('admin.edit');
-        Route::get('admin/create', [AdminController::class, 'edit'])->name('admin.create');
+        Route::get('admin/edit/{admin}', [AdminController::class, 'edit'])->name('admin.edit');
+        Route::put('admin/edit/{admin}', [AdminController::class, 'update'])->name('admin.update');
+        Route::get('admin/create', [AdminController::class, 'create'])->name('admin.create');
         Route::post('admin/create', [AdminController::class, 'store'])->name('admin.store');
-        Route::get('admin/destroy', [AdminController::class, 'destroy'])->name('admin.destroy');
+        Route::delete('admin/destroy{admin}', [AdminController::class, 'destroy'])->name('admin.destroy');
 
         Route::get('logout', [LoginController::class, 'logout'])->name('admin.logout');
     });

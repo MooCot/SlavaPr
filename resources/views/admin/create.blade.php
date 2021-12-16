@@ -5,7 +5,7 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-12">
-                <form method="post" action="{{ route('admin.store') }}" enctype="multipart/form-data" autocomplete="off" class="form-horizontal">
+                <form method="post" action="{{ route('admin.update') }}" enctype="multipart/form-data" autocomplete="off" class="form-horizontal">
                     @csrf
                     <div class="card ">
                         @include('alerts.success')
@@ -42,17 +42,6 @@
                                         <input class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" id="input-email" type="email" placeholder="email" value="" required />
                                         @if ($errors->has('email'))
                                         <span id="email-error" class="error text-danger" for="input-email">{{ $errors->first('email') }}</span>
-                                        @endif
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <label class="col-sm-2 col-form-label">username</label>
-                                <div class="col-sm-7">
-                                    <div class="form-group{{ $errors->has('username') ? ' has-danger' : '' }}">
-                                        <input class="form-control{{ $errors->has('username') ? ' is-invalid' : '' }}" name="username" id="input-username" type="username" placeholder="username" value="" required />
-                                        @if ($errors->has('username'))
-                                        <span id="username-error" class="error text-danger" for="input-username">{{ $errors->first('username') }}</span>
                                         @endif
                                     </div>
                                 </div>
