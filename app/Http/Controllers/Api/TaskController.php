@@ -47,7 +47,7 @@ class TaskController extends Controller
         unset($task->must_end_task);
     }
     return [[
-        "date" => now(),
+        "date" => date('Y-m-d H:i:s', strtotime(now())),
         "task" => $tasks
     ]];
     }
@@ -63,7 +63,7 @@ class TaskController extends Controller
             if(!empty($task)) {
                 if($task->creator_id == $user->id)
                 {
-                    $task->end_task = now();
+                    $task->end_task = date('Y-m-d H:i:s', strtotime(now()));
                     $task->save();
                     return "plugTrue";
                 }
