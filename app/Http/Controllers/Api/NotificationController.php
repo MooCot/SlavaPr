@@ -21,6 +21,7 @@ class NotificationController extends Controller
             $notification->start_date = date("d.m.Y", strtotime($notification->created_at));
             $notification->start_time = date("H:i", strtotime($notification->created_at));
             unset($notification->created_at);
+            unset($notification->updated_at);
         }
         return $notifications;
     }

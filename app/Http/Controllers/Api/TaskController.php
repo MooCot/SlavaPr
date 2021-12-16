@@ -19,7 +19,6 @@ class TaskController extends Controller
     public function getUnfinishedTasks(Request $request) {
     $tasks = DB::table('tasks')
             ->where('end_task', NULL)
-            ->where('accepted', 0)
             ->join('users as creator', 'creator.id', '=', 'tasks.creator_id')
             ->leftJoin('users as executor', 'executor.id', '=', 'tasks.executor_id')
             ->select('tasks.*', 'creator.name as creator_name', 'creator.surname as creator_surname',
@@ -91,6 +90,7 @@ class TaskController extends Controller
         $task->executor_id = $request->executor_id;
         $task->creator_id = $user->id;
         $task->accepted = 0;
+        $task->deadline_expired = 0;
         $task->priority = $request->priority;
         $task->save(); 
         return "plugTrue";
@@ -98,7 +98,7 @@ class TaskController extends Controller
 
     public function getExecutorsTask(Request $request) {
         $tasks = DB::table('tasks')
-            ->rightJoin('users as executor', 'executor.id', '=', 'tasks.executor_id')
+            ->join('users as executor', 'executor.id', '=', 'tasks.executor_id')
             ->select('executor.id','executor.name as executor_name', 'executor.surname as executor_surname')    
             ->get();  
         return $tasks;   
@@ -108,9 +108,9 @@ class TaskController extends Controller
         if(!empty($request->task_id)) {
             
             $task = DB::table('tasks')
-                ->where('tasks.id', $request->task_id)
+                ->where('tasks.id', (int)$request->task_id)
                 ->join('users as creator', 'creator.id', '=', 'tasks.creator_id')
-                ->join('users as executor', 'executor.id', '=', 'tasks.executor_id')
+                ->leftJoin('users as executor', 'executor.id', '=', 'tasks.executor_id')
                 ->select('tasks.*', 'creator.name as creator_name', 'creator.surname as creator_surname',
                                     'executor.name as executor_name', 'executor.surname as executor_surname')    
                 ->first(); 
