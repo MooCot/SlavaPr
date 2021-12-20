@@ -11,7 +11,19 @@ const mix = require('laravel-mix');
  |
  */
 
-mix.js('resources/js/app.js', 'public/js')
-    .postCss('resources/css/app.css', 'public/css', [
-        //
-    ]);
+require('laravel-mix-webp');
+
+mix
+    // Обрабатываем JS
+    .js(
+        'resources/assets/js/main.js',
+        'public/assets/js'
+    )
+    // Преобразовываем SASS в CSS
+    .sass(
+        'resources/assets/scss/main.scss', // Путь относительно каталога с webpack.mix.js
+        'public/assets/css/' // Путь относительно каталога с webpack.mix.js
+    )    
+    // Включаем версионность
+    .version();
+
