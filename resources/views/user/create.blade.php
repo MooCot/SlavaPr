@@ -68,6 +68,26 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="form_toggle">
+                                <div class="form_toggle-item item-1">
+                                    <input id="access-1" type="radio" name="access" value="0">
+                                    <label for="access-1">OFF</label>
+                                </div>
+                                <div class="form_toggle-item item-2">
+                                    <input id="access-2" type="radio" name="access" value="1">
+                                    <label for="access-2">ON</label>
+                                </div>
+                            </div>
+                            <div class="form_toggle">
+                                <div class="form_toggle-item item-1">
+                                    <input id="role-1" type="radio" name="role" value="1">
+                                    <label for="role-1">Главный</label>
+                                </div>
+                                <div class="form_toggle-item item-2">
+                                    <input id="role-2" type="radio" name="role" value="2">
+                                    <label for="role-2">Инженер</label>
+                                </div>
+                            </div>
                         </div>
                         <div class="card-footer ml-auto mr-auto">
                             <button type="submit" class="btn btn-primary">{{ __('Save') }}</button>
