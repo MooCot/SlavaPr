@@ -22,6 +22,7 @@ class User extends Authenticatable
         'email',
         'password',
         'role_id',
+            
     ];
 
     /**
@@ -34,6 +35,8 @@ class User extends Authenticatable
         'auth_token',
         'created_at',
         'updated_at',
+        'access',
+        'role_id'
     ];
 
     /**
