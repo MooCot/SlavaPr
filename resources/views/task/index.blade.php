@@ -1,6 +1,7 @@
 @extends('layouts.app')
 @section('content')
 <h1>task</h1>
+
 <div style="overflow-x: auto;">
     <table class="table">
         <thead>
@@ -19,14 +20,14 @@
         <tbody>
             @foreach ($tasks as $task)
             <tr>
-                <td class="text-center">{{ $task['id'] }}</td>
-                <td>{{ $task['task_name'] }}</td>
-                <td>{{ $task['start_task'] }}</td>
-                <td>{{ $task['must_end_task'] }}</td>
-                <td>{{ $task['end_task'] }}</td>
-                <td>{{ $task['task_description'] }}</td>
-                <td>{{ $task['executor_id'] }}</td>
-                <td>{{ $task['creator_id'] }}</td>
+                <td class="text-center">{{ $task->id }}</td>
+                <td>{{ $task->task_name }}</td>
+                <td>{{ $task->start_task }}</td>
+                <td>{{ $task->must_end_task }}</td>
+                <td>{{ $task->end_task }}</td>
+                <td>{{ $task->task_description }}</td>
+                <td>{{ $task->creator_name }} {{ $task->creator_surname }}</td>
+                <td>{{ $task->executor_name }} {{ $task->executor_surname }}</td>
                 <td></td>
             </tr>
             @endforeach
