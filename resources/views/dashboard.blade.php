@@ -21,7 +21,7 @@
                 <td class="text-center">{{ $user['id'] }}</td>
                 <td>{{ $user['name'] }}</td>
                 <td>{{ $user['surname'] }}</td>
-                <td></td>
+                <td>{{ $user->role['role_name'] }}</td>
                 <td>{{ $user['email'] }}</td>
                 <td>{{ $user['phone_number'] }}</td>
                 <td class="td-actions text-right">

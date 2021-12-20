@@ -13,7 +13,7 @@ use Illuminate\Support\Str;
 class UserController extends Controller
 {
     public function index() {
-        $users = User::get();
+        $users = User::with('role')->get();
         return view('dashboard', [
             'users' => $users,
         ]);
