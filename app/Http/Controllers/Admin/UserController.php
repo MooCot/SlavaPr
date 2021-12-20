@@ -49,7 +49,7 @@ class UserController extends Controller
         $admin->email = $request->email;
         $admin->phone_number = $request->phone_number;
         $admin->auth_token = hash('sha256', $token);
-        $admin->password = $request->password;
+        $admin->password = Hash::make($request->password);
         $admin->save();
         return redirect('admin/dashboard');
     }
