@@ -57,17 +57,39 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="card-body ">
+                            @if (session('status_password'))
                             <div class="row">
-                                <label class="col-sm-2 col-form-label">password</label>
+                                <div class="col-sm-12">
+                                <div class="alert alert-success">
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <i class="material-icons">close</i>
+                                    </button>
+                                    <span>{{ session('status_password') }}</span>
+                                </div>
+                                </div>
+                            </div>
+                            @endif
+                            <div class="row">
+                                <label class="col-sm-2 col-form-label" for="input-password">{{ __('New Password') }}</label>
                                 <div class="col-sm-7">
                                     <div class="form-group{{ $errors->has('password') ? ' has-danger' : '' }}">
-                                        <input class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" id="input-password" placeholder="password" value="" required />
-                                        @if ($errors->has('password'))
+                                    <input class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" id="input-password" type="password" placeholder="{{ __('New Password') }}" value="" required />
+                                    @if ($errors->has('password'))
                                         <span id="password-error" class="error text-danger" for="input-password">{{ $errors->first('password') }}</span>
-                                        @endif
+                                    @endif
                                     </div>
                                 </div>
                             </div>
+                            <div class="row">
+                                <label class="col-sm-2 col-form-label" for="input-password-confirmation">{{ __('Confirm New Password') }}</label>
+                                <div class="col-sm-7">
+                                    <div class="form-group">
+                                    <input class="form-control" name="password_confirmation" id="input-password-confirmation" type="password" placeholder="{{ __('Confirm New Password') }}" value="" required />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                             <div class="form_toggle">
                                 <div class="form_toggle-item item-1">
                                     <input id="access-1" type="radio" name="access" value="0">
@@ -78,15 +100,14 @@
                                     <label for="access-2">ON</label>
                                 </div>
                             </div>
+                            
                             <div class="form_toggle">
+                                @foreach ($roles as $role)
                                 <div class="form_toggle-item item-1">
-                                    <input id="role-1" type="radio" name="role" value="1">
-                                    <label for="role-1">Главный</label>
+                                    <input id="role-{{ $role['id'] }}" type="radio" name="role" value="{{ $role['id'] }}">
+                                    <label for="role-1">{{ $role['role_name'] }}</label>
                                 </div>
-                                <div class="form_toggle-item item-2">
-                                    <input id="role-2" type="radio" name="role" value="2">
-                                    <label for="role-2">Инженер</label>
-                                </div>
+                                @endforeach
                             </div>
                         </div>
                         <div class="card-footer ml-auto mr-auto">
