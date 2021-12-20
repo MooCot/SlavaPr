@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateFcmTokensTable extends Migration
+class CreateRolesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,9 @@ class CreateFcmTokensTable extends Migration
      */
     public function up()
     {
-        Schema::create('fcm_tokens', function (Blueprint $table) {
+        Schema::create('roles', function (Blueprint $table) {
             $table->id();
-            $table->string('fcm_token');
-            $table->foreignId('user_id')->nullable()->constrained('users')->onDelete('cascade');
-            $table->timestamps();
+            $table->string('role_name');
         });
     }
 
@@ -28,6 +26,6 @@ class CreateFcmTokensTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('fcm_tokens');
+        Schema::dropIfExists('roles');
     }
 }

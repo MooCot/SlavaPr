@@ -1,5 +1,5 @@
 
-<form class="form" method="post" action="{{ route('admin.login') }}">
+<form class="form" method="post" action="{{ route('login') }}">
     @csrf
     <div class="input-group{{ $errors->has('email') ? ' has-danger' : '' }}">
         <div class="input-group-prepend">

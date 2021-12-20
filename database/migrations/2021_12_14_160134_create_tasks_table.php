@@ -23,8 +23,8 @@ class CreateTasksTable extends Migration
             $table->string('priority');
             $table->boolean('accepted')->nullable();
             $table->boolean('deadline_expired')->nullable();
-            $table->foreignId('executor_id')->nullable()->constrained('users');
-            $table->foreignId('creator_id')->nullable()->constrained('users');
+            $table->foreignId('executor_id')->nullable()->constrained('users')->onDelete('cascade');
+            $table->foreignId('creator_id')->nullable()->constrained('users')->onDelete('cascade');
         });
     }
 

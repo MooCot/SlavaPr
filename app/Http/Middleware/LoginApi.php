@@ -8,6 +8,7 @@ use App\Models\User;
 use Closure;
 use Illuminate\Http\Request;
 
+
 class LoginApi
 {
     // refaq
@@ -15,7 +16,7 @@ class LoginApi
     {
         $basicData = $this->getType($request);
         if($basicData['typeAuth']==='Bearer'){
-            $user = User::where('auth_token', $request->bearerToken())->first();
+            $user = User::where('auth_token', $request->bearerToken())->where('access', 1)->first();
             if (!empty($user)) {
                 Auth::login($user);
                 return $next($request);

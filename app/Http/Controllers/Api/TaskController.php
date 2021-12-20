@@ -17,44 +17,41 @@ use Illuminate\Support\Facades\DB;
 class TaskController extends Controller
 {
     public function getUnfinishedTasks(Request $request) {
-    $tasks = DB::table('tasks')
-            ->where('end_task', NULL)
-            ->join('users as creator', 'creator.id', '=', 'tasks.creator_id')
-            ->leftJoin('users as executor', 'executor.id', '=', 'tasks.executor_id')
-            ->select('tasks.*', 'creator.name as creator_name', 'creator.surname as creator_surname',
-                                'executor.name as executor_name', 'executor.surname as executor_surname')                
-            ->get();
-    foreach($tasks as $task) {
-        if(!empty($task->executor_surname))
-        {
-            $task->executor_name = $task->executor_name.' '.$task->executor_surname;
+        $user = $request->user();
+        if($user->role === 1) {
+            $tasks = Task::getAllUnfinishedTasks();
         }
         else {
-            $task->executor_name = "";
+            $tasks = Task::getUserUnfinishedTasks($user->id);
         }
-        $task->creator_name = $task->creator_name.' '.$task->creator_surname;
-        $task->start_date = date("d.m.Y", strtotime($task->start_task));
-        $task->start_time = date("H:i", strtotime($task->start_task));
-        $task->deadline_date = date("d.m.Y", strtotime($task->must_end_task));
-        $task->deadline_time = date("H:i", strtotime($task->must_end_task));
-        unset($task->executor_surname);
-        unset($task->creator_surname);
-        unset($task->executor_id);
-        unset($task->creator_id);
-        unset($task->start_task);
-        unset($task->end_task);
-        unset($task->must_end_task);
-    }
-    return [[
-        "date" => date('Y-m-d H:i:s', strtotime(now())),
-        "task" => $tasks
-    ]];
+        foreach($tasks as $task) {
+            if(!empty($task->executor_surname))
+            {
+                $task->executor_name = $task->executor_name.' '.$task->executor_surname;
+            }
+            else {
+                $task->executor_name = "";
+            }
+            $task->creator_name = $task->creator_name.' '.$task->creator_surname;
+            $task->start_date = date("d.m.Y", strtotime($task->start_task));
+            $task->start_time = date("H:i", strtotime($task->start_task));
+            $task->deadline_date = date("d.m.Y", strtotime($task->must_end_task));
+            $task->deadline_time = date("H:i", strtotime($task->must_end_task));
+            unset($task->executor_surname);
+            unset($task->creator_surname);
+            unset($task->executor_id);
+            unset($task->creator_id);
+            unset($task->start_task);
+            unset($task->end_task);
+            unset($task->must_end_task);
+        }
+        return [[
+            "date" => date('Y-m-d H:i:s', strtotime(now())),
+            "task" => $tasks
+        ]];
     }
 
     public function finishedTask(Request $request) {
-
-        // Task::where("id", $request->task_id)->update(['end_task'=>now()]);
-        // return "plugTrue";
         $user = $request->user();
         if(!empty($request->task_id))
         {

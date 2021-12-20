@@ -19,8 +19,8 @@ use App\Http\Controllers\Admin\TaskController;
 
 Route::get('/', function () { return view('login'); });
 
-Route::get('login', [LoginController::class, 'login'])->name('form');
-Route::post('login', [LoginController::class, 'authenticate'])->name('admin.login');
+Route::get('login', [LoginController::class, 'login'])->name('login');
+Route::post('login', [LoginController::class, 'authenticate'])->name('login');
 
 Route::prefix('admin')->group(function () {
     Route::group(['middleware' => 'auth:web'], function () {

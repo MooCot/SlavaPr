@@ -19,24 +19,12 @@ class UserFactory extends Factory
             'surname' => $this->faker->name(),
             'phone_number' =>'+38066'.$this->faker->unique()->numberBetween(1000000, 9999999),
             'auth_token' => Str::random(30),
+            'role_id' => $this->faker->numberBetween(1, 2),
+            'access' => $this->faker->boolean(),
             'email' => $this->faker->unique()->safeEmail(),
             'password' => Str::random(30), // password
             'created_at' => now(),
             'updated_at' => now(),
         ];
     }
-
-    /**
-     * Indicate that the model's email address should be unverified.
-     *
-     * @return \Illuminate\Database\Eloquent\Factories\Factory
-     */
-    // public function unverified()
-    // {
-        // return $this->state(function (array $attributes) {
-        //     return [
-        //         'email_verified_at' => null,
-        //     ];
-        // });
-    // }
 }
