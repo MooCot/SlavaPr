@@ -18,8 +18,8 @@ class NotificationController extends Controller
         $user = $request->user();
         $notifications = Notification::where('user_id', $user->id)->get();
         foreach($notifications as $notification) {
-            $notification->start_date = date("d.m.Y", strtotime($notification->created_at));
-            $notification->start_time = date("H:i", strtotime($notification->created_at));
+            $notification->date = date("d.m.Y", strtotime($notification->created_at));
+            $notification->time = date("H:i", strtotime($notification->created_at));
             unset($notification->created_at);
             unset($notification->updated_at);
         }
