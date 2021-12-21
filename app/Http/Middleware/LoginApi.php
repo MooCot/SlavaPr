@@ -26,7 +26,7 @@ class LoginApi
                     "success" => false,
                     "code" => 1003,
                     "message" => "Недействительный токен пользователя"
-                ], 403);
+                ], 200);
             }
         }
 
@@ -45,21 +45,21 @@ class LoginApi
                     "success" => false,
                     "code" => 1002,
                     "message" => "Неправильный пароль"
-                ], 403);
+                ], 200);
                }
             }
             return response()->json([
                 "success" => false,
                 "code" => 1001,
                 "message" => "Пользователь с таким номером телефона не зарегистрирован"
-            ], 403);
+            ], 200);
         }
         
         return response()->json([
             "success" => false,
             "code" => 1003,
             "message" => "Недействительный токен пользователя"
-        ], 403);
+        ], 200);
     }
 
     private function getBasicData($token)
