@@ -14,12 +14,12 @@ use App\Models\Task;
 use Illuminate\Support\Facades\DB;
 use App\Traits\Firebase;
 
-class TaskController extends Controller
+class TestController extends Controller
 {
     use Firebase;
 
     public function index(Request $request) {
-        $token="";
+        $token="cvIQqlnEQTWCMRRuX87pj2:APA91bEgDLX6gCUU3weWJe6DsQxzCWCNJdk07TD3ctGcpAOnxQTUtJctjWVubjctfT2qHajdHLJBVYjjGg-NqA89YuEZny-SdESTWqx7KVams21K3imoeCCHRY5I3Py2-jI4kuFTKsgb";
         $notification = [
             'title' =>'title',
             'body' => 'body of message.',

@@ -16,7 +16,7 @@ trait Firebase
 
         $http=Http::withHeaders([
             $header,
-            'Authorization:key'=>$apiKey,
+            'Authorization'=>$apiKey,
             'Content-Type'=>'application/json'
         ])->post($fcmUrl, $fcmNotification);
 
@@ -25,16 +25,15 @@ trait Firebase
 
     public function firebaseNotification($fcmNotification){
 
-        $fcmUrl =config('firebase.fcm_url');
+        $fcmUrl = config('firebase.fcm_url');
 
-        $apiKey=config('firebase.fcm_api_key');
+        $apiKey = config('firebase.fcm_api_key');
 
-        $http=Http::withHeaders([
-            'Authorization:key'=>$apiKey,
+        $http = Http::withToken($apiKey)->withHeaders([
             'Content-Type'=>'application/json'
-        ])  ->post($fcmUrl,$fcmNotification);
+        ])->post($fcmUrl, $fcmNotification);
 
-        return  $http->json();
+        return $http;
     }
 
     public function setAndroidConfig(array $data)
