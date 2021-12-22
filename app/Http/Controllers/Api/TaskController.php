@@ -19,7 +19,7 @@ class TaskController extends Controller
 {
     public function getUnfinishedTasks(Request $request) {
         $user = $request->user();
-        if($user->role === 1) {
+        if($user->role_id === 1) {
             $tasks = Task::getAllUnfinishedTasks();
         }
         else {
@@ -63,7 +63,7 @@ class TaskController extends Controller
                     $task->end_task = date('Y-m-d H:i:s', strtotime(now()));
                     $task->save();
                     $user = User::where('id', $task->creator_id)->with('fcmTokens')->first();
-                    event(new TaskEvent($task, $user['fcmTokens'], 'test'));
+                    // event(new TaskEvent($task, $user['fcmTokens'], 'test'));
                     return "plugTrue";
                 }
                 else {
@@ -157,7 +157,7 @@ class TaskController extends Controller
                     $task->accepted = 1;
                     $task->save();
                     $user = User::where('id', $task->creator_id)->with('fcmTokens')->first();
-                    event(new TaskEvent($task, $user['fcmTokens'], 'test'));
+                    // event(new TaskEvent($task, $user['fcmTokens'], 'test'));
                     return "plugTrue";
                 }
                 else {
