@@ -11,8 +11,9 @@ use App\Models\FcmToken;
 use App\Http\Requests\Api\TaskIdRequest;
 use App\Http\Requests\Api\CreateTaskRequest;
 use App\Models\Task;
+use App\Models\User;
 use Illuminate\Support\Facades\DB;
-
+use App\Events\TaskEvent;
 
 class TaskController extends Controller
 {
@@ -61,6 +62,8 @@ class TaskController extends Controller
                 {
                     $task->end_task = date('Y-m-d H:i:s', strtotime(now()));
                     $task->save();
+                    $user = User::where('id', $task->creator_id)->with('fcmTokens')->first();
+                    event(new TaskEvent($task, $user['fcmTokens'], 'test'));
                     return "plugTrue";
                 }
                 else {
@@ -147,13 +150,14 @@ class TaskController extends Controller
         $user = $request->user();
         if(!empty($request->task_id))
         {
-            // Task::where("id", $request->task_id)->update(['accepted' => 1]);
             $task = Task::where("id", $request->task_id)->where('accepted', 0)->first();
             if(!empty($task)) {
                 if($task->creator_id == $user->id)
                 {
                     $task->accepted = 1;
                     $task->save();
+                    $user = User::where('id', $task->creator_id)->with('fcmTokens')->first();
+                    event(new TaskEvent($task, $user['fcmTokens'], 'test'));
                     return "plugTrue";
                 }
                 else {

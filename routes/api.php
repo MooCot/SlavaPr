@@ -39,4 +39,5 @@ Route::group(['middleware' => ['check.api.token', 'login.api', 'ansver']], funct
     });
 });
 
-Route::get('test', [TestController::class, 'index']);
+// Route::get('test1', [TestController::class, 'index']);
+// Route::get('test2', [TestController::class, 'testEvent']);

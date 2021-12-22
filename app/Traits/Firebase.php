@@ -8,21 +8,6 @@ use Illuminate\Support\Facades\Http;
 trait Firebase
 {
 
-    public  function firebaseNotification2($fcmNotification, $header){
-
-        $fcmUrl = config('firebase.fcm_url');
-
-        $apiKey = config('firebase.fcm_api_key');
-
-        $http=Http::withHeaders([
-            $header,
-            'Authorization'=>$apiKey,
-            'Content-Type'=>'application/json'
-        ])->post($fcmUrl, $fcmNotification);
-
-        return $http->json();
-    }
-
     public function firebaseNotification($fcmNotification){
 
         $fcmUrl = config('firebase.fcm_url');
@@ -36,31 +21,35 @@ trait Firebase
         return $http;
     }
 
-    public function setAndroidConfig(array $data)
+    public function setAndroidConfig(string $token, string $notification)
     {
-        $android = [
-            'priority' => 'normal',
-            'data' => $data,
+        $extraNotificationData = ["message" => $notification,"moredata" =>'dd'];
+        $fcmNotification = [
+            'to'        => $token,
+            'notification' => $notification,
+            'data' => $extraNotificationData
         ];
-        return $android;
+        return $fcmNotification;
     }
     
-    public function setApnsConfig(string $title, string $notification, int $badge, array $data)
+    public function setApnsConfig(string $token, string $notification)
     {
-        $apns_data['headers'] = [
-            'apns-priority' => '10',
-        ];
-        $apns_data['payload'] = [
-            'aps' => [
-                'alert' => [
-                    'title' => $title,
-                    'body' => $notification,
+        $fcmNotification = [
+            'to'        => $token,
+            'notification' => $notification,
+            'data' => [
+                'payload' => [
+                    'aps' => [
+                        'alert' => [
+                            'title' => '$GOOG up 1.43% on the day',
+                            'body' => '$GOOG gained 11.80 points to close at 835.67, up 1.43% on the day.',
+                        ],
+                        'badge' => 42,
+                        'sound' => 'default',
+                    ],
                 ],
-                'badge' => $badge,
-                'mutable-content' => 1,
             ],
         ];
-        $apns_data['payload'] = array_merge($apns_data['payload'], $data);
-        return $apns_data;
+        return $fcmNotification;
     }
 }
