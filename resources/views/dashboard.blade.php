@@ -1,37 +1,44 @@
 @extends('layouts.app')
 @section('content')
-<h1>dash</h1>
-<a href="{{ route('user.create') }}">create</a>
-<div style="overflow-x: auto;">
-    <table class="table">
-        <thead>
-            <tr>
-                <th class="text-center">ID</th>
-                <th>Имя</th>
-                <th>Фамилия</th>
-                <th>Должность</th>
-                <th>E-mail</th>
-                <th>Телефон</th>
-                <th class="text-right"></th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach ($users as $user)
-            <tr>
-                <td class="text-center">{{ $user['id'] }}</td>
-                <td>{{ $user['name'] }}</td>
-                <td>{{ $user['surname'] }}</td>
-                <td>{{ $user->role['role_name'] }}</td>
-                <td>{{ $user['email'] }}</td>
-                <td>{{ $user['phone_number'] }}</td>
-                <td class="td-actions text-right">
-                    <button type="button" rel="tooltip" class="btn btn-primary btn-link">
-                        <a href="{{ route('user.edit', $user['id']) }}">Редактировать</a>
-                    </button>
-                </td>
-            </tr>
-            @endforeach
-        </tbody>
-    </table>
+<div class="dashboard-container">
+    <div class="container-title">
+        <h1 class="container-title__text">dash</h1>
+        <a class="container-title__button-text" href="{{ route('user.create') }}">Добавить пользователя</a>
+    </div>
+    <div class="container__content" style="overflow-x: auto;">
+        <table class="table">
+            <thead>
+                <tr class="table__thead">
+                    <th class="table__text-center table__text-id">ID</th>
+                    <th class="table__text-name">Имя</th>
+                    <th class="table__text-surname">Фамилия</th>
+                    <th class="table__text-position">Должность</th>
+                    <th class="table__text-email">E-mail</th>
+                    <th class="table__text-phone">Телефон</th>
+                    <th class="table__text-edit"></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($users as $user)
+                <tr class="table__border-top">
+                    <td class="table__text-center table__text-number">{{ $user['id'] }}</td>
+                    <td class="table__tbody-namesur">{{ $user['name'] }}</td>
+                    <td class="table__tbody-namesur">{{ $user['surname'] }}</td>
+                    <td class="table__tbody-pos-em-num">{{ $user->role['role_name'] }}</td>
+                    <td class="table__tbody-pos-em-num">{{ $user['email'] }}</td>
+                    <td class="table__tbody-pos-em-num">{{ $user['phone_number'] }}</td>
+                    <td class="">
+                        <a class="" href="{{ route('user.edit', $user['id']) }}">
+                            <i class="table__edit-icon-pencil"></i>
+                        </a>
+                    </td>
+                </tr>
+                @endforeach
+            </tbody>
+        </table>
+        <div class="container__pagination">
+            {{ $users->links() }}  
+        </div>
+    </div>
 </div>
 @endsection

@@ -8,15 +8,32 @@
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
         <title>{{ config('app.name', 'med') }}</title>
+        <link rel="stylesheet" href="{{ mix('/assets/css/main.css') }}">
         <!-- Favicon -->
     </head>
-    <body class="{{ $class ?? '' }}">
+    <body class="background-login {{ $class ?? '' }}">
         @auth()
-            @include('layouts.navbars.sidebar')
-            <div class="content">
-                @yield('content')
+            <div class="container-content">
+                <div class="aside-content">
+                    <div class="aside-content__logo">
+                        <img class="aside-content__img" src="/assets/images/logo.png" alt="Logo login">
+                        <span class="aside-content__text">
+                            MedTask24
+                        </span>
+                    </div>
+                    <div class="aside-content__sidebar">
+                        @include('layouts.navbars.sidebar')
+                        <div class="aside-content__logout">
+                            <a class="aside-content__button" href="{{ route('admin.logout') }}">Выход</a>   
+                        </div>                                             
+                    </div> 
+                                     
+                </div>            
+                <div class="content">
+                    @yield('content')
+                </div>
             </div>
-            <a href="{{ route('admin.logout') }}">logout</a>
+            {{-- <a href="{{ route('admin.logout') }}">logout</a> --}}
         @endauth
         @stack('js')
     </body>
