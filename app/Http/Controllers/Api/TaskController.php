@@ -20,39 +20,8 @@ class TaskController extends Controller
 {
     public function getUnfinishedTasks(Request $request) {
         $user = $request->user();
-        if($user->role_id === 1) {
-            $tasks = Task::getAllUnfinishedTasks();
-        }
-        else {
-            $tasks = Task::getUserUnfinishedTasks($user->id);
-        }
-        foreach($tasks as $task) {
-            if(!empty($task->executor_surname))
-            {
-                $task->executor_name = $task->executor_name.' '.$task->executor_surname;
-            }
-            else {
-                $task->executor_name = "";
-            }
-            $task->creator_name = $task->creator_name.' '.$task->creator_surname;
-            $task->start_date = (string)date("d.m.Y", strtotime($task->start_task));
-            $task->start_time = (string)date("H:i", strtotime($task->start_task));
-            $task->deadline_date = (string)date("d.m.Y", strtotime($task->must_end_task));
-            $task->deadline_time = (string)date("H:i", strtotime($task->must_end_task));
-            $task->accepted = (boolean)$task->accepted;
-            $task->deadline_expired = (boolean)$task->deadline_expired;
-            unset($task->executor_surname);
-            unset($task->creator_surname);
-            unset($task->executor_id);
-            unset($task->creator_id);
-            unset($task->start_task);
-            unset($task->end_task);
-            unset($task->must_end_task);
-        }
-        return [[
-            "date" => (string)date('d.m.Y', strtotime(now())),
-            "task" => $tasks
-        ]];
+        $data = Task::groupTasksByDate($user->role_id, $user->id);
+        return $data;
     }
 
     public function finishedTask(Request $request) {

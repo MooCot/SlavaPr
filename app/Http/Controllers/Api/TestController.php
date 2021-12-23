@@ -50,8 +50,9 @@ class TestController extends Controller
         event(new TaskEvent($task, $token, 'test'));
     }
 
-    public function test2(Request $request) {
-        $date= Task::getAllUnfinishedTasks();
-        return $date;
-    }
+    // public function test2(Request $request) {
+    //     $data = Task::groupTasksByDate();
+    //     // $data = Task::TestgetAllUnfinished(date('Y-m-d', strtotime(now())));
+    //     return $data;
+    // }
 }
