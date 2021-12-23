@@ -14,7 +14,7 @@ class OverdueTasks extends Command
      *
      * @var string
      */
-    protected $signature = 'command:name';
+    protected $signature = 'task:overdue';
 
     /**
      * The console command description.

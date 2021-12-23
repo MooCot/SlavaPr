@@ -14,7 +14,7 @@ class ActiveTasks extends Command
      *
      * @var string
      */
-    protected $signature = 'find:active';
+    protected $signature = 'task:active';
 
     /**
      * The console command description.
