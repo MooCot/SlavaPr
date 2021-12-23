@@ -14,6 +14,7 @@ use App\Models\Task;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
 use App\Events\TaskEvent;
+use phpDocumentor\Reflection\Types\Boolean;
 
 class TaskController extends Controller
 {
@@ -34,10 +35,12 @@ class TaskController extends Controller
                 $task->executor_name = "";
             }
             $task->creator_name = $task->creator_name.' '.$task->creator_surname;
-            $task->start_date = date("d.m.Y", strtotime($task->start_task));
-            $task->start_time = date("H:i", strtotime($task->start_task));
-            $task->deadline_date = date("d.m.Y", strtotime($task->must_end_task));
-            $task->deadline_time = date("H:i", strtotime($task->must_end_task));
+            $task->start_date = (string)date("d.m.Y", strtotime($task->start_task));
+            $task->start_time = (string)date("H:i", strtotime($task->start_task));
+            $task->deadline_date = (string)date("d.m.Y", strtotime($task->must_end_task));
+            $task->deadline_time = (string)date("H:i", strtotime($task->must_end_task));
+            $task->accepted = (boolean)$task->accepted;
+            $task->deadline_expired = (boolean)$task->deadline_expired;
             unset($task->executor_surname);
             unset($task->creator_surname);
             unset($task->executor_id);
@@ -47,7 +50,7 @@ class TaskController extends Controller
             unset($task->must_end_task);
         }
         return [[
-            "date" => date('Y-m-d H:i:s', strtotime(now())),
+            "date" => (string)date('Y-m-d H:i:s', strtotime(now())),
             "task" => $tasks
         ]];
     }
@@ -60,7 +63,7 @@ class TaskController extends Controller
             if(!empty($task)) {
                 if($task->creator_id == $user->id)
                 {
-                    $task->end_task = date('Y-m-d H:i:s', strtotime(now()));
+                    $task->end_task = (string)date('Y-m-d H:i:s', strtotime(now()));
                     $task->save();
                     $user = User::where('id', $task->creator_id)->with('fcmTokens')->first();
                     // event(new TaskEvent($task, $user['fcmTokens'], 'test'));
@@ -83,8 +86,8 @@ class TaskController extends Controller
         $user = $request->user();
         $task = new Task;
         $task->task_name = $request->name;
-        $deadline_date = strtotime($request->deadline_date);
-        $task->must_end_task = date('Y-m-d H:i:s', $deadline_date);
+        $deadline_date = (string)strtotime($request->deadline_date);
+        $task->must_end_task = (string)date('Y-m-d H:i:s', $deadline_date);
         $task->start_task = now();
         $task->task_description = $request->description;
         $task->executor_id = $request->executor_id;
@@ -123,10 +126,12 @@ class TaskController extends Controller
                     $task->executor_name = "";
                 }
                 $task->creator_name = $task->creator_name.' '.$task->creator_surname;
-                $task->start_date = date("d.m.Y", strtotime($task->start_task));
-                $task->start_time = date("H:i", strtotime($task->start_task));
-                $task->deadline_date = date("d.m.Y", strtotime($task->must_end_task));
-                $task->deadline_time = date("H:i", strtotime($task->must_end_task));
+                $task->start_date = (string)date("d.m.Y", strtotime($task->start_task));
+                $task->start_time = (string)date("H:i", strtotime($task->start_task));
+                $task->deadline_date = (string)date("d.m.Y", strtotime($task->must_end_task));
+                $task->deadline_time = (string)date("H:i", strtotime($task->must_end_task));
+                $task->accepted = (boolean)$task->accepted;
+                $task->deadline_expired = (boolean)$task->deadline_expired;
                 unset($task->executor_surname);
                 unset($task->creator_surname);
                 unset($task->executor_id);
