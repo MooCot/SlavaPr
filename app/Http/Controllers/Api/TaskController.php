@@ -50,7 +50,7 @@ class TaskController extends Controller
             unset($task->must_end_task);
         }
         return [[
-            "date" => (string)date('Y-m-d', strtotime(now())),
+            "date" => (string)date('Y.m.d', strtotime(now())),
             "task" => $tasks
         ]];
     }
