@@ -162,7 +162,7 @@ class TaskController extends Controller
                     $task->accepted = 1;
                     $task->save();
                     $user = User::where('id', $task->creator_id)->with('fcmTokens')->first();
-                    event(new TaskEvent($task, $user['fcmTokens'], 'test'));
+                    event(new TaskEvent($task, $user['fcmTokens'], 'Задача “'.$task->task_name.'” принята в работу исполнителем: “'.$user->name.' '.$user->surname.'”'));
                     return "plugTrue";
                 }
                 else {

@@ -40,10 +40,11 @@ class OverdueTasks extends Command
      */
     public function handle()
     {
-        $findTasks = Task::where('must_end_task', '>', date("Y-m-d H:i", strtotime(now())))->get();
+        $findTasks = Task::where('end_task', NULL)->get();
         foreach($findTasks as $task){
-            $user = User::where('id', $task->executor_id)->with('fcmTokens')->first();
-            event(new TaskEvent($task, $user['fcmTokens'], 'test'));
+            $executor = User::where('id', $task->executor_id)->with('fcmTokens')->first();
+            $creator = User::where('id', $task->creator_id)->with('fcmTokens')->first();
+            event(new TaskEvent($task, $creator['fcmTokens'], 'Задача: “'.$task->task_name.'” просрочена исполнителем: “'.$executor->name.' '.$executor->surname.'”'));
         }
         return Command::SUCCESS;
     }

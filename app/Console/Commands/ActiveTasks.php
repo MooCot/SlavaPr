@@ -40,10 +40,10 @@ class ActiveTasks extends Command
      */
     public function handle()
     {
-        $findTasks = Task::where('end_task', NULL)->get();
+        $findTasks = Task::where('must_end_task', '>', date("Y-m-d H:i", strtotime(now())))->count();
         foreach($findTasks as $task){
-            $user = User::where('id', $task->executor_id)->with('fcmTokens')->first();
-            event(new TaskEvent($task, $user['fcmTokens'], 'test'));
+            $executor = User::where('id', $task->executor_id)->with('fcmTokens')->first();
+            event(new TaskEvent($task, $executor['fcmTokens'], 'Доброе утро! Ваши задачи на сегодня: 10 - Срочных, 2- заканчивается дедлайн, 5 - не срочных, 1- дедлайн просрочен'));
         }
         return Command::SUCCESS;
     }
