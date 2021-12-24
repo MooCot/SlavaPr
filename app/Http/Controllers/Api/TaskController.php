@@ -74,13 +74,10 @@ class TaskController extends Controller
         ->get();
         if(!empty($users)) {
             foreach($users as $user) {
-                if(!empty($users->surname))
-                {
+
                     $user->name = $user->name.' '.$user->surname;
-                }
-                else {
-                    $user->name = "";
-                }
+
+
                 unset($user->surname);
             }
 
