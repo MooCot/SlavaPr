@@ -73,6 +73,24 @@ class TaskController extends Controller
             ->join('users as executor', 'executor.id', '=', 'tasks.executor_id')
             ->select('executor.id','executor.name as executor_name', 'executor.surname as executor_surname')    
             ->get();  
+        if(!empty($tasks)) {
+            foreach($tasks as $task) {
+                if(!empty($task->executor_surname))
+                {
+                    $task->executor_name = $task->executor_name.' '.$task->executor_surname;
+                }
+                else {
+                    $task->executor_name = "";
+                }
+                unset($task->executor_surname);
+            }
+
+            return $tasks;
+            
+        }
+        else {
+            return '';
+        }
         return $tasks;   
     }
 
