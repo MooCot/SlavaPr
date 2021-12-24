@@ -69,30 +69,28 @@ class TaskController extends Controller
     }
 
     public function getExecutorsTask(Request $request) {
-        $tasks = DB::table('tasks')
-            ->join('users as executor', 'executor.id', '=', 'tasks.executor_id')
-            ->select('executor.id','executor.name as executor_name', 'executor.surname as executor_surname')    
-            ->get();  
-        if(!empty($tasks)) {
-            foreach($tasks as $task) {
-                if(!empty($task->executor_surname))
+        $users = DB::table('users')
+        ->select('name', 'surname')                
+        ->get();
+        if(!empty($users)) {
+            foreach($users as $user) {
+                if(!empty($users->surname))
                 {
-                    $task->name = $task->executor_name.' '.$task->executor_surname;
+                    $user->name = $user->name.' '.$user->surname;
                 }
                 else {
-                    $task->name = "";
+                    $user->name = "";
                 }
-                unset($task->executor_name);
-                unset($task->executor_surname);
+                unset($user->surname);
             }
 
-            return $tasks;
+            return $users;
             
         }
         else {
             return '';
         }
-        return $tasks;   
+        return $users;   
     }
 
     public function getDetailsTask(Request $request) {
