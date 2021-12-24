@@ -70,7 +70,7 @@ class TaskController extends Controller
 
     public function getExecutorsTask(Request $request) {
         $users = DB::table('users')
-        ->select('name', 'surname')                
+        ->select('id', 'name', 'surname')                
         ->get();
         if(!empty($users)) {
             foreach($users as $user) {
