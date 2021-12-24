@@ -77,11 +77,12 @@ class TaskController extends Controller
             foreach($tasks as $task) {
                 if(!empty($task->executor_surname))
                 {
-                    $task->executor_name = $task->executor_name.' '.$task->executor_surname;
+                    $task->name = $task->executor_name.' '.$task->executor_surname;
                 }
                 else {
-                    $task->executor_name = "";
+                    $task->name = "";
                 }
+                unset($task->executor_name);
                 unset($task->executor_surname);
             }
 
