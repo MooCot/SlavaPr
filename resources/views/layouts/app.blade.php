@@ -37,4 +37,6 @@
         @endauth
         @stack('js')
     </body>
+<script src="{{mix("/assets/js/jquery.js")}}"></script>
+<script src="{{mix("/assets/js/main.js")}}"></script>
 </html>

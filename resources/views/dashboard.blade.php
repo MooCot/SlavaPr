@@ -9,7 +9,7 @@
         <table class="table">
             <thead>
                 <tr class="table__thead">
-                    <th class="table__text-center table__text-id">ID123</th>
+                    <th class="table__text-center table__text-id">ID</th>
                     <th class="table__text-name">Имя</th>
                     <th class="table__text-surname">Фамилия</th>
                     <th class="table__text-position">Должность</th>

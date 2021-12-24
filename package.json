@@ -9,14 +9,25 @@
         "prod": "npm run production",
         "production": "mix --production"
     },
+    "browserslist": [
+        "defaults",
+        "ie 11"
+    ],
     "devDependencies": {
         "axios": "^0.21",
+        "copy-webpack-plugin": "^10.2.0",
+        "imagemin-mozjpeg": "^10.0.0",
+        "imagemin-webpack-plugin": "^2.4.2",
+        "jquery-ui": "^1.13.0",
         "laravel-mix": "^6.0.6",
+        "laravel-mix-polyfill": "^3.0.1",
         "laravel-mix-webp": "^0.1.3",
         "lodash": "^4.17.19",
         "postcss": "^8.1.14",
+        "postcss-sort-media-queries": "^4.2.1",
         "resolve-url-loader": "^4.0.0",
-        "sass": "^1.45.0",
-        "sass-loader": "^12.1.0"
+        "sass": "^1.45.1",
+        "sass-loader": "^12.4.0",
+        "svg-spritemap-webpack-plugin": "^4.4.0"
     }
 }

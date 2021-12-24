@@ -82,7 +82,7 @@
     color: #5B5C60;
 }
 
-.form-control{
+.input-group__input{
     margin-bottom: 24px;
     border: 1px solid #D1D1D1;
     height: 48px;
@@ -94,6 +94,7 @@
     font-weight: 500;
     font-size: 14px;
 }
+
 
 .form-control:focus{
     border: 2px solid #9C2CF3;
@@ -107,6 +108,10 @@
 	width: 24px;
 	height: 24px;
     background: url('/assets/images/icon_visibility_off.png');
+}
+
+.input-group__img-visible.view {
+	background: url('/assets/images/icon_visibility_on.png') 0 0 no-repeat;
 }
 
 .form__button{
@@ -140,7 +145,7 @@
     -moz-box-shadow: 6px 0px 18px rgba(0, 0, 0, 0.06);
     box-shadow: 6px 0px 18px rgba(0, 0, 0, 0.06);
     z-index: 10;
-    background: #000;
+    color: #000;
 }
 
 .aside-content__logo{
@@ -341,12 +346,13 @@ th{
 }
 
 .page-item .page-link{
+    display: inline-block;
     height: 36px;
     width: 36px;
-    padding: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
-
-// ////////////////////////////tasksssssss
 
 .page-item:first-child{
     background: none;    
@@ -357,18 +363,26 @@ th{
 }
 
 .page-item:first-child .page-link{
-    display: inline-block;
-    width: 36px;
-	height: 36px;
-    background: url('/assets/images/icon_arrow-left.png');
+    background: url('/assets/images/icon_arrow-right.png');
+    transform: rotate(180deg);
     background-repeat: no-repeat;
 }
 
 .page-item:last-child .page-link{
-    display: inline-block;
-    width: 36px;
-	height: 36px;
     background: url('/assets/images/icon_arrow-right.png');
+    transform: none;
+    background-repeat: no-repeat;
+}
+
+.page-item:first-child.disabled .page-link{
+    background: url('/assets/images/icon_arrow-left.png');
+    transform: none;
+    background-repeat: no-repeat;
+}
+
+.page-item:last-child.disabled .page-link{
+    background: url('/assets/images/icon_arrow-left.png');
+    transform: rotate(180deg);
     background-repeat: no-repeat;
 }
 
@@ -416,8 +430,8 @@ th{
 }
 
 .container__content{
-    background: #E5E5E5;
     padding: 0 36px;
+    background: #F5F6F8;
 }
 
 .container__pagination{
@@ -432,8 +446,8 @@ th{
 // Dashboard page
 .dashboard-container{
     height: 100vh;
-    background: #e5e5e5;
     z-index: 8;
+    background: #F5F6F8;
 }
 
 .dashboard-container__title{
@@ -444,5 +458,142 @@ th{
 .dashboard-container__content{
     background: #E5E5E5;
 }
+
+
+// /////////////////////////////////
+// Create page Users
+
+.form__create-user{
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 22px;
+}
+
+.form__create-user-container{
+    margin-left: 60px;
+    margin-top: 45px;
+    display: flex;
+    // flex-wrap: wrap;
+    width: 70%;
+    flex-direction: column;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 20px;
+}
+
+.form__create-user_title{
+    width: 100%;
+    margin-bottom: 45px;
+}
+
+.form__label-title{
+    margin-bottom: 8px;
+    font-size: 14px;
+}
+
+.form__create_title{
+    height: 100px;
+    text-transform: uppercase;
+    border-bottom: 1px solid #EBEFF2;
+    padding: 40px 0 40px 60px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    background: #fff;
+}
+
+.form__create-user_double{
+    display: flex;
+    flex-direction: row;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 150%;
+    margin-bottom: 24px;
+}
+
+.form__input_indent{
+    // width: 90%;
+}
+
+.form__input_block{
+    width: 50%;
+    // width: 400px;
+    display: flex;
+    flex-direction: column;
+}
+
+.form__input{
+    // width: 90%;
+    width: 100%;
+    border: 1px solid #D1D1D1;
+    height: 48px;
+    border-radius: 4px;
+    padding-left: 8px;
+    padding-right: 8px;
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+}
+
+
+.form_toggle{
+    display: flex;
+    flex-direction: row;
+    overflow: hidden;
+}
+
+.form_toggle-item {
+	display: inline-block;
+}
+
+.form_toggle-item:first-child {
+	margin-right: 16px;
+}
+
+.form_toggle-item input[type=radio] {
+	display: none;
+}
+
+.form_toggle-item label {
+	display: inline-block;
+	padding: 0px 38px;   
+	line-height: 46px;    
+    background: #E5EAFC;
+	cursor: pointer;
+	user-select: none;  
+	border-radius: 75px;
+}
+
+.form_toggle .item-1 input[type=radio]:checked + label,
+.form_toggle .item-2 input[type=radio]:checked + label {
+    background: linear-gradient(#9C2CF3, #3A49F9);
+    color: #fff;
+}
+
+.form__input_position{
+    position: relative;
+}
+
+.form__input_position .input-group__img-visible{
+    top: 13px;
+	right: 10px;
+}
+
+.form-group{
+    margin-right: 36px;
+}
+
+.form__button_save{
+    width: 200px;
+}
+
+
+
+
 
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap');
