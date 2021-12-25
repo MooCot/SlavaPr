@@ -259,6 +259,11 @@ th{
     font-weight: 500;
 }
 
+// th.table__text-phone{
+//     text-align: right;
+//     padding-right: 25px;
+// }
+
 .table__thead{
     text-align: left;
     height: 48px;
@@ -290,7 +295,7 @@ th{
 }
 
 .table__text-phone{
-    width: 7%;
+    width: 10%;
 }
 
 .table__text-edit{
@@ -521,9 +526,11 @@ th{
 
 .form__input_block{
     width: 50%;
-    // width: 400px;
     display: flex;
     flex-direction: column;
+}
+.form__input_block:first-child{
+    margin-right: 36px;
 }
 
 .form__input{
@@ -585,14 +592,58 @@ th{
 }
 
 .form-group{
-    margin-right: 36px;
+    // margin-right: 36px;
 }
 
 .form__button_save{
     width: 200px;
 }
 
+.form__button_delete{
+    width: 200px;
+    background: none;
+    border: 1px solid #9C2CF3;
+    background-color: #9C2CF3;
+    background-image: linear-gradient(#9C2CF3, #3A49F9);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.form__button_delete::after{
+    background: linear-gradient(#9C2CF3, #3A49F9);
+}
 
+.form__create_buttons{
+    display: flex;
+    justify-content: space-between;
+
+}
+
+///////////////////////
+// Admins page
+
+.table__text-edit-button{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-right: 24px;
+    margin-top: 24px;
+}
+
+.admins-text-email{
+    width: 30%;
+}
+
+.table__delete-icon-trash{
+    display: inline-block;
+    width: 16px;
+	height: 16px;
+    background: url('/assets/images/icon-trash.png');
+    background-repeat: no-repeat;
+}
+
+.table__delete-button{
+    background: none;
+}
 
 
 
