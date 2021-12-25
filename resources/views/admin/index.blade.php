@@ -11,7 +11,6 @@
                 <tr class="table__thead">
                     <th class="table__text-center table__text-id">ID</th>
                     <th class="table__text-name ">Имя Фамилия</th>
-                    {{-- <th class="table__text-surname admins-text-surname">Фамилия</th> --}}
                     <th class="table__text-email admins-text-email">E-mail</th>
                     <th class="table__text-edit"></th>
                 </tr>
@@ -21,7 +20,6 @@
                 <tr class="table__border-top">
                     <td class="table__text-center table__text-number">{{ $admin['id'] }}</td>
                     <td class="table__tbody-namesur">{{ $admin['name'] }} {{ $admin['surname'] }}</td>
-                    {{-- <td></td> --}}
                     <td class="">{{ $admin['email'] }}</td>
                     <td class="table__text-edit-button">
                         <a href="{{ route('admin.edit', $admin['id']) }}">

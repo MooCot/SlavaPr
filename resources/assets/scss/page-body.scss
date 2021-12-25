@@ -468,7 +468,7 @@ th{
 // /////////////////////////////////
 // Create page Users
 
-.form__create-user{
+.form__create-text-style{
     font-family: Montserrat;
     font-style: normal;
     font-weight: 500;
@@ -476,7 +476,7 @@ th{
     line-height: 22px;
 }
 
-.form__create-user-container{
+.form__create-container{
     margin-left: 60px;
     margin-top: 45px;
     display: flex;
@@ -643,6 +643,10 @@ th{
 
 .table__delete-button{
     background: none;
+}
+
+.form__input_block-admin{
+    margin-bottom: 24px;
 }
 
 

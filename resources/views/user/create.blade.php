@@ -6,12 +6,12 @@
         <div class="col-md-12">
             <form method="post" action="{{ route('user.store') }}" enctype="multipart/form-data" autocomplete="off" class="form__create">
                 @csrf
-                <div class="form__create-user">
+                <div class="form__create-text-style">
                     @include('alerts.success')
                     <div class="form__create_title">
                         <h4 class="">{{ __('Добавление пользователя') }}</h4>
                     </div>                    
-                    <div class="form__create-user-container">
+                    <div class="form__create-container">
                         <div class="form__create-user_title">*Все поля обязательны для заполнения</div>
                         <div class="form__create-user_double">
                             <div class="form__input_block">
