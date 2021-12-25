@@ -649,6 +649,15 @@ th{
     margin-bottom: 24px;
 }
 
+.form__admin_buttons{
+    display: flex;
+    flex-direction: column;
+}
+
+.form__admin_buttons button:first-child{
+    margin-bottom: 20px;
+}
+
 
 
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap');

@@ -7,12 +7,12 @@
             <form method="post" action="{{ route('user.update', $user['id']) }}" autocomplete="off" class="form-horizontal">
                 @csrf
                 @method('put')
-                <div class="form__create-user">
+                <div class="form__create-text-style">
                     <div class="form__create_title">
                         <h4 class="card-title">{{ __('Редактирование пользователя') }}</h4>
                     </div>
                     @include('alerts.success')
-                    <div class="form__create-user-container">
+                    <div class="form__create-container">
                         <div class="form__create-user_title">*Все поля обязательны для заполнения</div>
                         <div class="form__create-user_double">
                             <div class="form__input_block">

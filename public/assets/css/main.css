@@ -718,6 +718,15 @@ th {
   margin-bottom: 24px;
 }
 
+.form__admin_buttons {
+  display: flex;
+  flex-direction: column;
+}
+
+.form__admin_buttons button:first-child {
+  margin-bottom: 20px;
+}
+
 .page-footer {
   height: 100px;
   border-top: 1px solid #011f2b;
