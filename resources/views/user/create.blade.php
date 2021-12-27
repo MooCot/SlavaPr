@@ -68,7 +68,7 @@
                                 <label class="form__label-title">Телефон</label>
                                 <div class="col-sm-7">
                                     <div class="form-group{{ $errors->has('phone_number') ? ' has-danger' : '' }}">
-                                        <input class="form__input_indent form__input form-control{{ $errors->has('phone_number') ? ' is-invalid' : '' }}" name="phone_number" id="input-phone_number" type="phone_number" placeholder="" value="" required />
+                                        <input class="form__input_indent form__input rupiah form-control{{ $errors->has('phone_number') ? ' is-invalid' : '' }}" name="phone_number" id="input-phone_number" type="text" placeholder="+380 _ _  _ _ _  _ _  _ _" value="" required />
                                         @if ($errors->has('phone_number'))
                                         <span id="phone_number-error" class="error text-danger" for="input-phone_number">{{ $errors->first('phone_number') }}</span>
                                         @endif

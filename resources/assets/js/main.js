@@ -2,6 +2,8 @@
 // import svg4everybody from 'svg4everybody';
 import $ from 'jquery';
 
+require('jquery-mask-plugin');
+
 document.addEventListener("DOMContentLoaded", function() {
 
     // $(document).ready(function(){
@@ -42,17 +44,9 @@ document.addEventListener("DOMContentLoaded", function() {
         return false;
     });
 
+    $('.rupiah').mask('+38+0 999-999-999', {reverse: false});
 
-    // $('#form__input__button-visible').click(function(){
-    //     if ($('#input-password').attr('type') == 'password'){
-    //         $(this).addClass('view');
-    //         $('#input-password').attr('type', 'text');
-    //     } else {
-    //         $(this).removeClass('view');
-    //         $('#input-password').attr('type', 'password');
-    //     }
-    //     return false;
-    // });
+
 
     $('#form-button').click(function(){
         var x = document.getElementById("myEmail").pattern;
