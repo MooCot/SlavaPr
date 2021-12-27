@@ -414,6 +414,7 @@ th{
 
 .container-title__text{
     font-family: Montserrat;
+    text-transform: uppercase;
     font-style: normal;
     font-weight: 500;
     font-size: 18px;
@@ -656,6 +657,74 @@ th{
 
 .form__admin_buttons button:first-child{
     margin-bottom: 20px;
+}
+
+// Tasks Page
+
+.table__task-name{
+    width: 15%;
+}
+
+.table__task-date{
+    width: 7%;
+}
+.table__task-date-result{
+    width: 7%;
+
+}
+.table__task-data-complete{
+    width: 7%;
+
+}
+.table__task-desc{
+    width: 18%;
+
+}
+.table__task-fio{
+    width: 15%;
+
+}
+.table__text-edit{
+    width: 2%;
+}
+
+.table__column-space{
+    // padding-right: 20px;
+}
+
+.table__tasks{
+    border-collapse: separate;
+    border-spacing: 50px 0;
+}
+
+.table__task-fio{
+    text-align: right;
+}
+
+.table__task-check{
+    text-align: center;
+}
+
+.table__task-fio-pos{
+    display: flex;
+    flex-direction: column;
+}
+
+.table__task-title-text{
+    color: #8E8F95;
+}
+
+.table__status-icon-check{
+    display: inline-block;
+
+    width: 16px;
+	height: 16px;
+    background: url('/assets/images/statusicon_check_color.png');
+    background-repeat: no-repeat;
+}
+
+.table__tasks-padding{
+    padding: 16px 0;
 }
 
 
