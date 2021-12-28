@@ -230,7 +230,6 @@ h1, h2, h3, h4, h5, h6 {
 .container-content {
   display: flex;
   flex-direction: row;
-  height: 100vh;
 }
 
 .content {
@@ -534,7 +533,6 @@ th {
 }
 
 .dashboard-container {
-  height: 100vh;
   z-index: 8;
   background: #F5F6F8;
 }

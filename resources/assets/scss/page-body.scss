@@ -131,7 +131,6 @@
 .container-content{
     display: flex;
     flex-direction: row;
-    height: 100vh;
 }
 
 .content{
@@ -450,8 +449,7 @@ th{
 
 // //////////////////////////////
 // Dashboard page
-.dashboard-container{
-    height: 100vh;
+.dashboard-container {
     z-index: 8;
     background: #F5F6F8;
 }
