@@ -114,12 +114,14 @@
                         
                         <div class="form__create-user_double form__create_buttons">
                             <button type="submit" class="form__button form__button_save">{{ __('Сохранить') }}</button>
-                            <button type="submit" class="form__button form__button_delete">{{ __('Удалить') }}</button>
                         </div>                       
-                        
                     </div>
-                   
                 </div>
+            </form>
+            <form action="{{ route('user.destroy', $user['id']) }}" method="POST" style="display: inline-block; margin-left: 60px">
+                @csrf
+                @method('DELETE')
+                <button type="submit" class="form__button form__button_delete">{{ __('Удалить') }}</button>
             </form>
         </div>
     </div>

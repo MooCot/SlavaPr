@@ -60,5 +60,12 @@ class UserController extends Controller
         $user->save();
         return redirect('admin/dashboard');
     }
+
+    
+    public function destroy(Request $request, User $admin)
+    {
+        $admin->delete();
+        return redirect('admin/dashboard');
+    }
 }
 

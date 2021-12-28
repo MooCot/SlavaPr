@@ -37,7 +37,11 @@ class TaskController extends Controller
                         $task->end_task = (string)date('Y-m-d H:i:s', strtotime(now()));
                         $task->save();
                         $user = User::where('id', $task->creator_id)->with('fcmTokens')->first();
-                        event(new TaskEvent($task, $user['fcmTokens'], 'Задача “'.$task->task_name.'” завершена. Исполнитель: “'.$user->name.' '.$user->surname.'”'));
+                        $arr = [];
+                        foreach($user->fcmTokens as $token) {
+                            array_push($arr, $token->fcm_token);
+                        }
+                        event(new TaskEvent($task, $arr, 'Задача “'.$task->task_name.'” завершена. Исполнитель: “'.$user->name.' '.$user->surname.'”'));
                         return "plugTrue";
                     }
                     else {
@@ -148,7 +152,11 @@ class TaskController extends Controller
                         $task->accepted = 1;
                         $task->save();
                         $user = User::where('id', $task->creator_id)->with('fcmTokens')->first();
-                        event(new TaskEvent($task, $user['fcmTokens'], 'Задача “'.$task->task_name.'” принята в работу исполнителем: “'.$user->name.' '.$user->surname.'”'));
+                        $arr = [];
+                        foreach($user->fcmTokens as $token) {
+                            array_push($arr, $token->fcm_token);
+                        }
+                        event(new TaskEvent($task, $arr, 'Задача “'.$task->task_name.'” принята в работу исполнителем: “'.$user->name.' '.$user->surname.'”'));
                         return "plugTrue";
                     }
                     else {

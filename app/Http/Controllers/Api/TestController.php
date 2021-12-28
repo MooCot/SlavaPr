@@ -11,6 +11,7 @@ use App\Models\FcmToken;
 use App\Http\Requests\Api\TaskIdRequest;
 use App\Http\Requests\Api\CreateTaskRequest;
 use App\Models\Task;
+use App\Models\User;
 use Illuminate\Support\Facades\DB;
 use App\Traits\Firebase;
 use App\Events\TaskEvent;
@@ -50,9 +51,12 @@ class TestController extends Controller
         event(new TaskEvent($task, $token, 'test'));
     }
 
-    // public function test2(Request $request) {
-    //     $data = Task::groupTasksByDate();
-    //     // $data = Task::TestgetAllUnfinished(date('Y-m-d', strtotime(now())));
-    //     return $data;
-    // }
+    public function test2(Request $request) {
+        $user = User::where('id', 1)->with('fcmTokens')->first();
+        $arr = [];
+        foreach($user->fcmTokens as $token) {
+            array_push($arr, $token->fcm_token);
+        }
+        return $arr;
+    }
 }
