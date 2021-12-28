@@ -14,7 +14,6 @@ use Illuminate\Support\Str;
 class UserController extends Controller
 {
     public function index() {
-        // $users = User::with('role')->get();
         $users = User::with('role')->paginate(20);
         return view('dashboard', [
             'users' => $users,
@@ -22,8 +21,10 @@ class UserController extends Controller
     }
 
     public function edit(User $user) {
+        $roles = Role::get();
         return view('user.edit', [
             'user' => $user,
+            'roles' => $roles,
         ]);
     }
 

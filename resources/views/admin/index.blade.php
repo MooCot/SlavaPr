@@ -2,7 +2,6 @@
 @section('content')
 <div class="dashboard-container">
     <div class="container-title">
-        <h1 class="container-title__text">Admins</h1>
         <a class="container-title__button-text" href="{{ route('admin.create') }}">Добавить администратора</a>
     </div>    
     <div class="container__content" style="overflow-x: auto;">
