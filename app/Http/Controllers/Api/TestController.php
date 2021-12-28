@@ -52,11 +52,6 @@ class TestController extends Controller
     }
 
     public function test2(Request $request) {
-        $user = User::where('id', 1)->with('fcmTokens')->first();
-        $arr = [];
-        foreach($user->fcmTokens as $token) {
-            array_push($arr, $token->fcm_token);
-        }
-        return $arr;
+       return mb_eregi_replace("[^0-9]", '', '+380 663-310-265');
     }
 }
