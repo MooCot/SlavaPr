@@ -28,7 +28,7 @@ class SendFirebaseNotification
      */
     public function handle(TaskEvent $event)
     {
-        dd($event);
+        // dd($event);
         $answer = [];
         // foreach($event->tokens as $token) {
         //     array_push($answer, $this->firebaseNotification($this->setAndroidConfig($token, 'test'))); 

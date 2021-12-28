@@ -28,23 +28,29 @@ class TaskController extends Controller
         $user = $request->user();
         if(!empty($request->task_id))
         {
-            $task = Task::where("id", $request->task_id)->where('end_task', NULL)->first();
-            if(!empty($task)) {
-                if($task->creator_id == $user->id)
-                {
-                    $task->end_task = (string)date('Y-m-d H:i:s', strtotime(now()));
-                    $task->save();
-                    $user = User::where('id', $task->creator_id)->with('fcmTokens')->first();
-                    event(new TaskEvent($task, $user['fcmTokens'], 'Задача “'.$task->task_name.'” завершена. Исполнитель: “'.$user->name.' '.$user->surname.'”'));
-                    return "plugTrue";
+            $task = Task::where("id", $request->task_id)->first();
+            if(!empty($task)){
+                $task = Task::where("id", $request->task_id)->where('end_task', NULL)->first();
+                if(!empty($task)) {
+                    if($task->creator_id == $user->id)
+                    {
+                        $task->end_task = (string)date('Y-m-d H:i:s', strtotime(now()));
+                        $task->save();
+                        $user = User::where('id', $task->creator_id)->with('fcmTokens')->first();
+                        event(new TaskEvent($task, $user['fcmTokens'], 'Задача “'.$task->task_name.'” завершена. Исполнитель: “'.$user->name.' '.$user->surname.'”'));
+                        return "plugTrue";
+                    }
+                    else {
+                        return ['errors' => ['accepted' => [['code' => '1017', 'message' => 'Задача не может быть завершена данным пользователем']]]];
+                    }
                 }
                 else {
-                    return ['errors' => ['accepted' => [['code' => '1017', 'message' => 'Задача не может быть завершена данным пользователем']]]];
+                    return ['errors' => ['accepted' => [['code' => '1016', 'message' => 'Задача уже завершена']]]];
                 }
             }
             else {
-                return ['errors' => ['accepted' => [['code' => '1016', 'message' => 'Задача уже завершена']]]];
-            }
+                return ['errors' => ['task_id' => [['code' => '1007', 'message' => 'Задача с указанным ID не найдена']]]];
+            }    
         }
         else {
             return ['errors' => ['task_id' => [['code' => '1007', 'message' => 'Задача с указанным ID не найдена']]]];
@@ -74,15 +80,10 @@ class TaskController extends Controller
         ->get();
         if(!empty($users)) {
             foreach($users as $user) {
-
-                    $user->name = $user->name.' '.$user->surname;
-
-
+                $user->name = $user->name.' '.$user->surname;
                 unset($user->surname);
             }
-
             return $users;
-            
         }
         else {
             return '';
@@ -138,23 +139,29 @@ class TaskController extends Controller
         $user = $request->user();
         if(!empty($request->task_id))
         {
-            $task = Task::where("id", $request->task_id)->where('accepted', 0)->first();
-            if(!empty($task)) {
-                if($task->creator_id == $user->id)
-                {
-                    $task->accepted = 1;
-                    $task->save();
-                    $user = User::where('id', $task->creator_id)->with('fcmTokens')->first();
-                    event(new TaskEvent($task, $user['fcmTokens'], 'Задача “'.$task->task_name.'” принята в работу исполнителем: “'.$user->name.' '.$user->surname.'”'));
-                    return "plugTrue";
+            $task = Task::where("id", $request->task_id)->first();
+            if(!empty($task)){
+                $task = Task::where("id", $request->task_id)->where('accepted', 0)->first();
+                if(!empty($task)) {
+                    if($task->creator_id == $user->id)
+                    {
+                        $task->accepted = 1;
+                        $task->save();
+                        $user = User::where('id', $task->creator_id)->with('fcmTokens')->first();
+                        event(new TaskEvent($task, $user['fcmTokens'], 'Задача “'.$task->task_name.'” принята в работу исполнителем: “'.$user->name.' '.$user->surname.'”'));
+                        return "plugTrue";
+                    }
+                    else {
+                        return ['errors' => ['accepted' => [['code' => '1015', 'message' => 'Задача не может быть принята данным пользователем']]]];
+                    }
                 }
                 else {
-                    return ['errors' => ['accepted' => [['code' => '1015', 'message' => 'Задача не может быть принята данным пользователем']]]];
+                    return ['errors' => ['accepted' => [['code' => '1014', 'message' => 'Задача уже принята']]]];
                 }
             }
             else {
-                return ['errors' => ['accepted' => [['code' => '1014', 'message' => 'Задача уже принята']]]];
-            }
+                return ['errors' => ['task_id' => [['code' => '1007', 'message' => 'Задача с указанным ID не найдена']]]];
+            }    
         }
         else {
             return ['errors' => ['task_id' => [['code' => '1007', 'message' => 'Задача с указанным ID не найдена']]]];
