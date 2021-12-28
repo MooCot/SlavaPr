@@ -38,7 +38,7 @@ class UserController extends Controller
     {
         $user->name = $request->name;
         $user->surname = $request->surname;
-        $user->phone_number = mb_eregi_replace("[^0-9]", '', $request->phone_number);
+        $user->phone_number = mb_eregi_replace("[^0-9+]", '', $request->phone_number);
         $user->email = $request->email;
         $user->password = Hash::make($request->password);
         $user->save();
@@ -52,7 +52,7 @@ class UserController extends Controller
         $user->name = $request->name;
         $user->surname = $request->surname;
         $user->email = $request->email;
-        $user->phone_number = mb_eregi_replace("[^0-9]", '', $request->phone_number);
+        $user->phone_number = mb_eregi_replace("[^0-9+]", '', $request->phone_number);
         $user->auth_token = hash('sha256', $token);
         $user->access = $request->access;
         $user->password = Hash::make($request->password);

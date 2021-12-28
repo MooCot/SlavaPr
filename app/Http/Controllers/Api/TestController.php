@@ -52,6 +52,6 @@ class TestController extends Controller
     }
 
     public function test2(Request $request) {
-       return mb_eregi_replace("[^0-9]", '', '+380 663-310-265');
+       return mb_eregi_replace("[^0-9+]", '', '+380 663-310-265');
     }
 }
