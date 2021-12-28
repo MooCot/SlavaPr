@@ -403,11 +403,9 @@ th{
     height: 100px;
     border-bottom: 1px solid #EBEFF2;
     padding: 26px 38px 26px 36px;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
     background: #fff;
+    display: flex;
+    justify-content: flex-end;
     
 }
 
