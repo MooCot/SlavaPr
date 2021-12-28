@@ -69,7 +69,7 @@
                                 <label class="form__label-title">Телефон</label>
                                 <div class="col-sm-7">
                                     <div class="form-group{{ $errors->has('phone_number') ? ' has-danger' : '' }}">
-                                        <input class="form__input_indent form__input form-control{{ $errors->has('phone_number') ? ' is-invalid' : '' }}" name="phone_number" id="input-phone_number" type="phone_number" placeholder="phone_number" value="{{$user->phone_number}}" required />
+                                        <input class="form__input_indent form__input rupiah form-control{{ $errors->has('phone_number') ? ' is-invalid' : '' }}" name="phone_number" id="input-phone_number" type="phone_number" placeholder="phone_number" value="{{$user->phone_number}}" required />
                                         @if ($errors->has('phone_number'))
                                         <span id="phone_number-error" class="error text-danger" for="input-phone_number">{{ $errors->first('phone_number') }}</span>
                                         @endif
@@ -90,10 +90,10 @@
                         </div>
                         <div class="form__create-user_double">
                             <div class="form__input_block">
-                                <label class="form__label-title">{{ __('Пароль') }}</label>
+                                <label class="form__label-title" for="input-password">{{ __('Пароль') }}</label>
                                 <div class="col-sm-7">
-                                    <div class="form__input_position form-group{{ $errors->has('password') ? ' has-danger' : '' }}">
-                                        <input class="form__input_indent form__input form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" id="input-password" placeholder="password" value="" required />
+                                    <div class="form__input_position form-group {{ $errors->has('password') ? ' has-danger' : '' }}">
+                                        <input class="form__input_indent form__input form-control {{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" id="input-password" type="password" placeholder="" value="" required />
                                         <button type="button" id="form__input-password__button-visible" class="input-group__img-visible"></button> 
                                         @if ($errors->has('password'))
                                         <span id="password-error" class="error text-danger" for="input-password">{{ $errors->first('password') }}</span>
