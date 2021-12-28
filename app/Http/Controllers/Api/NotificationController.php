@@ -20,6 +20,7 @@ class NotificationController extends Controller
         foreach($notifications as $notification) {
             $notification->date = date("d.m.Y", strtotime($notification->created_at));
             $notification->time = date("H:i", strtotime($notification->created_at));
+            $notification->marked_as_read = (boolean)$notification->marked_as_read;
             unset($notification->created_at);
             unset($notification->updated_at);
         }

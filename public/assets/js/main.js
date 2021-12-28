@@ -54,7 +54,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     return false;
   });
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()('.rupiah').mask('+38+0 999-999-999', {
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()('.rupiah').mask('+380 999-999-999', {
     reverse: false
   });
   jquery__WEBPACK_IMPORTED_MODULE_0___default()('#form-button').click(function () {

@@ -35,8 +35,8 @@ class LoginRequest extends ApiFormRequest
         return [
             'name.required' => ['code'=>1004,'message'=>'Не передано обязательное поле (имя)'],
             'name.string' => ['code'=>1004,'message'=>'Не передано обязательное поле (имя)'],
-            'surname.required' =>['code'=>1005,'message'=>'Не передано обязательное поле (текст сообщения)'],
-            'surname.string' =>['code'=>1005,'message'=>'Не передано обязательное поле (текст сообщения)'],
+            'surname.required' =>['code'=>1005,'message'=>'Не передано обязательное поле (фамилия)'],
+            'surname.string' =>['code'=>1005,'message'=>'Не передано обязательное поле (фамилия)'],
             'email.required' => ['code'=>1006,'message'=>'Не передано обязательное поле (email)'],
             'email.string' => ['code'=>1006,'message'=>'Не передано обязательное поле (email)'],
             'email.email' => ['code'=>1006,'message'=>'Не передано обязательное поле (email)'],

@@ -15,17 +15,17 @@ class TaskEvent
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
     public Task $task;
-    public array $token;
+    public array $tokens;
     public string $notification;
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct(Task $task, array $token, string $notification)
+    public function __construct(Task $task, array $tokens, string $notification)
     {
         $this->task = $task;
-        $this->token = $token;
+        $this->tokens = $tokens;
         $this->notification = $notification;
     }
 

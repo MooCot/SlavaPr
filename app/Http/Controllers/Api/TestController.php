@@ -11,6 +11,7 @@ use App\Models\FcmToken;
 use App\Http\Requests\Api\TaskIdRequest;
 use App\Http\Requests\Api\CreateTaskRequest;
 use App\Models\Task;
+use App\Models\User;
 use Illuminate\Support\Facades\DB;
 use App\Traits\Firebase;
 use App\Events\TaskEvent;
@@ -48,5 +49,10 @@ class TestController extends Controller
         $task = Task::first();
         $token = ["cvIQqlnEQTWCMRRuX87pj2:APA91bEgDLX6gCUU3weWJe6DsQxzCWCNJdk07TD3ctGcpAOnxQTUtJctjWVubjctfT2qHajdHLJBVYjjGg-NqA89YuEZny-SdESTWqx7KVams21K3imoeCCHRY5I3Py2-jI4kuFTKsgb"];
         event(new TaskEvent($task, $token, 'test'));
+    }
+
+    public function test2(Request $request) {
+    $user = User::where('id', 2)->first();
+       return $user->role_id;
     }
 }

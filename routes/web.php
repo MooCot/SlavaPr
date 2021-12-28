@@ -30,6 +30,7 @@ Route::prefix('admin')->group(function () {
         Route::put('user/edit/{user}', [UserController::class, 'update'])->name('user.update');
         Route::get('user/create', [UserController::class, 'create'])->name('user.create');
         Route::post('user/create', [UserController::class, 'store'])->name('user.store');
+        Route::delete('user/destroy{admin}', [UserController::class, 'destroy'])->name('user.destroy');
 
         Route::get('task', [TaskController::class, 'index'])->name('tasks');
 

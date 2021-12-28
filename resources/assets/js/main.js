@@ -44,7 +44,7 @@ document.addEventListener("DOMContentLoaded", function() {
         return false;
     });
 
-    $('.rupiah').mask('+38+0 999-999-999', {reverse: false});
+    $('.rupiah').mask('+380 999-999-999', {reverse: false});
 
 
 

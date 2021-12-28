@@ -36,4 +36,14 @@ class Notification extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public static function create(string $title, string $text, int $user_id) {
+        $notification = new Notification();
+        $notification->title = $title;
+        $notification->text = $text;
+        $notification->user_id = $user_id;
+        $notification->created_at = date('Y-m-d H:i:s', strtotime(now()));
+        $notification->updated_at = date('Y-m-d H:i:s', strtotime(now()));
+        $notification->save(); 
+    }
 }
