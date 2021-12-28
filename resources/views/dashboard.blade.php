@@ -6,7 +6,7 @@
         <a class="container-title__button-text" href="{{ route('user.create') }}">Добавить пользователя</a>
     </div>
     <div class="container__content" style="overflow-x: auto;">
-        <table class="table">
+        <table class="table table__tasks">
             <thead>
                 <tr class="table__thead">
                     <th class="table__text-center table__text-id">ID</th>

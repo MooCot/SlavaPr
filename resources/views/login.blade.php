@@ -6,7 +6,6 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <link rel="stylesheet" href="{{ mix('/assets/css/main.css') }}">
-
 </head>
 <body class="background-login">
     <div class="container-login">
@@ -25,7 +24,7 @@
                     </div>
                 </div>
                 <label class="input-group__label-email">Логин (E-mail)</label>
-                <input type="email" name="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" placeholder="" required>
+                <input type="email" name="email" class="input-group__input form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" placeholder="">
             </div>
             <div class="input-group{{ $errors->has('password') ? ' has-danger' : '' }}">
                 <div class="input-group-prepend">
@@ -34,8 +33,9 @@
                     </div>
                 </div>
                 <label class="input-group__label-password">Пароль</label>
-                <input id="password-input" type="password" placeholder="" name="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" minlength="8" required>
-                <a href="#" class="input-group__img-visible"></a>
+                <input id="password-input" type="password" placeholder="" name="password" class="input-group__input form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" minlength="8" required>
+                <button type="button" id="input-group__button-visible" class="input-group__img-visible">
+                </button>                
             </div>
         
             <button id="form-button" type="submit" href="" class="form__button">{{ __('Войти') }}</button>

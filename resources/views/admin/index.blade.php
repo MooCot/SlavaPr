@@ -1,38 +1,40 @@
 @extends('layouts.app')
 @section('content')
-<h1>admins</h1>
-<a href="{{ route('admin.create') }}">create</a>
-<div style="overflow-x: auto;">
-    <table class="table">
-        <thead>
-            <tr>
-                <th class="text-center">ID</th>
-                <th>Имя</th>
-                <th>Фамилия</th>
-                <th>E-mail</th>
-                <th class="text-right"></th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach ($admins as $admin)
-            <tr>
-                <td class="text-center">{{ $admin['id'] }}</td>
-                <td>{{ $admin['name'] }}</td>
-                <td>{{ $admin['surname'] }}</td>
-                <td>{{ $admin['email'] }}</td>
-                <td class="td-actions text-right">
-                    <button type="button" rel="tooltip" class="btn btn-primary btn-link">
-                        <a href="{{ route('admin.edit', $admin['id']) }}">Редактировать</a>
-                    </button>
-                    <form action="{{ route('admin.destroy', $admin['id']) }}" method="POST" style="display: inline-block">
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit" rel="tooltip" class="btn btn-primary btn-link">удалить</button>
-                    </form>
-                </td>
-            </tr>
-            @endforeach
-        </tbody>
-    </table>
+<div class="dashboard-container">
+    <div class="container-title">
+        <h1 class="container-title__text">Admins</h1>
+        <a class="container-title__button-text" href="{{ route('admin.create') }}">Добавить администратора</a>
+    </div>    
+    <div class="container__content" style="overflow-x: auto;">
+        <table class="table">
+            <thead>
+                <tr class="table__thead">
+                    <th class="table__text-center table__text-id">ID</th>
+                    <th class="table__text-name ">Имя Фамилия</th>
+                    <th class="table__text-email admins-text-email">E-mail</th>
+                    <th class="table__text-edit"></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($admins as $admin)
+                <tr class="table__border-top">
+                    <td class="table__text-center table__text-number">{{ $admin['id'] }}</td>
+                    <td class="table__tbody-namesur">{{ $admin['name'] }} {{ $admin['surname'] }}</td>
+                    <td class="">{{ $admin['email'] }}</td>
+                    <td class="table__text-edit-button">
+                        <a href="{{ route('admin.edit', $admin['id']) }}">
+                            <i class="table__edit-icon-pencil"></i>
+                        </a>
+                        <form action="{{ route('admin.destroy', $admin['id']) }}" method="POST" style="display: inline-block">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" rel="tooltip" class="table__delete-button"><i class="table__delete-icon-trash"></i></button>
+                        </form>
+                    </td>
+                </tr>
+                @endforeach
+            </tbody>
+        </table>
+    </div>
 </div>
 @endsection
