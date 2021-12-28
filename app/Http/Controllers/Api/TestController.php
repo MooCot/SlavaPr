@@ -49,4 +49,10 @@ class TestController extends Controller
         $token = ["cvIQqlnEQTWCMRRuX87pj2:APA91bEgDLX6gCUU3weWJe6DsQxzCWCNJdk07TD3ctGcpAOnxQTUtJctjWVubjctfT2qHajdHLJBVYjjGg-NqA89YuEZny-SdESTWqx7KVams21K3imoeCCHRY5I3Py2-jI4kuFTKsgb"];
         event(new TaskEvent($task, $token, 'test'));
     }
+
+    // public function test2(Request $request) {
+    //     $data = Task::groupTasksByDate();
+    //     // $data = Task::TestgetAllUnfinished(date('Y-m-d', strtotime(now())));
+    //     return $data;
+    // }
 }

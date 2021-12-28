@@ -37,6 +37,8 @@ class CreateTaskRequest extends ApiFormRequest
         return [
             'name.required' => ['code'=>1008, 'message'=>'Не передано обязательное поле (название задачи)'],
             'name.string' => ['code'=>1008, 'message'=>'Не передано обязательное поле (название задачи)'],
+            'deadline_date.string' => ['code'=>1009, 'message'=>'Не передано обязательное поле (дедлайн)'],
+            'deadline_date.required' => ['code'=>1009, 'message'=>'Не передано обязательное поле (дедлайн)'],
             'description.string' => ['code'=>3000, 'message'=>'Не правильный тип поля'],
             'executor_id.string' => ['code'=>3000, 'message'=>'Не правильный тип поля'],
             'priority.required' => ['code'=>1012, 'message'=>'Некорректное значение поля (приоритет)'],
