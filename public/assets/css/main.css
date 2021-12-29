@@ -234,7 +234,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .content {
-  width: 100%;
+  width: calc(100% - 256px);
   height: 100%;
 }
 
@@ -677,8 +677,7 @@ th {
 
 .form_toggle-item label {
   display: inline-block;
-  padding: 0px 38px;
-  line-height: 46px;
+  padding: 13px 38px;
   background: #E5EAFC;
   cursor: pointer;
   -webkit-user-select: none;
