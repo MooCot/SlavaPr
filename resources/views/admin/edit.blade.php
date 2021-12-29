@@ -69,12 +69,29 @@
                         </div>
                         <div class="form__admin_buttons">
                             <button type="submit" class="form__button form__button_save">{{ __('Сохранить') }}</button>
-                            <button type="submit" class="form__button form__button_delete">{{ __('Удалить') }}</button>
+                            <button type="button" id="showform" class="form__button form__button_delete">{{ __('Удалить') }}</button>
                         </div>
                     </div>
                 </div>
             </form>
         </div>
     </div>
+</div>
+
+<div id="alert-form" class="alert-back">
+    <form action="{{ route('admin.destroy', $admin['id']) }}" class="alert-form">
+        @csrf
+        @method('DELETE')
+        <div class="alert-block-icon">
+            <i id="closeform" class="icon-close alert-icon"></i>
+        </div>
+        <img class="alert-img" src="/assets/images/alert.png" alt="">
+        <div class="alert-title">Удаление пользователя</div>
+        <div class="alert-text">Вы уверены что хотите удалить</br> пользователя?</div>
+        <div class="alert-button-block">
+            <button id="closeform2" type="button" class="form__button form__button_save">{{ __('Отмена') }}</button>
+            <button type="submit" class="form__button form__button_delete">{{ __('Удалить') }}</button>
+        </div>
+    </form>
 </div>
 @endsection

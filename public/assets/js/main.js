@@ -57,6 +57,15 @@ document.addEventListener("DOMContentLoaded", function () {
   jquery__WEBPACK_IMPORTED_MODULE_0___default()('.rupiah').mask('+380 999-999-999', {
     reverse: false
   });
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()('#showform').click(function () {
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()('#alert-form').css('display', 'flex');
+  });
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()('#closeform').click(function () {
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()('#alert-form').css('display', 'none');
+  });
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()('#closeform2').click(function () {
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()('#alert-form').css('display', 'none');
+  });
   jquery__WEBPACK_IMPORTED_MODULE_0___default()('#form-button').click(function () {
     var x = document.getElementById("myEmail").pattern;
     document.getElementById("demo").innerHTML = x;

@@ -46,7 +46,17 @@ document.addEventListener("DOMContentLoaded", function() {
 
     $('.rupiah').mask('+380 999-999-999', {reverse: false});
 
+    $('#showform').click(function(){
+        $('#alert-form').css('display','flex');
+    });
 
+    $('#closeform').click(function(){
+        $('#alert-form').css('display','none');
+    });
+
+    $('#closeform2').click(function(){
+        $('#alert-form').css('display','none');
+    });
 
     $('#form-button').click(function(){
         var x = document.getElementById("myEmail").pattern;
