@@ -12,10 +12,13 @@ use Illuminate\Support\Facades\Hash;
 class AdminController extends Controller
 {
 
+    public $active = 'admin';
+
     public function index() {
         $admins = Admin::get();
         return view('admin.index', [
             'admins' => $admins,
+            'active' => $this->active
         ]);
     }
 
@@ -34,7 +37,10 @@ class AdminController extends Controller
         $admin->name = $request->name;
         $admin->surname = $request->surname;
         $admin->email = $request->email;
-        $admin->password = $request->password;
+        if($request->password!=='******')
+        {
+            $admin->password = Hash::make($request->password);
+        }
         $admin->save();
         return redirect('admin/admin');
     }
@@ -44,7 +50,10 @@ class AdminController extends Controller
         $admin->name = $request->name;
         $admin->surname = $request->surname;
         $admin->email = $request->email;
-        $admin->password = Hash::make($request->password);
+        if($request->password!=='******')
+        {
+            $admin->password = Hash::make($request->password);
+        }
         $admin->save();
         return redirect('admin/admin');
     }

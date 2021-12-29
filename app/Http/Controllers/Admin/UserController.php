@@ -13,10 +13,13 @@ use Illuminate\Support\Str;
 
 class UserController extends Controller
 {
+    public $active = 'user';
+
     public function index() {
         $users = User::with('role')->paginate(20);
         return view('dashboard', [
             'users' => $users,
+            'active' => $this->active
         ]);
     }
 
@@ -41,7 +44,10 @@ class UserController extends Controller
         $user->surname = $request->surname;
         $user->phone_number = mb_eregi_replace("[^0-9+]", '', $request->phone_number);
         $user->email = $request->email;
-        $user->password = Hash::make($request->password);
+        if($request->password!=='******')
+        {
+            $user->password = Hash::make($request->password);
+        }
         $user->save();
 
         return redirect('admin/dashboard');
@@ -56,7 +62,10 @@ class UserController extends Controller
         $user->phone_number = mb_eregi_replace("[^0-9+]", '', $request->phone_number);
         $user->auth_token = hash('sha256', $token);
         $user->access = $request->access;
-        $user->password = Hash::make($request->password);
+        if($request->password!=='******')
+        {
+            $user->password = Hash::make($request->password);
+        }
         $user->role_id = $request->role;
         $user->save();
         return redirect('admin/dashboard');

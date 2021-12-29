@@ -195,7 +195,9 @@
 .sidebar{
     margin-bottom: 50px;
 }
-
+.checked {
+    color: #9C2CF3;
+}
 .sidebar-link{
     display: flex;
     flex-direction: row;
@@ -215,29 +217,52 @@
     margin-right: 14px;
 }
 
-.sidebar-icon-user{
+i.sidebar-icon-user-fill{
     display: inline-block;
     width: 24px;
 	height: 24px;
-    background: url('/assets/images/icon_users.png');
+    background: url('/assets/images/user_fill.svg') left no-repeat;
     background-repeat: no-repeat;
 }
 
-.sidebar-icon-admin{
+i.sidebar-icon-user{
     display: inline-block;
     width: 24px;
 	height: 24px;
-    background: url('/assets/images/icon_admins.png');
+    background: url('/assets/images/user.svg') left no-repeat;
+    color: #000;
     background-repeat: no-repeat;
 }
 
-.sidebar-icon-task{
+i.sidebar-icon-admin{
     display: inline-block;
     width: 24px;
 	height: 24px;
-    background: url('/assets/images/icon_tasks.png');
+    background: url('/assets/images/admin.svg');
     background-repeat: no-repeat;
-    
+}
+i.sidebar-icon-admin-fill{
+    display: inline-block;
+    width: 24px;
+	height: 24px;
+    background: url('/assets/images/admin_fill.svg');
+    background-repeat: no-repeat;
+}
+
+i.sidebar-icon-task{
+    display: inline-block;
+    width: 24px;
+	height: 24px;
+    background: url('/assets/images/history.svg');
+    background-repeat: no-repeat;
+}
+
+i.sidebar-icon-task-fill{
+    display: inline-block;
+    width: 24px;
+	height: 24px;
+    background: url('/assets/images/history_fill.svg');
+    background-repeat: no-repeat;
 }
 
 .table{

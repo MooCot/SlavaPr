@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link type="image/x-icon" href="public/favicon.ico" rel="shortcut icon">
+    <link type="Image/x-icon" href="public/favicon.ico" rel="icon">
     <title>Document</title>
     <link rel="stylesheet" href="{{ mix('/assets/css/main.css') }}">
 </head>

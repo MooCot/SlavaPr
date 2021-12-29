@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\DB;
 
 class TaskController extends Controller
 {
+    public $active = 'task';
 
     public function index() {
         $tasks = DB::table('tasks')
@@ -21,6 +22,7 @@ class TaskController extends Controller
             ->paginate(20);
         return view('task.index', [
             'tasks' => $tasks,
+            'active' => $this->active
         ]);
     }
 }

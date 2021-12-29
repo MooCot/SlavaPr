@@ -6,7 +6,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
         <meta name="csrf-token" content="{{ csrf_token() }}">
-
+        <link type="image/x-icon" href="public/favicon.ico" rel="shortcut icon">
+        <link type="Image/x-icon" href="public/favicon.ico" rel="icon">
         <title>{{ config('app.name', 'med') }}</title>
         <link rel="stylesheet" href="{{ mix('/assets/css/main.css') }}">
         <!-- Favicon -->
