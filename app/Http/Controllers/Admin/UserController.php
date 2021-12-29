@@ -40,13 +40,14 @@ class UserController extends Controller
 
     public function update(Request $request, User $user)
     {
+        
         $user->name = $request->name;
         $user->surname = $request->surname;
         $user->phone_number = mb_eregi_replace("[^0-9+]", '', $request->phone_number);
         $user->email = $request->email;
         if($request->password!=='******')
         {
-            $user->password = Hash::make($request->password);
+            $user->password =  Hash::make($request->password);
         }
         $user->save();
 
@@ -62,10 +63,7 @@ class UserController extends Controller
         $user->phone_number = mb_eregi_replace("[^0-9+]", '', $request->phone_number);
         $user->auth_token = hash('sha256', $token);
         $user->access = $request->access;
-        if($request->password!=='******')
-        {
-            $user->password = Hash::make($request->password);
-        }
+        $user->password = Hash::make($request->password);
         $user->role_id = $request->role;
         $user->save();
         return redirect('admin/dashboard');

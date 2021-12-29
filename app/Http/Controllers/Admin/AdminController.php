@@ -37,10 +37,7 @@ class AdminController extends Controller
         $admin->name = $request->name;
         $admin->surname = $request->surname;
         $admin->email = $request->email;
-        if($request->password!=='******')
-        {
-            $admin->password = Hash::make($request->password);
-        }
+        $admin->password = Hash::make($request->password);
         $admin->save();
         return redirect('admin/admin');
     }
