@@ -134,10 +134,12 @@
 .container-content{
     display: flex;
     flex-direction: row;
+    min-height: 100vh;
 }
 
 .content{
     width: calc(100% - 256px);
+    min-height: 100vh;
     height: 100%;
 }
 

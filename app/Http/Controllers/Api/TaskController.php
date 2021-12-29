@@ -111,7 +111,7 @@ class TaskController extends Controller
                     $task->executor_name = $task->executor_name.' '.$task->executor_surname;
                 }
                 else {
-                    $task->executor_name = "";
+                    $task->executor_name = "Все";
                 }
                 $task->creator_name = $task->creator_name.' '.$task->creator_surname;
                 $task->start_date = (string)date("d.m.Y", strtotime($task->start_task));
