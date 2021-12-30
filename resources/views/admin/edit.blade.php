@@ -79,7 +79,7 @@
 </div>
 
 <div id="alert-form" class="alert-back">
-    <form action="{{ route('admin.destroy', $admin['id']) }}" class="alert-form">
+    <form action="{{ route('admin.destroy', $admin['id']) }}" class="alert-form" method="POST">
         @csrf
         @method('DELETE')
         <div class="alert-block-icon">

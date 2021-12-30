@@ -70,9 +70,9 @@ class UserController extends Controller
     }
 
     
-    public function destroy(Request $request, User $admin)
+    public function destroy(Request $request, User $user)
     {
-        $admin->delete();
+        $user->delete();
         return redirect('admin/dashboard');
     }
 }

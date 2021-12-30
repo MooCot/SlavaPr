@@ -30,7 +30,7 @@ Route::prefix('admin')->group(function () {
         Route::put('user/edit/{user}', [UserController::class, 'update'])->name('user.update');
         Route::get('user/create', [UserController::class, 'create'])->name('user.create');
         Route::post('user/create', [UserController::class, 'store'])->name('user.store');
-        Route::delete('user/destroy{admin}', [UserController::class, 'destroy'])->name('user.destroy');
+        Route::delete('/user/destroy/{user}', [UserController::class, 'destroy'])->name('user.destroy');
 
         Route::get('task', [TaskController::class, 'index'])->name('tasks');
 
@@ -39,7 +39,7 @@ Route::prefix('admin')->group(function () {
         Route::put('admin/edit/{admin}', [AdminController::class, 'update'])->name('admin.update');
         Route::get('admin/create', [AdminController::class, 'create'])->name('admin.create');
         Route::post('admin/create', [AdminController::class, 'store'])->name('admin.store');
-        Route::delete('admin/destroy{admin}', [AdminController::class, 'destroy'])->name('admin.destroy');
+        Route::delete('/admin/destroy/{admin}', [AdminController::class, 'destroy'])->name('admin.destroy');
 
         Route::get('logout', [LoginController::class, 'logout'])->name('admin.logout');
     });
