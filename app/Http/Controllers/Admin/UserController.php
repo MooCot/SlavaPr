@@ -45,6 +45,8 @@ class UserController extends Controller
         $user->surname = $request->surname;
         $user->phone_number = mb_eregi_replace("[^0-9+]", '', $request->phone_number);
         $user->email = $request->email;
+        $user->access = $request->access;
+        $user->role_id = $request->role;
         if($request->password!=='******')
         {
             $user->password = Hash::make($request->password);
