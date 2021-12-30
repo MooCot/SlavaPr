@@ -26,10 +26,9 @@ class TaskController extends Controller
 
     public function finishedTask(Request $request) {
         $user = $request->user();
-        if(!empty($request->task_id))
-        {
+        if(!empty($request->task_id)) {
             $task = Task::where("id", $request->task_id)->first();
-            if(!empty($task)){
+            if(!empty($task)) {
                 $task = Task::where("id", $request->task_id)->where('end_task', NULL)->first();
                 if(!empty($task)) {
                     if($task->creator_id == $user->id)
