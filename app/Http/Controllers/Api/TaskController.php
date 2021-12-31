@@ -40,7 +40,7 @@ class TaskController extends Controller
                         foreach($user->fcmTokens as $token) {
                             array_push($arr, $token->fcm_token);
                         }
-                        event(new TaskEvent($task, $arr, 'Задача “'.$task->task_name.'” завершена. Исполнитель: “'.$user->name.' '.$user->surname.'”'));
+                        event(new TaskEvent($task, $user, $arr, 'Задача завершена!', 'Задача “'.$task->task_name.'” завершена. Исполнитель: “'.$user->name.' '.$user->surname.'”'));
                         return "plugTrue";
                     }
                     else {
@@ -61,6 +61,7 @@ class TaskController extends Controller
     }
 
     public function createTask(CreateTaskRequest $request) {
+        
         $user = $request->user();
         $task = new Task;
         $task->task_name = $request->name;
@@ -74,6 +75,13 @@ class TaskController extends Controller
         $task->deadline_expired = 0;
         $task->priority = $request->priority;
         $task->save(); 
+        if(!empty($request->executor_id)) {
+            $arr = [];
+            foreach($user->fcmTokens as $token) {
+               array_push($arr, $token->fcm_token);
+            }
+            event(new TaskEvent($task, $user, $arr, 'Новая задача!!', 'У вас новая задача: “'.$task->task_name.'”'));
+        }
         return "plugTrue";
     }
 
@@ -155,7 +163,7 @@ class TaskController extends Controller
                         foreach($user->fcmTokens as $token) {
                             array_push($arr, $token->fcm_token);
                         }
-                        event(new TaskEvent($task, $arr, 'Задача “'.$task->task_name.'” принята в работу исполнителем: “'.$user->name.' '.$user->surname.'”'));
+                        event(new TaskEvent($task, $user, $arr, 'Задача принята!', 'Задача “'.$task->task_name.'” принята в работу исполнителем: “'.$user->name.' '.$user->surname.'”'));
                         return "plugTrue";
                     }
                     else {

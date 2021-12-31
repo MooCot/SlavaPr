@@ -40,12 +40,19 @@ class OverdueTasks extends Command
      */
     public function handle()
     {
-        $findTasks = Task::where('end_task', NULL)->get();
-        foreach($findTasks as $task){
-            $executor = User::where('id', $task->executor_id)->with('fcmTokens')->first();
-            $creator = User::where('id', $task->creator_id)->with('fcmTokens')->first();
-            event(new TaskEvent($task, $creator['fcmTokens'], 'Задача: “'.$task->task_name.'” просрочена исполнителем: “'.$executor->name.' '.$executor->surname.'”'));
+        $findTasks = Task::where('end_task', NULL)->whereDate('must_end_task', '<', date('Y-m-d H:i', strtotime(now())))->get();
+        if(!empty($findTasks)){
+            foreach($findTasks as $task){
+                $executor = User::where('id', $task->executor_id)->with('fcmTokens')->first();
+                $creator = User::where('id', $task->creator_id)->with('fcmTokens')->first();
+                if(!empty($task->executor_id)){
+                    event(new TaskEvent($task, $creator, $creator['fcmTokens'], 'Задача просрочена!', 'Задача: “'.$task->task_name.'” просрочена исполнителем: “'.$executor->name.' '.$executor->surname.'”'));
+                }
+                $task->must_end_task = date('Y-m-d H:i', strtotime($task->must_end_task.'+ 1 days'));
+            }
         }
+
+        
         return Command::SUCCESS;
     }
 }

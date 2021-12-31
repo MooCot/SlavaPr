@@ -52,7 +52,7 @@ class TestController extends Controller
     }
 
     public function test2(Request $request) {
-    $user = User::where('id', 2)->first();
-       return $user->role_id;
+        $creator = User::where('id', 1)->with('fcmTokens')->first();
+        return $creator;
     }
 }

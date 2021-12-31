@@ -31,11 +31,11 @@ class SendFirebaseNotification
     {
         // dd($event);
         $answer = [];
-        // Notification::create($event->notification, $event->notification, );
-        // foreach($event->tokens as $token) {
-        //     array_push($answer, $this->firebaseNotification($this->setAndroidConfig($token, 'test'))); 
-        //     array_push($answer, $this->firebaseNotification($this->setApnsConfig($token, 'test'))); 
-        // }
-        // return $answer;
+        Notification::create($event->notification, $event->extraNotificationData, 1);
+        foreach($event->tokens as $token) {
+            array_push($answer, $this->firebaseNotification($this->setAndroidConfig($token, $event->notification, $event->extraNotificationData))); 
+            array_push($answer, $this->firebaseNotification($this->setApnsConfig($token, $event->notification, $event->extraNotificationData))); 
+        }
+        return $answer;
     }
 }

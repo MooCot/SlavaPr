@@ -21,7 +21,7 @@ trait Firebase
         return $http;
     }
 
-    public function setAndroidConfig(string $token, string $notification)
+    public function setAndroidConfig(string $token, string $notification, string $extraNotificationData)
     {
         $extraNotificationData = ["message" => $notification,"moredata" =>'dd'];
         $fcmNotification = [
@@ -32,7 +32,7 @@ trait Firebase
         return $fcmNotification;
     }
     
-    public function setApnsConfig(string $token, string $notification)
+    public function setApnsConfig(string $token, string $notification, string $extraNotificationData)
     {
         $fcmNotification = [
             'to'        => $token,
@@ -41,8 +41,8 @@ trait Firebase
                 'payload' => [
                     'aps' => [
                         'alert' => [
-                            'title' => '$GOOG up 1.43% on the day',
-                            'body' => '$GOOG gained 11.80 points to close at 835.67, up 1.43% on the day.',
+                            'title' => $notification,
+                            'body' => $extraNotificationData,
                         ],
                         'badge' => 42,
                         'sound' => 'default',

@@ -40,7 +40,6 @@ class UserController extends Controller
 
     public function update(Request $request, User $user)
     {
-        
         $user->name = $request->name;
         $user->surname = $request->surname;
         $user->phone_number = mb_eregi_replace("[^0-9+]", '', $request->phone_number);

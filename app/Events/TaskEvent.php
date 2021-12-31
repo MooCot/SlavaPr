@@ -10,23 +10,29 @@ use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 use App\Models\Task;
+use App\Models\User;
+
 class TaskEvent
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
     public Task $task;
+    public int $user;
     public array $tokens;
     public string $notification;
+    public string $extraNotificationData;
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct(Task $task, array $tokens, string $notification)
+    public function __construct(Task $task, User $user, array $tokens, string $notification, string $extraNotificationData)
     {
         $this->task = $task;
+        $this->$user = $user->id;
         $this->tokens = $tokens;
         $this->notification = $notification;
+        $this->extraNotificationData = $extraNotificationData;
     }
 
     /**

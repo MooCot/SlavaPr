@@ -41,9 +41,13 @@ class ActiveTasks extends Command
     public function handle()
     {
         $findTasks = Task::where('must_end_task', '>', date("Y-m-d H:i", strtotime(now())))->count();
-        foreach($findTasks as $task){
-            $executor = User::where('id', $task->executor_id)->with('fcmTokens')->first();
-            event(new TaskEvent($task, $executor['fcmTokens'], 'Доброе утро! Ваши задачи на сегодня: 10 - Срочных, 2- заканчивается дедлайн, 5 - не срочных, 1- дедлайн просрочен'));
+        if(!empty($findTasks)){
+            foreach($findTasks as $task){
+            if(!empty($task->executor_id)){
+                $executor = User::where('id', $task->executor_id)->with('fcmTokens')->first();
+                event(new TaskEvent($task, $executor, $executor['fcmTokens'], 'Задачи на сегодня!', 'Доброе утро! Ваши задачи на сегодня: 10 - Срочных, 2- заканчивается дедлайн, 5 - не срочных, 1- дедлайн просрочен'));
+            }
+          }
         }
         return Command::SUCCESS;
     }
