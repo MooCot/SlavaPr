@@ -62,8 +62,8 @@ class User extends Authenticatable
 		return $this->belongsTo(Role::class);
 	}
 
-    public static function returnFcmtokens($task) {
-        $user = User::where('id', $task->creator_id)->with('fcmTokens')->first();
+    public static function returnFcmtokens($user_id) {
+        $user = User::where('id', $user_id)->with('fcmTokens')->first();
         $arr = [];
         foreach($user->fcmTokens as $token) {
             array_push($arr, $token->fcm_token);

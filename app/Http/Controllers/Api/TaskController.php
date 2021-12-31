@@ -43,7 +43,7 @@ class TaskController extends Controller
         $task = $taskVerification->task;
         $task->end_task = (string)date('Y-m-d H:i:s', strtotime(now()));
         $task->save();
-        $tokens = User::returnFcmtokens($task);
+        $tokens = User::returnFcmtokens($task->creator_id);
         event(new TaskEvent($task, $user, $tokens, 'Задача завершена!', 'Задача “'.$task->task_name.'” завершена. Исполнитель: “'.$user->name.' '.$user->surname.'”'));
         return "plugTrue";
     }
@@ -64,7 +64,7 @@ class TaskController extends Controller
         $task->priority = $request->priority;
         $task->save(); 
         if(!empty($request->executor_id)) {
-            $tokens = User::returnFcmtokens($task);
+            $tokens = User::returnFcmtokens($task->creator_id);
             event(new TaskEvent($task, $user, $tokens, 'Новая задача!!', 'У вас новая задача: “'.$task->task_name.'”'));
         }
         return "plugTrue";
@@ -111,7 +111,7 @@ class TaskController extends Controller
         $task = $taskVerification->task;
         $task->accepted = 1;
         $task->save();
-        $tokens = User::returnFcmtokens($task);
+        $tokens = User::returnFcmtokens($task->creator_id);
         event(new TaskEvent($task, $user, $tokens, 'Задача принята!', 'Задача “'.$task->task_name.'” принята в работу исполнителем: “'.$user->name.' '.$user->surname.'”'));
         return "plugTrue";
     }
