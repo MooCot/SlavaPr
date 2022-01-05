@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Hash;
 use App\Http\Controllers\Api\NotificationController;
 use App\Http\Controllers\Api\TaskController;
 use App\Http\Controllers\Api\TestController;
-use App\Http\Verifications\TaskVerification;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -40,4 +40,6 @@ Route::group(['middleware' => ['check.api.token', 'login.api', 'ansver']], funct
         Route::post('/accept/{task_id}', [TaskController::class, 'addTaskAccepted']);
     });
 });
+
+Route::get('test', [TestController::class, 'index']);
 

@@ -101,7 +101,28 @@ document.addEventListener("DOMContentLoaded", function () {
   jquery__WEBPACK_IMPORTED_MODULE_0___default()('#form-button').click(function () {
     var x = document.getElementById("myEmail").pattern;
     document.getElementById("demo").innerHTML = x;
-  });
+  }); // $('#index-admin-delete').click(function(){
+  //     // let urldelete ='admin/admin/destroy/'+$('#admin-id').text();
+  //     let urldelete ='admin/admin/destroy/'+3;
+  //     $.ajax({
+  //         url: urldelete,
+  //         method: 'DELETE',
+  //         data:  { "_token": "{{ csrf_token() }}",},
+  //         processData: false,
+  //         contentType: false,
+  //         cache: false,
+  //         success: function(data) {
+  //             // console.log(data);
+  //             // console.log("success");
+  //             alert('success');
+  //         },
+  //         error: function(data) {  
+  //             // console.log(data);
+  //             // console.log("error");    
+  //             alert('error');             
+  //         }
+  //     });
+  // });
 });
 
 /***/ }),
