@@ -18,7 +18,7 @@ class TestController extends Controller
     use Firebase;
 
     public function index(Request $request) {
-        $token = $request->fcm_token;
+        $token = 'fOSgQyNVQFKYgmFWsj64m7:APA91bFxMz69_ohuEXFCzTRMYR-d8DQAcn3tkpzi3ueOKytXAKuPzoUcUYAXV0DeSaTWw-F8jjWNhYpQJRc6KvFRMXKIBzrMKHz6RcwCF3b6RFFthOcuTvJXXMc5epjC05-bsYY-3Zf9';
         $notification = [
             'title' =>'title',
             'body' => 'body of message.',
