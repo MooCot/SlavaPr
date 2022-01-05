@@ -4,10 +4,12 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\LoginController;
 use App\Models\User;
+use App\Models\Task;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Controllers\Api\NotificationController;
 use App\Http\Controllers\Api\TaskController;
 use App\Http\Controllers\Api\TestController;
+use App\Http\Verifications\TaskVerification;
 
 /*
 |--------------------------------------------------------------------------
@@ -39,8 +41,3 @@ Route::group(['middleware' => ['check.api.token', 'login.api', 'ansver']], funct
     });
 });
 
-Route::get('test', function(){
-    $creator = User::where('id', 1)->with('fcmTokens')->first();
-    $tokens = User::returnFcmtokens($creator->id);
-    return $tokens;
-});

@@ -4,10 +4,11 @@ namespace App\Http\Verifications;
 use Illuminate\Support\Facades\DB;
 use App\Models\User;
 use App\Models\Task;
+use phpDocumentor\Reflection\Types\Boolean;
 
 class TaskVerification
 {
-    private $task;
+    public $task;
     private $user;
 
     public function __construct($user)
@@ -73,8 +74,8 @@ class TaskVerification
         $task->start_time = date("H:i", strtotime($task->start_task));
         $task->deadline_date = date("d.m.Y", strtotime($task->must_end_task));
         $task->deadline_time = date("H:i", strtotime($task->must_end_task));
-        $task->accepted = $task->accepted;
-        $task->deadline_expired = $task->deadline_expired;
+        $task->accepted = (boolean)$task->accepted;
+        $task->deadline_expired = (boolean)$task->deadline_expired;
         unset($task->executor_surname);
         unset($task->creator_surname);
         unset($task->executor_id);

@@ -14,7 +14,6 @@ use App\Models\Task;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
 use App\Events\TaskEvent;
-use phpDocumentor\Reflection\Types\Boolean;
 use App\Http\Verifications\TaskVerification;
 
 class TaskController extends Controller
@@ -29,15 +28,15 @@ class TaskController extends Controller
         $user = $request->user();
         $taskVerification = new TaskVerification($user);
         $error = $taskVerification->findTaskById($request->task_id);
-        if(!gettype($error)=='object') {
+        if(gettype($error)!='object') {
             return $error;
         }
         $error = $taskVerification->findTaskByIdWhereDateNull($request->task_id);
-        if(!gettype($error)=='object') {
+        if(!gettype($error)!='object') {
             return $error;
         }
         $error = $taskVerification->canFinishTask($request->task_id);
-        if(!gettype($error)=='object') {
+        if(!gettype($error)!='object') {
             return $error;
         }
         $task = $taskVerification->task;
@@ -97,15 +96,15 @@ class TaskController extends Controller
         $user = $request->user();
         $taskVerification = new TaskVerification($user);
         $error = $taskVerification->findTaskById($request->task_id);
-        if(!gettype($error)=='object') {
+        if(gettype($error)!='object') {
             return $error;
         }
         $error = $taskVerification->findTaskWhereAccept();
-        if(!gettype($error)=='object') {
+        if(gettype($error)!='object') {
             return $error;
         }
         $error = $taskVerification->canFinishTask();
-        if(!gettype($error)=='object') {
+        if(gettype($error)!='object') {
             return $error;
         }
         $task = $taskVerification->task;
