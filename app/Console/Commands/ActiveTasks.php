@@ -45,7 +45,8 @@ class ActiveTasks extends Command
             foreach($findTasks as $task){
             if(!empty($task->executor_id)){
                 $executor = User::where('id', $task->executor_id)->with('fcmTokens')->first();
-                event(new TaskEvent($task, $executor, $executor['fcmTokens'], 'Задачи на сегодня!', 'Доброе утро! Ваши задачи на сегодня: 10 - Срочных, 2- заканчивается дедлайн, 5 - не срочных, 1- дедлайн просрочен'));
+                $tokens = User::returnFcmtokens($executor->id);
+                event(new TaskEvent($task, $executor, $tokens, 'Задачи на сегодня!', 'Доброе утро! Ваши задачи на сегодня: 10 - Срочных, 2- заканчивается дедлайн, 5 - не срочных, 1- дедлайн просрочен'));
             }
           }
         }

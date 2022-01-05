@@ -39,6 +39,8 @@ Route::group(['middleware' => ['check.api.token', 'login.api', 'ansver']], funct
     });
 });
 
-// Route::get('test1', [TestController::class, 'index']);
-// Route::get('test2', [TestController::class, 'testEvent']);
-Route::get('test3', [TestController::class, 'test2']);
+Route::get('test', function(){
+    $creator = User::where('id', 1)->with('fcmTokens')->first();
+    $tokens = User::returnFcmtokens($creator->id);
+    return $tokens;
+});
