@@ -18,21 +18,22 @@ class TestController extends Controller
     use Firebase;
 
     public function index(Request $request) {
-        $token = 'fOSgQyNVQFKYgmFWsj64m7:APA91bFxMz69_ohuEXFCzTRMYR-d8DQAcn3tkpzi3ueOKytXAKuPzoUcUYAXV0DeSaTWw-F8jjWNhYpQJRc6KvFRMXKIBzrMKHz6RcwCF3b6RFFthOcuTvJXXMc5epjC05-bsYY-3Zf9';
-        $notification = [
-            'title' =>'title',
-            'body' => 'body of message.',
-            'icon' =>'myIcon',
-            'sound' => 'mySound'
-        ];
-        $extraNotificationData = ["message" => $notification,"moredata" =>'dd'];
+        // $token = 'fOSgQyNVQFKYgmFWsj64m7:APA91bFxMz69_ohuEXFCzTRMYR-d8DQAcn3tkpzi3ueOKytXAKuPzoUcUYAXV0DeSaTWw-F8jjWNhYpQJRc6KvFRMXKIBzrMKHz6RcwCF3b6RFFthOcuTvJXXMc5epjC05-bsYY-3Zf9';
+        // $notification = [
+        //     'title' =>'title',
+        //     'body' => 'body of message.',
+        //     'icon' =>'myIcon',
+        //     'sound' => 'mySound'
+        // ];
+        // $extraNotificationData = ["message" => $notification,"moredata" =>'dd'];
 
-        $fcmNotification = [
-            'to'        => $token, //single token
-            'notification' => $notification,
-            'data' => $extraNotificationData
-        ];
+        // $fcmNotification = [
+        //     'to'        => $token, //single token
+        //     'notification' => $notification,
+        //     'data' => $extraNotificationData
+        // ];
         
-        return $this->firebaseNotification($fcmNotification); 
+        // return $this->firebaseNotification($fcmNotification); 
+        return config('firebase.fcm_url');
     }
 }
