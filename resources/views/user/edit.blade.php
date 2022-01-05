@@ -1,5 +1,5 @@
 @extends('layouts.app')
-
+@section('title')Редактирование Пользователя @endsection
 @section('content')
 <div class="container-fluid">
     <div class="row">
@@ -69,11 +69,7 @@
                                 <label class="form__label-title">Телефон</label>
                                 <div class="col-sm-7">
                                     <div class="form-group{{ $errors->has('phone_number') ? ' has-danger' : '' }}">
-<<<<<<< HEAD
-                                        <input class="form__input_indent rupiah form__input form-control{{ $errors->has('phone_number') ? ' is-invalid' : '' }}" name="phone_number" id="input-phone_number" type="phone_number" placeholder="phone_number" value="{{$user->phone_number}}" required />
-=======
                                         <input class="form__input_indent form__input rupiah form-control{{ $errors->has('phone_number') ? ' is-invalid' : '' }}" name="phone_number" id="input-phone_number" type="phone_number" placeholder="phone_number" value="{{$user->phone_number}}" required />
->>>>>>> 83c1dc8df82ce11cd93c766095e1c645d4d32450
                                         @if ($errors->has('phone_number'))
                                         <span id="phone_number-error" class="error text-danger" for="input-phone_number">{{ $errors->first('phone_number') }}</span>
                                         @endif

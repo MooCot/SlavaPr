@@ -7,7 +7,7 @@
         <meta name="csrf-token" content="{{ csrf_token() }}">
         <link type="image/x-icon" href="{{ asset('favicon.ico') }}" rel="shortcut icon">
         <link type="Image/x-icon" href="{{ asset('favicon.ico') }}" rel="icon">
-        <title>{{ config('app.name', 'med') }}</title>
+        <title>@yield('title')</title>
         <link rel="stylesheet" href="{{ mix('/assets/css/main.css') }}">
         <!-- Favicon -->
     </head>

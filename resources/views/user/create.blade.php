@@ -1,5 +1,5 @@
 @extends('layouts.app')
-
+@section('title')Добавление Пользователя @endsection
 @section('content')
 <div class="container-fluid">
     <div class="row">

@@ -1,5 +1,5 @@
 @extends('layouts.app')
-
+@section('title')Редактирование Администратора @endsection
 @section('content')
 <div class="container-fluid">
     <div class="row">

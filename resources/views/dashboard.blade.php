@@ -1,4 +1,5 @@
 @extends('layouts.app')
+@section('title')Пользователи MH Task Planer @endsection
 @section('content')
 <div class="dashboard-container">
     <div class="container-title">
