@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
+use App\Http\Requests\Admin\UserStoreRequest;
 
 class UserController extends Controller
 {
@@ -56,7 +57,7 @@ class UserController extends Controller
         return redirect('admin/dashboard');
     }
 
-    public function store(Request $request) {
+    public function store(UserStoreRequest $request) {
         $token = Str::random(80);
         $user = new User();
         $user->name = $request->name;

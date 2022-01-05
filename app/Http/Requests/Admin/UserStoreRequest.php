@@ -5,7 +5,7 @@ namespace App\Http\Requests\Admin;
 use App\Rules\CurrentPasswordCheckRule;
 use Illuminate\Foundation\Http\FormRequest;
 
-class PasswordRequest extends FormRequest
+class UserStoreRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,8 +25,8 @@ class PasswordRequest extends FormRequest
     public function rules()
     {
         return [
-            'password' => ['required', 'min:6', 'confirmed'],
-            'password_confirmation' => ['required', 'min:6'],
+            'email' => 'required|unique:users',
+            'phone_number' => 'required|unique:users'
         ];
     }
 }
