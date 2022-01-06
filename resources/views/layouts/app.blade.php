@@ -25,9 +25,8 @@
                         @include('layouts.navbars.sidebar')
                         <div class="aside-content__logout">
                             <a class="aside-content__button" href="{{ route('admin.logout') }}">Выход</a>   
-                        </div>                                             
-                    </div> 
-                                     
+                        </div>                                            
+                    </div>     
                 </div>            
                 <div class="content">
                     @yield('content')

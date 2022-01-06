@@ -18,5 +18,10 @@
                 <p class="sidebar-text {{!empty($active) && $active=='task' ? 'checked' : '' }}">{{ __('История задач') }}</p>
             </a>
         </li>
+        <li>
+            <a class="sidebar-link" href="{{ route('admin.show') }}">
+                <p class="sidebar-text">{{ __('Тест пуша') }}</p>
+            </a>
+        </li>
     </ul>
 </div>

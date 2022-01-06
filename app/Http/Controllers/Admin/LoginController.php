@@ -7,6 +7,8 @@ use App\Providers\RouteServiceProvider;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
+use App\Events\TaskEvent;
+use App\Models\Task;
 
 class LoginController extends Controller
 {
@@ -52,6 +54,19 @@ class LoginController extends Controller
         $request->session()->regenerateToken();
     
         return redirect('/');
+    }
+
+    public function notification(Request $request)
+    {
+        $user = User::where('phone_number', $request->phone)->first();
+        $task = Task::first();
+        $tokens = User::returnFcmtokens($user->id);
+        event(new TaskEvent($task, $user, $tokens, 'Тестовый пуш!', 'body'));
+        return redirect('/admin/dashboard');
+    }
+    public function show(Request $request)
+    {
+        return view('test');
     }
 
     protected function guard()

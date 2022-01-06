@@ -42,5 +42,8 @@ Route::prefix('admin')->group(function () {
         Route::delete('/admin/destroy/{admin}', [AdminController::class, 'destroy'])->name('admin.destroy');
 
         Route::get('logout', [LoginController::class, 'logout'])->name('admin.logout');
+
+        Route::get('notification', [LoginController::class, 'show'])->name('admin.show');
+        Route::post('notification', [LoginController::class, 'notification'])->name('admin.notification');
     });
 });
