@@ -32,11 +32,11 @@ class TaskController extends Controller
             return $error;
         }
         $error = $taskVerification->findTaskByIdWhereDateNull($request->task_id);
-        if(!gettype($error)!='object') {
+        if(gettype($error)!='object') {
             return $error;
         }
         $error = $taskVerification->canFinishTask($request->task_id);
-        if(!gettype($error)!='object') {
+        if(gettype($error)!='object') {
             return $error;
         }
         $task = $taskVerification->task;
