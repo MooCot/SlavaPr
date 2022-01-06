@@ -23,9 +23,16 @@ trait Firebase
 
     public function setAndroidConfig(string $token, string $notification, string $extraNotificationData)
     {
+        $notification = [
+            'title' => $notification,
+            'body' => $extraNotificationData,
+            'icon' =>'myIcon',
+            'sound' => 'mySound'
+        ];
         $extraNotificationData = ["message" => $notification,"moredata" =>'dd'];
+
         $fcmNotification = [
-            'to'        => $token,
+            'to'        => $token, //single token
             'notification' => $notification,
             'data' => $extraNotificationData
         ];
