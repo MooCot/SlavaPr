@@ -12,6 +12,7 @@ use App\Http\Requests\Api\LoginRequest;
 use App\Events\TaskEvent;
 use App\Traits\Firebase;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Log;
 
 class TestController extends Controller
 {
@@ -32,7 +33,8 @@ class TestController extends Controller
             'notification' => $notification,
             'data' => $extraNotificationData
         ];
-        
-        return $this->firebaseNotification($fcmNotification); 
+        $ansver = $this->firebaseNotification($fcmNotification);
+        Log::info('firebase: '.$ansver);
+        return $ansver; 
     }
 }
