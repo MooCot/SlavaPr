@@ -26,7 +26,6 @@ class CreateTaskRequest extends ApiFormRequest
         return [
             'name' => ['required', 'string'],
             'deadline_date' => ['required', 'string'],
-            'description' => ['string'],
             'priority' => ['required', 'string'],
         ];
     }
