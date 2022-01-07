@@ -35,7 +35,7 @@
                     </div>
                 </div>
                 <label class="input-group__label-password">Пароль</label>
-                <input id="password-input" type="password" placeholder="" name="password" class="input-group__input form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" minlength="8" required>
+                <input id="password-input" type="password" placeholder="" name="password" class="input-group__input form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" minlength="1" required>
                 <button type="button" id="input-group__button-visible" class="input-group__img-visible">
                 </button>                
             </div>
