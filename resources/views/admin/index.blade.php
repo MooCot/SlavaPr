@@ -25,11 +25,9 @@
                         <a href="{{ route('admin.edit', $admin['id']) }}">
                             <i class="table__edit-icon-pencil"></i>
                         </a>
-                        <form action="{{ route('admin.destroy', $admin['id']) }}" method="POST" style="display: inline-block">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" rel="tooltip" class="table__delete-button"><i class="table__delete-icon-trash"></i></button>
-                        </form>
+                        <a href="{{ route('admin.showdelete', $admin['id']) }}">
+                            <i class="table__delete-icon-trash"></i>
+                        </a>    
                     </td>
                 </tr>
                 @endforeach
@@ -37,4 +35,22 @@
         </table>
     </div>
 </div>
+@if(!empty($admindelete))
+    <div id="alert-form" style="display: flex;" class="alert-back">
+        <form action="{{ route('admin.destroy', $admindelete['id']) }}" class="alert-form" method="POST">
+            @csrf
+            @method('DELETE')
+            <div class="alert-block-icon">
+                <i id="closeform" class="icon-close alert-icon"></i>
+            </div>
+            <img class="alert-img" src="/assets/images/alert.png" alt="">
+            <div class="alert-title">Удаление пользователя</div>
+            <div class="alert-text">Вы уверены что хотите удалить</br> пользователя?</div>
+            <div class="alert-button-block">
+                <button id="closeform2" type="button" class="form__button form__button_save">{{ __('Отмена') }}</button>
+                <button type="submit" class="form__button form__button_delete">{{ __('Удалить') }}</button>
+            </div>
+        </form>
+    </div>
+@endif
 @endsection

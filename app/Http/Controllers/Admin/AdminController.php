@@ -55,6 +55,15 @@ class AdminController extends Controller
         return redirect('admin/admin');
     }
 
+    public function show(Admin $admin)
+    {
+        $admins = Admin::get();
+        return view('admin.index', [
+            'admins' => $admins,
+            'admindelete' => $admin,
+        ]);
+    }
+
     public function destroy(Request $request, Admin $admin)
     {
         $admin->delete();

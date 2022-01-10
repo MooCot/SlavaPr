@@ -72,7 +72,6 @@ class UserController extends Controller
         return redirect('admin/dashboard');
     }
 
-    
     public function destroy(Request $request, User $user)
     {
         $user->delete();

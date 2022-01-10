@@ -35,6 +35,7 @@ Route::prefix('admin')->group(function () {
         Route::get('task', [TaskController::class, 'index'])->name('tasks');
 
         Route::get('admin', [AdminController::class, 'index'])->name('admins');
+        Route::get('admin/show/{admin}', [AdminController::class, 'show'])->name('admin.showdelete');
         Route::get('admin/edit/{admin}', [AdminController::class, 'edit'])->name('admin.edit');
         Route::put('admin/edit/{admin}', [AdminController::class, 'update'])->name('admin.update');
         Route::get('admin/create', [AdminController::class, 'create'])->name('admin.create');
