@@ -30,15 +30,13 @@ class SendFirebaseNotification
      */
     public function handle(TaskEvent $event)
     {
-        // dd($event);
-        $answers = [];
         Notification::create($event->notification, $event->extraNotificationData, 1);
         foreach($event->tokens as $token) {
-            $ansver = $this->firebaseNotification($this->setAndroidConfig($token, $event->notification, $event->extraNotificationData));
+            $answer = $this->firebaseNotification($this->setAndroidConfig($token, $event->notification, $event->extraNotificationData));
             // array_push($answer, )); 
-            Log::info('firebase: '.$ansver.' '.$token.' '.$event->notification);
-            // array_push($answer, $this->firebaseNotification($this->setApnsConfig($token, $event->notification, $event->extraNotificationData))); 
+            Log::info('firebase: '.$answer.' '.$token.' '.$event->notification);
+            $answer = $this->firebaseNotification($this->setApnsConfig($token, $event->notification, $event->extraNotificationData)); 
+            Log::info('firebase: '.$answer.' '.$token.' '.$event->notification);
         }
-        // return $answers;
     }
 }
