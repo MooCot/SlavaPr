@@ -49,7 +49,8 @@ class OverdueTasks extends Command
                     $tokens = User::returnFcmtokens($creator->id);
                     event(new TaskEvent($task, $creator, $tokens, 'Задача просрочена!', 'Задача: “'.$task->task_name.'” просрочена исполнителем: “'.$executor->name.' '.$executor->surname.'”'));
                 }
-                $task->must_end_task = date('Y-m-d H:i', strtotime($task->must_end_task.'+ 1 days'));
+                $task->must_end_task = date('Y-m-d H:i', strtotime(now().'+ 1 days'));
+                $task->save();
             }
         }
         
