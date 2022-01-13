@@ -19,22 +19,30 @@ class TestController extends Controller
     use Firebase;
 
     public function index(Request $request) {
-        $token = $request->fcm_token;
-        $notification = [
-            'title' =>'title',
-            'body' => 'body of message.',
-            'icon' =>'myIcon',
-            'sound' => 'mySound'
-        ];
-        $extraNotificationData = ["message" => $notification,"moredata" =>'dd'];
+        // $token = $request->fcm_token;
+        // $notification = [
+        //     'title' =>'title',
+        //     'body' => 'body of message.',
+        //     'icon' =>'myIcon',
+        //     'sound' => 'mySound'
+        // ];
+        // $extraNotificationData = ["message" => $notification,"moredata" =>'dd'];
 
-        $fcmNotification = [
-            'to'        => $token, //single token
-            'notification' => $notification,
-            'data' => $extraNotificationData
-        ];
-        $ansver = $this->firebaseNotification($fcmNotification);
-        Log::info('firebase: '.$ansver);
-        return $ansver; 
+        // $fcmNotification = [
+        //     'to'        => $token, //single token
+        //     'notification' => $notification,
+        //     'data' => $extraNotificationData
+        // ];
+        // $ansver = $this->firebaseNotification($fcmNotification);
+        // Log::info('firebase: '.$ansver);
+        // return $ansver; 
+        $arr = [];
+        $findTasks = Task::where('end_task', NULL)->whereDate('must_end_task', '<', date('Y-m-d H:i', strtotime(now())))->get();
+        foreach($findTasks as $task){
+            $executor = User::where('id', $task->executor_id)->with('fcmTokens')->first();
+            $creator = User::where('id', $task->creator_id)->with('fcmTokens')->first();
+            array_push($arr, $creator);
+        }
+        return $arr;
     }
 }
