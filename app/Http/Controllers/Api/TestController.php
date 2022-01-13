@@ -41,8 +41,13 @@ class TestController extends Controller
         foreach($findTasks as $task){
             $executor = User::where('id', $task->executor_id)->with('fcmTokens')->first();
             $creator = User::where('id', $task->creator_id)->with('fcmTokens')->first();
-            array_push($arr, $creator);
+            if(!empty($creator)) {
+                array_push($arr, $creator);
+            }
+            else {
+                array_push($arr, $task->id);
+            }
         }
-        return $findTasks;
+        return $arr;
     }
 }
