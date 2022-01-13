@@ -43,6 +43,6 @@ class TestController extends Controller
             $creator = User::where('id', $task->creator_id)->with('fcmTokens')->first();
             array_push($arr, $creator);
         }
-        return $arr;
+        return $findTasks;
     }
 }
