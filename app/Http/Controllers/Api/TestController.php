@@ -36,18 +36,8 @@ class TestController extends Controller
         // $ansver = $this->firebaseNotification($fcmNotification);
         // Log::info('firebase: '.$ansver);
         // return $ansver; 
-        $arr = [];
+
         $findTasks = Task::where('end_task', NULL)->whereDate('must_end_task', '<', date('Y-m-d H:i', strtotime(now())))->get();
-        foreach($findTasks as $task){
-            $executor = User::where('id', $task->executor_id)->with('fcmTokens')->first();
-            $creator = User::where('id', $task->creator_id)->with('fcmTokens')->first();
-            if(!empty($creator)) {
-                array_push($arr, $creator);
-            }
-            else {
-                array_push($arr, $task->id);
-            }
-        }
-        return $arr;
+        return $findTasks;
     }
 }
