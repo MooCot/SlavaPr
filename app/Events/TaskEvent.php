@@ -17,7 +17,7 @@ class TaskEvent
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
     public Task $task;
-    public int $user;
+    public int $userid;
     public array $tokens;
     public string $notification;
     public string $extraNotificationData;
@@ -29,7 +29,7 @@ class TaskEvent
     public function __construct(Task $task, User $user, array $tokens, string $notification, string $extraNotificationData)
     {
         $this->task = $task;
-        $this->$user = $user->id;
+        $this->userid = $user->id;
         $this->tokens = $tokens;
         $this->notification = $notification;
         $this->extraNotificationData = $extraNotificationData;

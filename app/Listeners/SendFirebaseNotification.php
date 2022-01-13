@@ -30,7 +30,7 @@ class SendFirebaseNotification
      */
     public function handle(TaskEvent $event)
     {
-        Notification::create($event->notification, $event->extraNotificationData, 1);
+        Notification::create($event->notification, $event->extraNotificationData, $event->userid);
         foreach($event->tokens as $token) {
             $answer = $this->firebaseNotification($this->setAndroidConfig($token, $event->notification, $event->extraNotificationData));
             Log::info('firebase: '.$answer.' '.$token.' '.$event->notification);
