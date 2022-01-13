@@ -63,8 +63,8 @@ class TaskController extends Controller
         $task->priority = $request->priority;
         $task->save(); 
         if(!empty($request->executor_id)) {
-            $tokens = User::returnFcmtokens($task->creator_id);
-            event(new TaskEvent($task, $user, $tokens, 'Новая задача!!', 'У вас новая задача: “'.$task->task_name.'”'));
+            $tokens = User::returnFcmtokens($task->executor_id);
+            event(new TaskEvent($task, $user, $tokens, 'Новая задача!', 'У вас новая задача: “'.$task->task_name.'”'));
         }
         return "plugTrue";
     }
