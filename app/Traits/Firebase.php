@@ -44,7 +44,6 @@ trait Firebase
         $fcmNotification = [
             'to'        => $token,
             'notification' => $notification,
-            'data' => [
                 'payload' => [
                     'aps' => [
                         'alert' => [
@@ -55,7 +54,7 @@ trait Firebase
                         'sound' => 'default',
                     ],
                 ],
-            ],
+
         ];
         return $fcmNotification;
     }
