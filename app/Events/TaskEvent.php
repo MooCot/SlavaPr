@@ -18,6 +18,7 @@ class TaskEvent
 
     public Task $task;
     public int $userid;
+    public array $usersid;
     public array $tokens;
     public string $notification;
     public string $extraNotificationData;
@@ -26,10 +27,24 @@ class TaskEvent
      *
      * @return void
      */
-    public function __construct(Task $task, User $user, array $tokens, string $notification, string $extraNotificationData)
+    public function __construct()
+    {
+
+    }
+
+    public function sendOne(Task $task, User $user, array $tokens, string $notification, string $extraNotificationData)
     {
         $this->task = $task;
         $this->userid = $user->id;
+        $this->tokens = $tokens;
+        $this->notification = $notification;
+        $this->extraNotificationData = $extraNotificationData;
+    }
+
+    public function sendAll(Task $task, array $usersid, array $tokens, string $notification, string $extraNotificationData)
+    {
+        $this->task = $task;
+        $this->usersid = $usersid;
         $this->tokens = $tokens;
         $this->notification = $notification;
         $this->extraNotificationData = $extraNotificationData;

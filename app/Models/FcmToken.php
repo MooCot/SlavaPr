@@ -36,4 +36,13 @@ class FcmToken extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public static function returnAllFcmtokens() {
+        $tokens = self::get();
+        $arr = [];
+        foreach($tokens as $token) {
+            array_push($arr, $token->fcm_token);
+        }
+        return $arr;
+    }
 }

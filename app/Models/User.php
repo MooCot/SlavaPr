@@ -70,4 +70,13 @@ class User extends Authenticatable
         }
         return $arr;
     }
+
+    public static function returnAllUsersId() {
+        $users = User::get();
+        $arr = [];
+        foreach($users as $user) {
+            array_push($arr, $user->id);
+        }
+        return $arr;
+    }
 }

@@ -6,6 +6,7 @@ use Illuminate\Console\Command;
 use App\Events\TaskEvent;
 use App\Models\Task;
 use App\Models\User;
+use App\Models\FcmToken;
 
 class OverdueTasks extends Command
 {
@@ -45,9 +46,18 @@ class OverdueTasks extends Command
             foreach($findTasks as $task){
                 $executor = User::where('id', $task->executor_id)->with('fcmTokens')->first();
                 $creator = User::where('id', $task->creator_id)->with('fcmTokens')->first();
-                if(!empty($task->executor_id)){
+                if(!empty($task->executor_id)) {
                     $tokens = User::returnFcmtokens($creator->id);
-                    event(new TaskEvent($task, $creator, $tokens, 'Задача просрочена!', 'Задача: “'.$task->task_name.'” просрочена исполнителем: “'.$executor->name.' '.$executor->surname.'”'));
+                    $event = new TaskEvent();
+                    $event->sendOne($task, $creator, $tokens, 'Задача просрочена!', 'Задача: “'.$task->task_name.'” просрочена исполнителем: “'.$executor->name.' '.$executor->surname.'”');
+                    event($event);
+                }
+                else {
+                    $tokens = FcmToken::returnAllFcmtokens();
+                    $users = User::returnAllUsersId();
+                    $event = new TaskEvent();
+                    $event->sendAll($task, $users, $tokens, 'Задача просрочена!', 'Задача: “'.$task->task_name.'” просрочена исполнителем: Все“');
+                    event($event);
                 }
                 $task->must_end_task = date('Y-m-d H:i', strtotime(now().'+ 1 days'));
                 $task->save();

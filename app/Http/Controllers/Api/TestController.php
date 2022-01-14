@@ -8,6 +8,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use App\Models\Task;
+use App\Models\Notification;
+use App\Models\FcmToken;
 use App\Http\Requests\Api\LoginRequest;
 use App\Events\TaskEvent;
 use App\Traits\Firebase;
@@ -36,8 +38,23 @@ class TestController extends Controller
         // $ansver = $this->firebaseNotification($fcmNotification);
         // Log::info('firebase: '.$ansver);
         // return $ansver; 
-
-        $findTasks = Task::where('end_task', NULL)->whereDate('must_end_task', '<', date('Y-m-d H:i', strtotime(now())))->get();
-        return $findTasks;
+        $task = Task::first();
+        $tokens = FcmToken::returnAllFcmtokens();
+        $users = User::returnAllUsersId();
+        $user = User::first();
+        $event = new TaskEvent();
+        // $event->sendOne($task, $user, $tokens, 'Новая задача!', 'У вас новая задача: “'.$task->task_name.'”');
+        $event->sendAll($task, $users, $tokens, 'Новая задача!', 'У вас новая задача: “'.$task->task_name.'”');
+        if(!empty($event->usersid)) {
+            foreach($event->usersid as $userid) {
+                Notification::create($event->notification, $event->extraNotificationData, $userid);
+            }
+            // return "test";
+        }
+        else {
+            Notification::create($event->notification, $event->extraNotificationData, $event->userid);
+            // return "test2";
+        }
+        return $users;
     }
 }

@@ -43,7 +43,9 @@ class TaskController extends Controller
         $task->end_task = (string)date('Y-m-d H:i:s', strtotime(now()));
         $task->save();
         $tokens = User::returnFcmtokens($task->creator_id);
-        event(new TaskEvent($task, $user, $tokens, 'Задача завершена!', 'Задача “'.$task->task_name.'” завершена. Исполнитель: “'.$user->name.' '.$user->surname.'”'));
+        $event = new TaskEvent();
+        $event->sendOne($task, $user, $tokens, 'Задача завершена!', 'Задача “'.$task->task_name.'” завершена. Исполнитель: “'.$user->name.' '.$user->surname.'”');
+        event($event);
         return "plugTrue";
     }
 
@@ -64,7 +66,17 @@ class TaskController extends Controller
         $task->save(); 
         if(!empty($request->executor_id)) {
             $tokens = User::returnFcmtokens($task->executor_id);
-            event(new TaskEvent($task, $user, $tokens, 'Новая задача!', 'У вас новая задача: “'.$task->task_name.'”'));
+            $event = new TaskEvent();
+            $event->sendOne($task, $user, $tokens, 'Новая задача!', 'У вас новая задача: “'.$task->task_name.'”');
+            event($event);
+            return 'test';
+        }
+        else {
+           $tokens = FcmToken::returnAllFcmtokens();
+           $users = User::returnAllUsersId();
+           $event = new TaskEvent();
+           $event->sendAll($task, $users, $tokens, 'Новая задача!', 'У вас новая задача: “'.$task->task_name.'”');
+           event($event);
         }
         return "plugTrue";
     }
@@ -111,7 +123,9 @@ class TaskController extends Controller
         $task->accepted = 1;
         $task->save();
         $tokens = User::returnFcmtokens($task->creator_id);
-        event(new TaskEvent($task, $user, $tokens, 'Задача принята!', 'Задача “'.$task->task_name.'” принята в работу исполнителем: “'.$user->name.' '.$user->surname.'”'));
+        $event = new TaskEvent();
+        $event->sendOne($task, $user, $tokens, 'Задача принята!', 'Задача “'.$task->task_name.'” принята в работу исполнителем: “'.$user->name.' '.$user->surname.'”');
+        event($event);
         return "plugTrue";
     }
 }
