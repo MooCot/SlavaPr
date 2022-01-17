@@ -114,7 +114,7 @@ class Task extends Model
     public static function getAllUnfinishedTasks($date) {
         $tasks = DB::table('tasks')
             ->where('end_task', NULL)
-            ->whereDate('start_task', '=', $date)
+            ->whereDate('must_end_task', '>', $date)
             ->join('users as creator', 'creator.id', '=', 'tasks.creator_id')
             ->leftJoin('users as executor', 'executor.id', '=', 'tasks.executor_id')
             ->select('tasks.*', 'creator.name as creator_name', 'creator.surname as creator_surname',
@@ -157,7 +157,8 @@ class Task extends Model
     public static function getUserUnfinishedTasks($date, $user_id) {
         $tasks = DB::table('tasks')
             ->where('end_task', NULL)
-            ->whereDate('start_task', '>=',date('Y-m-d', strtotime(now())))
+            // ->whereDate('must_end_task', '<', date('Y-m-d', strtotime(now())))
+            ->whereDate('must_end_task', '>', $date)
             ->where('executor_id', $user_id)
             ->join('users as creator', 'creator.id', '=', 'tasks.creator_id')
             ->leftJoin('users as executor', 'executor.id', '=', 'tasks.executor_id')
