@@ -31,7 +31,7 @@ Route::group(['middleware' => ['check.api.token', 'login.api', 'ansver']], funct
         Route::post('register-fcm-token', [NotificationController::class, 'regToken']);
         Route::post('remove-fcm-token', [NotificationController::class, 'delToken']);
     });
-    Route::get('task', [TaskController::class, 'getUnfinishedTasks']);
+    Route::get('tasks', [TaskController::class, 'getUnfinishedTasks']);
     Route::post('tasks', [TaskController::class, 'createTask']);
     Route::get('/executors', [TaskController::class, 'getExecutorsTask']);
     Route::prefix('tasks')->group(function () {
