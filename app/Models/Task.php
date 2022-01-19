@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
+use phpDocumentor\Reflection\Types\Null_;
 use PHPUnit\TextUI\XmlConfiguration\Group;
 
 class Task extends Model
@@ -197,6 +198,22 @@ class Task extends Model
         else {
             return '';
         }
+    }
+
+    public static function countUrgentTask(int $user_id) {
+        return Task::where('priority', 'high')->where('executor_id', $user_id)->orWhere('executor_id', NULL)->count();
+    }
+
+    public static function countEndDeadline(int $user_id) {
+        return Task::whereDate('must_end_task', '=', date('Y-m-d', strtotime(now())))->orWhere('executor_id', NULL)->count();
+    }
+
+    public static function countNotUrgentTask(int $user_id) {
+        return Task::where('priority', 'normal')->where('executor_id', $user_id)->orWhere('executor_id', NULL)->count();
+    }
+
+    public static function countOverdueDeadline(int $user_id) {
+        return Task::whereDate('must_end_task','<', date('Y-m-d', strtotime(now())))->where('executor_id', $user_id)->where('end_task', NULL)->orWhere('executor_id', NULL)->count();
     }
 
 }

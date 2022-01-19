@@ -41,24 +41,17 @@ class ActiveTasks extends Command
      */
     public function handle()
     {
-        $findTasks = Task::where('must_end_task', '>', date("Y-m-d H:i", strtotime(now())))->get();
-        if(!empty($findTasks)){
-            foreach($findTasks as $task){
-                if(!empty($task->executor_id)){
-                    $executor = User::where('id', $task->executor_id)->with('fcmTokens')->first();
-                    $tokens = User::returnFcmtokens($executor->id);
-                    $event = new TaskEvent();
-                    $event->sendOne($task, $executor, $tokens, 'Задачи на сегодня!', 'Доброе утро! Ваши задачи на сегодня: 10 - Срочных, 2- заканчивается дедлайн, 5 - не срочных, 1- дедлайн просрочен');
-                    event($event);
-                }
-                else {
-                    $tokens = FcmToken::returnAllFcmtokens();
-                    $users = User::returnAllUsersId();
-                    $event = new TaskEvent();
-                    $event->sendAll($task, $users, $tokens, 'Задачи на сегодня!', 'Доброе утро! Ваши задачи на сегодня: 10 - Срочных, 2- заканчивается дедлайн, 5 - не срочных, 1- дедлайн просрочен');
-                    event($event);
-                }
-            }
+        $users = User::get();
+        $event = new TaskEvent();
+        $task = new Task();
+        foreach($users as $user)
+        {
+            $tokens = User::returnFcmtokens($user->id);
+            $endDeadlineTasks = Task::countEndDeadline($user->id);
+            $notUrgentTasks = Task::countNotUrgentTask($user->id);
+            $overdueDeadlineTasks = Task::countOverdueDeadline($user->id);
+            $urgentTasks = Task::countUrgentTask($user->id);
+            $event->sendOne($task, $user, $tokens, 'Задачи на сегодня!', 'Доброе утро! Ваши задачи на сегодня: '.$urgentTasks.' - Срочных, '.$endDeadlineTasks.' - заканчивается дедлайн, '.$notUrgentTasks.' - не срочных, '.$overdueDeadlineTasks.' - дедлайн просрочен');
         }
         return Command::SUCCESS;
     }
