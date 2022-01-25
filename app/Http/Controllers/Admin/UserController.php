@@ -54,6 +54,10 @@ class UserController extends Controller
         {
             $user->phone_number = mb_eregi_replace("[^0-9+]", '', $request->phone_number);
         }
+        if($user->email!==$request->email)
+        {
+            $user->email = $request->email;
+        }
         $user->save();
 
         return redirect('admin/dashboard');

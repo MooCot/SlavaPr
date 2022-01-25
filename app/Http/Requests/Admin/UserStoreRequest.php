@@ -25,8 +25,8 @@ class UserStoreRequest extends FormRequest
     public function rules()
     {
         return [
-            'email' => 'required|unique:users',
-            'phone_number' => 'required|unique:users'
+            'email' => 'required',
+            'phone_number' => 'required'
         ];
     }
 }
