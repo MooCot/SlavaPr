@@ -15,12 +15,13 @@ use App\Events\TaskEvent;
 use App\Traits\Firebase;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\DB;
 
 class TestController extends Controller
 {
     use Firebase;
 
     public function index(Request $request) {
-        return Task::countUrgentTask(1);
+        
     }
 }
