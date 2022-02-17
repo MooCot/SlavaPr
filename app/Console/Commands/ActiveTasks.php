@@ -52,6 +52,7 @@ class ActiveTasks extends Command
             $overdueDeadlineTasks = Task::countOverdueDeadline($user->id);
             $urgentTasks = Task::countUrgentTask($user->id);
             $event->sendOne($task, $user, $tokens, 'Задачи на сегодня!', 'Доброе утро! Ваши задачи на сегодня: '.$urgentTasks.' - Срочных, '.$endDeadlineTasks.' - заканчивается дедлайн, '.$notUrgentTasks.' - не срочных, '.$overdueDeadlineTasks.' - дедлайн просрочен');
+            event($event);
         }
         return Command::SUCCESS;
     }
