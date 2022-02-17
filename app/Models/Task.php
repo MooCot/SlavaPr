@@ -56,7 +56,7 @@ class Task extends Model
     public static function groupTasksByDate($user_role, $user_id) {
         $data = [];
         $daytask['date'] = date('d.m.Y', strtotime(now()));
-        if($user_role == 1) {
+        if($user_role === 1) {
             for($i=0; $i<=6; $i++) {
                 $daytask['task'] = self::getAllUnfinishedTasks(date('Y-m-d', strtotime($daytask['date'])));
                 array_push($data, $daytask);
@@ -69,6 +69,7 @@ class Task extends Model
                 array_push($data, $daytask);
                 $daytask['date'] = date('d.m.Y', strtotime($daytask['date'].'+ 1 days'));
             }
+            // return 1;
         }
 
         return $data;
@@ -120,9 +121,9 @@ class Task extends Model
     public static function getUserUnfinishedTasks($date, $user_id) {
         $tasks = DB::table('tasks')
             ->where('end_task', NULL)
-            ->orWhere('executor_id', NULL)
+            ->where('executor_id', NULL)
+            ->orWhere('executor_id', $user_id)
             ->whereDate('must_end_task', '>', $date)
-            ->where('executor_id', $user_id)
             ->join('users as creator', 'creator.id', '=', 'tasks.creator_id')
             ->leftJoin('users as executor', 'executor.id', '=', 'tasks.executor_id')
             ->select('tasks.*', 'creator.name as creator_name', 'creator.surname as creator_surname',
