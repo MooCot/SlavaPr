@@ -69,7 +69,6 @@ class TaskController extends Controller
             $event = new TaskEvent();
             $event->sendOne($task, $user, $tokens, 'Новая задача!', 'У вас новая задача: “'.$task->task_name.'”');
             event($event);
-            return 'test';
         }
         else {
            $tokens = FcmToken::returnAllFcmtokens();
