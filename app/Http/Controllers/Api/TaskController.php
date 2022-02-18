@@ -44,6 +44,7 @@ class TaskController extends Controller
         $task->save();
         $tokens = User::returnFcmtokens($task->creator_id);
         $event = new TaskEvent();
+        $user = User::where('id', $task->creator_id)->first();
         $event->sendOne($task, $user, $tokens, 'Задача завершена!', 'Задача “'.$task->task_name.'” завершена. Исполнитель: “'.$user->name.' '.$user->surname.'”');
         event($event);
         return "plugTrue";
@@ -65,6 +66,7 @@ class TaskController extends Controller
         $task->priority = $request->priority;
         $task->save(); 
         if(!empty($request->executor_id)) {
+            $user = User::where('id', $request->executor_id)->first();
             $tokens = User::returnFcmtokens($task->executor_id);
             $event = new TaskEvent();
             $event->sendOne($task, $user, $tokens, 'Новая задача!', 'У вас новая задача: “'.$task->task_name.'”');
@@ -123,6 +125,7 @@ class TaskController extends Controller
         $task->save();
         $tokens = User::returnFcmtokens($task->creator_id);
         $event = new TaskEvent();
+        $user = User::where('id', $task->creator_id)->first();
         $event->sendOne($task, $user, $tokens, 'Задача принята!', 'Задача “'.$task->task_name.'” принята в работу исполнителем: “'.$user->name.' '.$user->surname.'”');
         event($event);
         return "plugTrue";
