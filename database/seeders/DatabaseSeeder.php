@@ -15,7 +15,6 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        \App\Models\Role::factory(2)->create();
         
         DB::table('admins')->insert([
             'name' => 'users',
@@ -44,27 +43,5 @@ class DatabaseSeeder extends Seeder
             'created_at' => now(),
             'updated_at' => now()
         ]);
-
-        DB::table('notifications')->insert([
-            'title' => 'test',
-            'text' => 'test',
-            'marked_as_read' => false,
-            'created_at' => now(),
-            'updated_at' => now()
-        ]);
-
-        DB::table('notifications')->insert([
-            'title' => 'test',
-            'text' => 'test',
-            'marked_as_read' => false,
-            'created_at' => now(),
-            'updated_at' => now()
-        ]);
-
-        \App\Models\User::factory(10)->create();
-        \App\Models\Admin::factory(10)->create();
-        \App\Models\FcmToken::factory(10)->create();
-        \App\Models\Notification::factory(10)->create();
-        \App\Models\Task::factory(10)->create();
     }
 }
