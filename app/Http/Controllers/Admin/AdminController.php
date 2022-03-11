@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Admin;
 use Illuminate\Support\Facades\Hash;
+use App\Http\Requests\Admin\AdminStoreRequest;
 
 class AdminController extends Controller
 {
@@ -32,7 +33,7 @@ class AdminController extends Controller
         return view('admin.create');
     }
 
-    public function store(Request $request) {
+    public function store(AdminStoreRequest $request) {
         $admin = new Admin();
         $admin->name = $request->name;
         $admin->surname = $request->surname;

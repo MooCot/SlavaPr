@@ -5,7 +5,7 @@ namespace App\Http\Requests\Admin;
 use App\Rules\CurrentPasswordCheckRule;
 use Illuminate\Foundation\Http\FormRequest;
 
-class PasswordRequest extends FormRequest
+class UserRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
