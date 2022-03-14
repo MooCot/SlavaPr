@@ -15,6 +15,7 @@ class TaskController extends Controller
 
     public function index() {
         $tasks = DB::table('tasks')
+            ->where('end_task','<>', NULL)
             ->join('users as creator', 'creator.id', '=', 'tasks.creator_id')
             ->leftJoin('users as executor', 'executor.id', '=', 'tasks.executor_id')
             ->select('tasks.*', 'creator.name as creator_name', 'creator.surname as creator_surname',
