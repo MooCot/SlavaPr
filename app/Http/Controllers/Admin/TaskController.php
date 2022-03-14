@@ -20,6 +20,23 @@ class TaskController extends Controller
             ->select('tasks.*', 'creator.name as creator_name', 'creator.surname as creator_surname',
                                 'executor.name as executor_name', 'executor.surname as executor_surname')                
             ->paginate(20);
+        foreach($tasks as $task)
+        {
+            $task->must_end_task_date = date("d.m.y", strtotime($task->must_end_task));
+            $task->must_end_task_time = date("H.i", strtotime($task->must_end_task));
+            $task->start_task_date = date("d.m.y", strtotime($task->start_task));
+            $task->start_task_time = date("H.i", strtotime($task->start_task));
+            if(!empty($task->end_task)) {
+                $task->end_task_date = date("d.m.y", strtotime($task->end_task));
+                $task->end_task_time = date("H.i", strtotime($task->end_task));
+            }
+            else{
+                $task->end_task_date = null;
+                $task->end_task_time = null;
+            }
+
+
+        }
         return view('task.index', [
             'tasks' => $tasks,
             'active' => $this->active

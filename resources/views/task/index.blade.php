@@ -25,9 +25,9 @@
                     <td class="table__text-center table__text-number">{{ $task->id }}</td>
                     <!-- <td class="table__tbody-namesur table__name-length">{{ substr($task->task_name, 0,  50)."..." }}</td> -->
                     <td class="table__tbody-namesur table__name-length">{{ $task->task_name }}</td>
-                    <td class="table__tbody-namesur">{{ $task->start_task }}</td>
-                    <td class="table__tbody-namesur">{{ $task->must_end_task }}</td>
-                    <td class="table__tbody-namesur">{{ $task->end_task }}</td>
+                    <td class="table__tbody-namesur">{{ $task->start_task_time}}</br> {{ $task->start_task_date}}</td>
+                    <td class="table__tbody-namesur">{{ $task->must_end_task_time}}</br> {{ $task->must_end_task_date}}</td>
+                    <td class="table__tbody-namesur">{{$task->end_task_time}}</br> {{ $task->end_task_date}}</td>
                     <td class="table__tbody-namesur table__desc-length table__tasks-padding">{{ substr($task->task_description, 0,  250)."..."  }}</td>
                     <td class="table__task-fio ">
                         <div class="table__task-fio-pos">
