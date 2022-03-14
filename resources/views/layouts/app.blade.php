@@ -17,9 +17,6 @@
                 <div class="aside-content">
                     <div class="aside-content__logo">
                         <img class="aside-content__img" src="/assets/images/logo.png" alt="Logo login">
-                        <span class="aside-content__text">
-                            MedTask24
-                        </span>
                     </div>
                     <div class="aside-content__sidebar">
                         @include('layouts.navbars.sidebar')

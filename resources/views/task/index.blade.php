@@ -23,7 +23,8 @@
                 @foreach ($tasks as $task)
                 <tr class="table__border-top">
                     <td class="table__text-center table__text-number">{{ $task->id }}</td>
-                    <td class="table__tbody-namesur table__name-length">{{ substr($task->task_name, 0,  50)."..." }}</td>
+                    <!-- <td class="table__tbody-namesur table__name-length">{{ substr($task->task_name, 0,  50)."..." }}</td> -->
+                    <td class="table__tbody-namesur table__name-length">{{ $task->task_name }}</td>
                     <td class="table__tbody-namesur">{{ $task->start_task }}</td>
                     <td class="table__tbody-namesur">{{ $task->must_end_task }}</td>
                     <td class="table__tbody-namesur">{{ $task->end_task }}</td>
@@ -37,11 +38,6 @@
                             <span class="table__task-title-text">Исполнитель: </span>
                             <span>{{ $task->executor_name }} {{ $task->executor_surname }}</span>
                         </div>                     
-                    </td>
-                    <td class="table__task-check">
-                        <a class="" href="#">
-                            <i class="table__status-icon-check"></i>
-                        </a>
                     </td>
                 </tr>
                @endforeach

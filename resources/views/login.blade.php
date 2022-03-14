@@ -15,9 +15,6 @@
             @csrf
             <div class="login-title">
                 <img class="login-title__img" src="/assets/images/logo.png" alt="Logo login">
-                <span class="login-title__text">
-                    MedTask24
-                </span>
             </div>
             <div class="input-group{{ $errors->has('email') ? ' has-danger' : '' }}">
                 <div class="input-group-prepend">
