@@ -69,7 +69,6 @@ class Task extends Model
                 array_push($data, $daytask);
                 $daytask['date'] = date('d.m.Y', strtotime($daytask['date'].'+ 1 days'));
             }
-            // return 1;
         }
 
         return $data;
@@ -120,13 +119,11 @@ class Task extends Model
 
     public static function getUserUnfinishedTasks($date, $user_id) {
         $tasks = DB::table('tasks')
-            ->whereDate('end_task', NULL)
-            // ->where('executor_id', NULL)
-            // ->where('executor_id', $user_id)
-            ->where([
-                ['executor_id', NULL],
-                ['executor_id', $user_id],
-            ])
+            ->where('end_task', NULL)
+            ->where(function ($query) use ($user_id) {
+                $query->where('executor_id', NULL)
+                      ->orWhere('executor_id', $user_id);
+            })
             ->whereDate('must_end_task', '>', $date)
             ->join('users as creator', 'creator.id', '=', 'tasks.creator_id')
             ->leftJoin('users as executor', 'executor.id', '=', 'tasks.executor_id')
