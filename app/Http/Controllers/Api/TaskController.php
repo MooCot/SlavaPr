@@ -44,8 +44,8 @@ class TaskController extends Controller
         $task->save();
         $tokens = User::returnFcmtokens($task->creator_id);
         $event = new TaskEvent();
-        $user = User::where('id', $task->creator_id)->first();
-        $event->sendOne($task, $user, $tokens, 'Задача завершена!', 'Задача “'.$task->task_name.'” завершена. Исполнитель: “'.$user->name.' '.$user->surname.'”');
+        $user_creator = User::where('id', $task->creator_id)->first();
+        $event->sendOne($task, $user_creator, $tokens, 'Задача завершена!', 'Задача “'.$task->task_name.'” завершена. Исполнитель: “'.$user_creator->name.' '.$user_creator->surname.'”');
         event($event);
         return "plugTrue";
     }
@@ -125,8 +125,8 @@ class TaskController extends Controller
         $task->save();
         $tokens = User::returnFcmtokens($task->creator_id);
         $event = new TaskEvent();
-        $user = User::where('id', $task->creator_id)->first();
-        $event->sendOne($task, $user, $tokens, 'Задача принята!', 'Задача “'.$task->task_name.'” принята в работу исполнителем: “'.$user->name.' '.$user->surname.'”');
+        $user_creator = User::where('id', $task->creator_id)->first();
+        $event->sendOne($task, $user_creator, $tokens, 'Задача принята!', 'Задача “'.$task->task_name.'” принята в работу исполнителем: “'.$user_creator->name.' '.$user_creator->surname.'”');
         event($event);
         return "plugTrue";
     }
