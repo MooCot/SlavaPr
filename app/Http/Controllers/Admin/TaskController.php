@@ -24,12 +24,12 @@ class TaskController extends Controller
         foreach($tasks as $task)
         {
             $task->must_end_task_date = date("d.m.y", strtotime($task->must_end_task));
-            $task->must_end_task_time = date("H.i", strtotime($task->must_end_task));
+            $task->must_end_task_time = date("H:i", strtotime($task->must_end_task));
             $task->start_task_date = date("d.m.y", strtotime($task->start_task));
-            $task->start_task_time = date("H.i", strtotime($task->start_task));
+            $task->start_task_time = date("H:i", strtotime($task->start_task));
             if(!empty($task->end_task)) {
                 $task->end_task_date = date("d.m.y", strtotime($task->end_task));
-                $task->end_task_time = date("H.i", strtotime($task->end_task));
+                $task->end_task_time = date("H:i", strtotime($task->end_task));
             }
             else{
                 $task->end_task_date = null;
