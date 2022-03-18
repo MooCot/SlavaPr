@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link type="image/x-icon" href="{{ asset('favicon.ico') }}" rel="shortcut icon">
     <link type="Image/x-icon" href="{{ asset('favicon.ico') }}" rel="icon">
-    <title>Тайтл: Вход в MH Task Planer</title>
+    <title>Вход в MH Task Planer</title>
     <link rel="stylesheet" href="{{ mix('/assets/css/main.css') }}">
 </head>
 <body class="background-login">
