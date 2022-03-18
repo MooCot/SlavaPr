@@ -27,7 +27,7 @@
                             <label class="form__label-title">Фамилия</label>
                             <div class="col-sm-7">
                                 <div class="form-group{{ $errors->has('surname') ? ' has-danger' : '' }}">
-                                    <input class="form__input_indent form__input form-control{{ $errors->has('surname') ? ' is-invalid' : '' }}" name="surname" id="input-surname" type="surname" placeholder="" value="" required />
+                                    <input class="form__input_indent form__input form-control{{ $errors->has('surname') ? ' is-invalid' : '' }}" name="surname" id="input-surname" type="password" placeholder="" value="" required />
                                     @if ($errors->has('surname'))
                                     <span id="surname-error" class="error text-danger" for="input-surname">{{ $errors->first('surname') }}</span>
                                     @endif

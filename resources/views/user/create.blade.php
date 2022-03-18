@@ -53,7 +53,7 @@
                                 <label class="form__label-title">Разрешить доступ</label>
                                     <div class="form_toggle form__input_indent">
                                         <div class="form_toggle-item item-2">
-                                            <input id="access-2" type="radio" name="access" value="1">
+                                            <input id="access-2" type="radio" name="access" value="1" required>
                                             <label for="access-2">Да</label>
                                         </div>
                                         <div class="form_toggle-item item-1">
@@ -80,7 +80,7 @@
                                 <div class="form_toggle form__input_indent">
                                     @foreach ($roles as $role)
                                     <div class="form_toggle-item item-{{ $role['id'] }}">
-                                        <input id="role-{{ $role['id'] }}" type="radio" name="role" value="{{ $role['id'] }}">
+                                        <input id="role-{{ $role['id'] }}" type="radio" name="role" value="{{ $role['id'] }}" required>
                                         <label for="role-{{ $role['id'] }}">{{ $role['role_name'] }}</label>
                                     </div>
                                     @endforeach
