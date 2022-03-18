@@ -19,7 +19,8 @@ class TaskController extends Controller
             ->join('users as creator', 'creator.id', '=', 'tasks.creator_id')
             ->leftJoin('users as executor', 'executor.id', '=', 'tasks.executor_id')
             ->select('tasks.*', 'creator.name as creator_name', 'creator.surname as creator_surname',
-                                'executor.name as executor_name', 'executor.surname as executor_surname')                
+                                'executor.name as executor_name', 'executor.surname as executor_surname')              
+            ->orderBy('end_task', 'asc')               
             ->paginate(20);
         foreach($tasks as $task)
         {
