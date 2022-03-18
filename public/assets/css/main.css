@@ -440,6 +440,7 @@ th {
 .table__tbody-namesur {
   font-size: 15px;
   line-height: 18px;
+  padding: 0px 5px;
 }
 
 .table__tbody-pos-em-num {
