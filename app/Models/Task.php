@@ -80,6 +80,8 @@ class Task extends Model
             ->whereDate('must_end_task', '>', $date)
             ->join('users as creator', 'creator.id', '=', 'tasks.creator_id')
             ->leftJoin('users as executor', 'executor.id', '=', 'tasks.executor_id')
+            ->orderBy('priority', 'asc')  
+            ->orderBy('must_end_task', 'asc')  
             ->select('tasks.*', 'creator.name as creator_name', 'creator.surname as creator_surname',
                                 'executor.name as executor_name', 'executor.surname as executor_surname')                
             ->get();
