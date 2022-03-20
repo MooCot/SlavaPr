@@ -23,9 +23,9 @@
                     </div>
                 </div>
                 <label class="input-group__label-email">Логин (E-mail)</label>
-                <input type="email" name="email" class="input-group__input form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" placeholder="">
+                <input type="email" name="email" class="input-group__login form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" placeholder="">
                 @if ($errors->has('email'))
-                    <span id="name-error" class="error text-danger" for="input-name">{{ $errors->first('password') }}</span>
+                    <span id="email-error" class="error text-danger" for="input-email">{{ $errors->first('email') }}</span>
                 @endif
             </div>
             <div class="input-group{{ $errors->has('password') ? ' has-danger' : '' }}">

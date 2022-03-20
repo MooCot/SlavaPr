@@ -146,7 +146,7 @@ h1, h2, h3, h4, h5, h6 {
   display: flex;
   flex-direction: column;
   width: 350px;
-  height: 404px;
+  height: 434px;
   background: white;
   border-radius: 10px;
 }
@@ -198,7 +198,21 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: 500;
   font-size: 14px;
 }
-
+.input-group__login {
+  margin-bottom: 0;
+  border: 1px solid #D1D1D1;
+  height: 48px;
+  border-radius: 4px;
+  padding-left: 8px;
+  padding-right: 8px;
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+}
+.container-login .input-group{
+  margin-bottom: 24px;
+}
 .form-control:focus {
   border: 2px solid #9C2CF3;
 }
