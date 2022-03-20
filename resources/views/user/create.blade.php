@@ -20,7 +20,7 @@
                                     <div class="form-group{{ $errors->has('name') ? ' has-danger' : '' }}">
                                         <input class="form__input_indent form__input form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" id="input-name" type="name" placeholder="" value="" required />
                                         @if ($errors->has('name'))
-                                        <span id="name-error" class="error text-danger" for="input-name">{{ $errors->first('name') }}</span>
+                                            <span id="name-error" class="error text-danger" for="input-name">{{ $errors->first('name') }}</span>
                                         @endif
                                     </div>
                                 </div>
@@ -31,7 +31,7 @@
                                     <div class="form-group{{ $errors->has('surname') ? ' has-danger' : '' }}">
                                         <input class="form__input_indent form__input form-control{{ $errors->has('surname') ? ' is-invalid' : '' }}" name="surname" id="input-surname" type="surname" placeholder="" value="" required />
                                         @if ($errors->has('surname'))
-                                        <span id="surname-error" class="error text-danger" for="input-surname">{{ $errors->first('surname') }}</span>
+                                            <span id="surname-error" class="error text-danger" for="input-surname">{{ $errors->first('surname') }}</span>
                                         @endif
                                     </div>
                                 </div>
@@ -44,23 +44,28 @@
                                     <div class="form-group{{ $errors->has('email') ? ' has-danger' : '' }}">
                                         <input class="form__input_indent form__input form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" id="input-email" type="email" placeholder="" value="" required />
                                         @if ($errors->has('email'))
-                                        <span id="email-error" class="error text-danger" for="input-email">{{ $errors->first('email') }}</span>
+                                            <span id="email-error" class="error text-danger" for="input-email">{{ $errors->first('email') }}</span>
                                         @endif
                                     </div>
                                 </div>
                             </div>
                             <div class="form__input_block">
                                 <label class="form__label-title">Разрешить доступ</label>
-                                    <div class="form_toggle form__input_indent">
+                                <div class="form_toggle form__input_indent">
+                                    <div class="form-group{{ $errors->has('access') ? ' has-danger' : '' }}">
                                         <div class="form_toggle-item item-2">
-                                            <input id="access-2" type="radio" name="access" value="1" required>
+                                            <input id="access-2" type="radio" name="access" value="1">
                                             <label for="access-2">Да</label>
                                         </div>
                                         <div class="form_toggle-item item-1">
                                             <input id="access-1" type="radio" name="access" value="0">
                                             <label for="access-1">Нет</label>
-                                        </div>                                    
-                                    </div>                               
+                                        </div> 
+                                        @if ($errors->has('access'))
+                                            <span id="access-error" class="error text-danger" for="input-access">{{ $errors->first('access') }}</span>
+                                        @endif
+                                    </div>                                   
+                                </div>                               
                             </div>
                         </div>
                         <div class="form__create-user_double">
@@ -70,20 +75,25 @@
                                     <div class="form-group{{ $errors->has('phone_number') ? ' has-danger' : '' }}">
                                         <input class="form__input_indent form__input rupiah form-control{{ $errors->has('phone_number') ? ' is-invalid' : '' }}" name="phone_number" id="input-phone_number" type="text" placeholder="+380 _ _  _ _ _  _ _  _ _" value="" required />
                                         @if ($errors->has('phone_number'))
-                                        <span id="phone_number-error" class="error text-danger" for="input-phone_number">{{ $errors->first('phone_number') }}</span>
+                                            <span id="phone_number-error" class="error text-danger" for="input-phone_number">{{ $errors->first('phone_number') }}</span>
                                         @endif
                                     </div>
                                 </div>
                             </div>
                             <div class="form__input_block">
                                 <label class="form__label-title">Роль</label>
-                                <div class="form_toggle form__input_indent">
-                                    @foreach ($roles as $role)
-                                    <div class="form_toggle-item item-{{ $role['id'] }}">
-                                        <input id="role-{{ $role['id'] }}" type="radio" name="role" value="{{ $role['id'] }}" required>
-                                        <label for="role-{{ $role['id'] }}">{{ $role['role_name'] }}</label>
+                                <div class="form-group{{ $errors->has('access') ? ' has-danger' : '' }}">
+                                    <div class="form_toggle form__input_indent">
+                                        @foreach ($roles as $role)
+                                        <div class="form_toggle-item item-{{ $role['id'] }}">
+                                            <input id="role-{{ $role['id'] }}" type="radio" name="role" value="{{ $role['id'] }}">
+                                            <label for="role-{{ $role['id'] }}">{{ $role['role_name'] }}</label>
+                                        </div>
+                                        @endforeach
                                     </div>
-                                    @endforeach
+                                    @if ($errors->has('role'))
+                                            <span id="role-error" class="error text-danger" for="input-role">{{ $errors->first('role') }}</span>
+                                    @endif
                                 </div>
                             </div>
                         </div>
@@ -103,9 +113,14 @@
                             <div class="form__input_block">
                                 <label class="form__label-title" for="input-password-confirmation">{{ __('Повторить пароль') }}</label>
                                 <div class="col-sm-7">
-                                    <div class="form__input_position form-group">
-                                        <input class="form__input_indent form__input form-control" name="password_confirmation" id="input-password-confirmation" type="password" placeholder="" value="" required />
-                                        <button type="button" id="form__input-password-confirm__button-visible" class="input-group__img-visible"></button> 
+                                    <div class="form__input_position form-group{{ $errors->has('password') ? ' has-danger' : '' }}">
+                                        <div class="form__input_position form-group">
+                                            <input class="form__input_indent form__input form-control" name="password_confirmation" id="input-password-confirmation" type="password" placeholder="" value="" required />
+                                            <button type="button" id="form__input-password-confirm__button-visible" class="input-group__img-visible"></button> 
+                                            @if ($errors->has('password_confirmation'))
+                                                <span id="password-error" class="error text-danger" for="input-password">{{ $errors->first('password_confirmation') }}</span>
+                                            @endif
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -129,7 +144,6 @@
                             <button type="submit" class="form__button form__button_save">{{ __('Сохранить') }}</button>
                         </div>             
                     </div>                   
-                    
                 </div>
             </form>
         </div>

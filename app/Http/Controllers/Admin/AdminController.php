@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Admin;
 use Illuminate\Support\Facades\Hash;
-use App\Http\Requests\Admin\AdminStoreRequest;
+use App\Http\Requests\Admin\AdminUser\AdminStoreRequest;
 
 class AdminController extends Controller
 {
@@ -43,12 +43,12 @@ class AdminController extends Controller
         return redirect('admin/admin');
     }
 
-    public function update(Request $request, Admin $admin)
+    public function update(AdminStoreRequest $request, Admin $admin)
     {
         $admin->name = $request->name;
         $admin->surname = $request->surname;
         $admin->email = $request->email;
-        if($request->password!=='******')
+        if($request->password!=='111111')
         {
             $admin->password = Hash::make($request->password);
         }

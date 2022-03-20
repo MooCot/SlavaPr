@@ -10,8 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
-use App\Http\Requests\Admin\UserStoreRequest;
-use App\Http\Requests\Admin\UserRequest;
+use App\Http\Requests\Admin\ClinetUser\UserStoreRequest;
 
 class UserController extends Controller
 {
@@ -40,14 +39,14 @@ class UserController extends Controller
         ]);
     }
 
-    public function update(UserRequest $request, User $user)
+    public function update(UserStoreRequest $request, User $user)
     {
         $user->name = $request->name;
         $user->surname = $request->surname;
         $user->email = $request->email;
         $user->access = $request->access;
         $user->role_id = $request->role;
-        if($request->password!=='******')
+        if($request->password!=='111111')
         {
             $user->password = Hash::make($request->password);
         }
