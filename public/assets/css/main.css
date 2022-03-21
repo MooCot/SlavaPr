@@ -736,6 +736,17 @@ th {
 .form__button_delete::after {
   background: linear-gradient(#9C2CF3, #3A49F9);
 }
+.has-danger input {
+  border-color: red;
+}
+
+.has-danger label {
+  border: solid 1px red;
+}
+
+.has-danger .text-danger {
+  color: red;
+}
 
 .form__create_buttons {
   display: flex;

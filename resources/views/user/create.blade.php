@@ -51,21 +51,21 @@
                             </div>
                             <div class="form__input_block">
                                 <label class="form__label-title">Разрешить доступ</label>
-                                <div class="form_toggle form__input_indent">
-                                    <div class="form-group{{ $errors->has('access') ? ' has-danger' : '' }}">
-                                        <div class="form_toggle-item item-2">
-                                            <input id="access-2" type="radio" name="access" value="1">
-                                            <label for="access-2">Да</label>
-                                        </div>
-                                        <div class="form_toggle-item item-1">
-                                            <input id="access-1" type="radio" name="access" value="0">
-                                            <label for="access-1">Нет</label>
-                                        </div> 
-                                        @if ($errors->has('access'))
-                                            <span id="access-error" class="error text-danger" for="input-access">{{ $errors->first('access') }}</span>
-                                        @endif
-                                    </div>                                   
-                                </div>                               
+                                <div class="form-group{{ $errors->has('access') ? ' has-danger' : '' }}">
+                                    <div class="form_toggle form__input_indent">
+                                            <div class="form_toggle-item item-2">
+                                                <input id="access-2" type="radio" name="access" value="1">
+                                                <label for="access-2">Да</label>
+                                            </div>
+                                            <div class="form_toggle-item item-1">
+                                                <input id="access-1" type="radio" name="access" value="0">
+                                                <label for="access-1">Нет</label>
+                                            </div>                           
+                                    </div>
+                                    @if ($errors->has('access'))
+                                        <span id="access-error" class="error text-danger" for="input-access">{{ $errors->first('access') }}</span>
+                                    @endif      
+                                </div>                           
                             </div>
                         </div>
                         <div class="form__create-user_double">
