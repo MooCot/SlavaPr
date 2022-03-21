@@ -70,9 +70,11 @@ document.addEventListener("DOMContentLoaded", function () {
     if (jquery__WEBPACK_IMPORTED_MODULE_0___default()('#input-password').attr('type') == 'password') {
       jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).addClass('view');
       jquery__WEBPACK_IMPORTED_MODULE_0___default()('#input-password').attr('type', 'text');
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()('#input-password').val("");
     } else {
       jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).removeClass('view');
       jquery__WEBPACK_IMPORTED_MODULE_0___default()('#input-password').attr('type', 'password');
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()('#input-password').val("111111");
     }
 
     return false;
@@ -81,9 +83,11 @@ document.addEventListener("DOMContentLoaded", function () {
     if (jquery__WEBPACK_IMPORTED_MODULE_0___default()('#input-password-confirmation').attr('type') == 'password') {
       jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).addClass('view');
       jquery__WEBPACK_IMPORTED_MODULE_0___default()('#input-password-confirmation').attr('type', 'text');
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()('#input-password-confirmation').val("");
     } else {
       jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).removeClass('view');
       jquery__WEBPACK_IMPORTED_MODULE_0___default()('#input-password-confirmation').attr('type', 'password');
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()('#input-password-confirmation').val("111111");
     }
 
     return false;

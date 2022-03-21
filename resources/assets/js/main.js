@@ -58,9 +58,11 @@ document.addEventListener("DOMContentLoaded", function() {
         if ($('#input-password').attr('type') == 'password'){
             $(this).addClass('view');
             $('#input-password').attr('type', 'text');
+            $('#input-password').val("");
         } else {
             $(this).removeClass('view');
             $('#input-password').attr('type', 'password');
+            $('#input-password').val("111111");
         }
         return false;
     });
@@ -69,9 +71,11 @@ document.addEventListener("DOMContentLoaded", function() {
         if ($('#input-password-confirmation').attr('type') == 'password'){
             $(this).addClass('view');
             $('#input-password-confirmation').attr('type', 'text');
+            $('#input-password-confirmation').val("");
         } else {
             $(this).removeClass('view');
             $('#input-password-confirmation').attr('type', 'password');
+            $('#input-password-confirmation').val("111111");
         }
         return false;
     });
