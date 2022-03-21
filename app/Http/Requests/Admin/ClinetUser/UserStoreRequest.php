@@ -30,10 +30,24 @@ class UserStoreRequest extends FormRequest
             'surname' => ['required'],
             'access' => ['required'],
             'role' => ['required'],
-            'email' => 'required',
-            'phone_number' => 'required',
-            'password' => ['required', Password::min(6)->numbers(), 'confirmed'],
+            'email' => ['required', 'unique:users,email'],
+            'phone_number' => ['required', 'unique:users,phone_number'],
+            'password' => ['required', Password::min(6), 'confirmed'],
             'password_confirmation' => ['required', 'min:6'],
+        ];
+    }
+    
+    public function messages()
+    {
+        return [
+            'name.required' => 'Не передано обязательное поле',
+            'surname.required' => 'Не передано обязательное поле',
+            'password.required' => 'Не передано обязательное поле',
+            'password_confirmation.required' => 'Не передано обязательное поле',
+            'email.required' => 'Не передано обязательное поле',
+            'password.confirmed' => 'Пароли не совпадают',
+            'password.min' => 'Пароль должен быть минимум 6 символов',
+            'email.confirmed' => 'Такой емейл уже зарегистрирован',
         ];
     }
 }

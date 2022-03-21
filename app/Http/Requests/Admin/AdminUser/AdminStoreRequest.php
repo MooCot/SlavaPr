@@ -28,9 +28,22 @@ class AdminStoreRequest extends FormRequest
         return [
             'name' => ['required'],
             'surname' => ['required'],
-            'password' => ['required', Password::min(6)->numbers(), 'confirmed'],
+            'password' => ['required', Password::min(6), 'confirmed'],
             'password_confirmation' => ['required', 'min:6'],
-            'email' => ['required'],
+            'email' => ['required', 'unique:admins,email'],
+        ];
+    }
+    public function messages()
+    {
+        return [
+            'name.required' => 'Не передано обязательное поле',
+            'surname.required' => 'Не передано обязательное поле',
+            'password.required' => 'Не передано обязательное поле',
+            'password_confirmation.required' => 'Не передано обязательное поле',
+            'email.required' => 'Не передано обязательное поле',
+            'password.confirmed' => 'Пароли не совпадают',
+            'password.min' => 'Пароль должен быть минимум 6 символов',
+            'email.confirmed' => 'Такой емейл уже зарегистрирован',
         ];
     }
 }
