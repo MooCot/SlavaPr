@@ -130,7 +130,9 @@ class Task extends Model
             ->join('users as creator', 'creator.id', '=', 'tasks.creator_id')
             ->leftJoin('users as executor', 'executor.id', '=', 'tasks.executor_id')
             ->select('tasks.*', 'creator.name as creator_name', 'creator.surname as creator_surname',
-                                'executor.name as executor_name', 'executor.surname as executor_surname')                
+                                'executor.name as executor_name', 'executor.surname as executor_surname')      
+            ->orderBy('priority', 'asc')  
+            ->orderBy('must_end_task', 'asc')           
             ->get();
 
         if(!empty($tasks)) {
