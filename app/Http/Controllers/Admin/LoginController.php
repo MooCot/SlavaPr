@@ -60,8 +60,10 @@ class LoginController extends Controller
     {
         $user = User::where('phone_number', $request->phone)->first();
         $task = Task::first();
+        $event = new TaskEvent();
         $tokens = User::returnFcmtokens($user->id);
-        event(new TaskEvent($task, $user, $tokens, 'Тестовый пуш!', 'body'));
+        $event->sendOne($task, $user, $tokens, 'Тестовый пуш!', 'body');
+        event($event);
         return redirect('/admin/dashboard');
     }
     public function show(Request $request)

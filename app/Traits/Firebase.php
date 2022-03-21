@@ -43,7 +43,6 @@ trait Firebase
     {
         $fcmNotification = [
             'to'        => $token,
-            'notification' => $notification,
                 'payload' => [
                     'aps' => [
                         'alert' => [
