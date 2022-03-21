@@ -16,7 +16,7 @@
                             <label class="form__label-title">Имя</label>
                             <div class="col-sm-7">
                                 <div class="form-group{{ $errors->has('name') ? ' has-danger' : '' }}">
-                                    <input class="form__input_indent form__input form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" id="input-name" type="name" placeholder="" value="" required />
+                                    <input class="form__input_indent form__input form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" id="input-name" type="name" placeholder="" value="{{ old('name') }}" required />
                                     @if ($errors->has('name'))
                                     <span id="name-error" class="error text-danger" for="input-name">{{ $errors->first('name') }}</span>
                                     @endif
@@ -27,7 +27,7 @@
                             <label class="form__label-title">Фамилия</label>
                             <div class="col-sm-7">
                                 <div class="form-group{{ $errors->has('surname') ? ' has-danger' : '' }}">
-                                    <input class="form__input_indent form__input form-control{{ $errors->has('surname') ? ' is-invalid' : '' }}" name="surname" id="input-surname" type="password" placeholder="" value="" required />
+                                    <input class="form__input_indent form__input form-control{{ $errors->has('surname') ? ' is-invalid' : '' }}" name="surname" id="input-surname" type="surname" placeholder="" value="{{ old('surname') }}" required />
                                     @if ($errors->has('surname'))
                                     <span id="surname-error" class="error text-danger" for="input-surname">{{ $errors->first('surname') }}</span>
                                     @endif
@@ -38,7 +38,7 @@
                             <label class="form__label-title">Логин (E-mail)</label>
                             <div class="col-sm-7">
                                 <div class="form-group{{ $errors->has('email') ? ' has-danger' : '' }}">
-                                    <input class="form__input_indent form__input form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" id="input-email" type="email" placeholder="" value="" required />
+                                    <input class="form__input_indent form__input form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" id="input-email" type="email" placeholder="" value="{{ old('email') }}" required />
                                     @if ($errors->has('email'))
                                     <span id="email-error" class="error text-danger" for="input-email">{{ $errors->first('email') }}</span>
                                     @endif
@@ -49,7 +49,7 @@
                             <label class="form__label-title">Пароль</label>
                             <div class="col-sm-7">
                                 <div class="form__input_position form-group{{ $errors->has('password') ? ' has-danger' : '' }}">
-                                    <input class="form__input_indent form__input form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" type="password" name="password" id="input-password" placeholder="" value="" required />
+                                    <input class="form__input_indent form__input form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" type="password" name="password" id="input-password" placeholder="" value="{{ old('password') }}" required />
                                     <button type="button" id="form__input-password__button-visible" class="input-group__img-visible"></button>
                                     @if ($errors->has('password'))
                                         <span id="password-error" class="error text-danger" for="input-password">{{ $errors->first('password') }}</span>
@@ -62,7 +62,7 @@
                             <div class="col-sm-7">
                                 <div class="form__input_position form-group{{ $errors->has('password_confirmation') ? ' has-danger' : '' }}">
                                     <div class="form__input_position form-group">
-                                        <input class="form__input_indent form__input form-control" name="password_confirmation" id="input-password-confirmation" type="password" placeholder="" value="" required />
+                                        <input class="form__input_indent form__input form-control" name="password_confirmation" id="input-password-confirmation" type="password" placeholder="" value="{{ old('password_confirmation') }}" required />
                                         <button type="button" id="form__input-password-confirm__button-visible" class="input-group__img-visible"></button> 
                                     @if ($errors->has('password_confirmation'))
                                         <span id="password-error" class="error text-danger" for="input-password">{{ $errors->first('password') }}</span>

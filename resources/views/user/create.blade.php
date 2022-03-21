@@ -18,7 +18,7 @@
                                 <label class="form__label-title">Имя</label>
                                 <div class="col-sm-7">
                                     <div class="form-group{{ $errors->has('name') ? ' has-danger' : '' }}">
-                                        <input class="form__input_indent form__input form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" id="input-name" type="name" placeholder="" value="" required />
+                                        <input class="form__input_indent form__input form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" id="input-name" type="name" placeholder="" value="{{ old('name') }}" required />
                                         @if ($errors->has('name'))
                                             <span id="name-error" class="error text-danger" for="input-name">{{ $errors->first('name') }}</span>
                                         @endif
@@ -29,7 +29,7 @@
                                 <label class="form__label-title">Фамилия</label>
                                 <div class="col-sm-7">
                                     <div class="form-group{{ $errors->has('surname') ? ' has-danger' : '' }}">
-                                        <input class="form__input_indent form__input form-control{{ $errors->has('surname') ? ' is-invalid' : '' }}" name="surname" id="input-surname" type="surname" placeholder="" value="" required />
+                                        <input class="form__input_indent form__input form-control{{ $errors->has('surname') ? ' is-invalid' : '' }}" name="surname" id="input-surname" type="surname" placeholder="" value="{{ old('surname') }}" required />
                                         @if ($errors->has('surname'))
                                             <span id="surname-error" class="error text-danger" for="input-surname">{{ $errors->first('surname') }}</span>
                                         @endif
@@ -42,7 +42,7 @@
                                 <label class="form__label-title">E-mail</label>
                                 <div class="col-sm-7">
                                     <div class="form-group{{ $errors->has('email') ? ' has-danger' : '' }}">
-                                        <input class="form__input_indent form__input form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" id="input-email" type="email" placeholder="" value="" required />
+                                        <input class="form__input_indent form__input form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" id="input-email" type="email" placeholder="" value="{{ old('email') }}" required />
                                         @if ($errors->has('email'))
                                             <span id="email-error" class="error text-danger" for="input-email">{{ $errors->first('email') }}</span>
                                         @endif
@@ -73,7 +73,7 @@
                                 <label class="form__label-title">Телефон</label>
                                 <div class="col-sm-7">
                                     <div class="form-group{{ $errors->has('phone_number') ? ' has-danger' : '' }}">
-                                        <input class="form__input_indent form__input rupiah form-control{{ $errors->has('phone_number') ? ' is-invalid' : '' }}" name="phone_number" id="input-phone_number" type="text" placeholder="+380 _ _  _ _ _  _ _  _ _" value="" required />
+                                        <input class="form__input_indent form__input rupiah form-control{{ $errors->has('phone_number') ? ' is-invalid' : '' }}" name="phone_number" id="input-phone_number" type="text" placeholder="+380 _ _  _ _ _  _ _  _ _" value="{{ old('phone_number') }}" required />
                                         @if ($errors->has('phone_number'))
                                             <span id="phone_number-error" class="error text-danger" for="input-phone_number">{{ $errors->first('phone_number') }}</span>
                                         @endif
