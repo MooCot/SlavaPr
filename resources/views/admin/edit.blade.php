@@ -49,11 +49,11 @@
                         <div class="form__input_block form__input_block-admin">
                             <label class="form__label-title">Пароль</label>
                             <div class="col-sm-7">
-                                <div class="form__input_position form-group{{ $errors->has('password') ? ' has-danger' : '' }}">
-                                    <input class="form__input_indent form__input form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" type="password" id="input-password" placeholder="" value="111111" required />
+                                <div class="form__input_position form-group{{ $errors->has('password1') ? ' has-danger' : '' }}">
+                                    <input class="form__input_indent form__input form-control{{ $errors->has('password1') ? ' is-invalid' : '' }}" name="password1" type="password" id="input-password" placeholder="" value="111111" required />
                                     <button type="button" id="form__input-password__button-visible" class="input-group__img-visible"></button>                                    
-                                    @if ($errors->has('password'))
-                                        <span id="password-error" class="error text-danger" for="input-password">{{ $errors->first('password') }}</span>
+                                    @if ($errors->has('password1'))
+                                        <span id="password-error" class="error text-danger" for="input-password">{{ $errors->first('password1') }}</span>
                                     @endif
                                 </div>
                             </div>
@@ -61,12 +61,12 @@
                         <div class="form__input_block form__input_block-admin">
                             <label class="form__label-title" for="input-password-confirmation">{{ __('Повторить пароль') }}</label>
                             <div class="col-sm-7">
-                                <div class="form__input_position form-group{{ $errors->has('password_confirmation') ? ' has-danger' : '' }}">
+                                <div class="form__input_position form-group{{ $errors->has('password_confirmation1') ? ' has-danger' : '' }}">
                                     <div class="form__input_position form-group">
-                                        <input class="form__input_indent form__input form-control" name="password_confirmation" id="input-password-confirmation" type="password" placeholder="" value="111111" required />
+                                        <input class="form__input_indent form__input form-control" name="password_confirmation1" id="input-password-confirmation" type="password" placeholder="" value="111111" required />
                                         <button type="button" id="form__input-password-confirm__button-visible" class="input-group__img-visible"></button> 
-                                        @if ($errors->has('password_confirmation'))
-                                            <span id="password-error" class="error text-danger" for="input-password">{{ $errors->first('password') }}</span>
+                                        @if ($errors->has('password_confirmation1'))
+                                            <span id="password-error" class="error text-danger" for="input-password">{{ $errors->first('password1') }}</span>
                                         @endif
                                     </div>
                                 </div>

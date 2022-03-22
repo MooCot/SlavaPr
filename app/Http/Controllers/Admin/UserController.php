@@ -46,9 +46,9 @@ class UserController extends Controller
         $user->email = $request->email;
         $user->access = $request->access;
         $user->role_id = $request->role;
-        if($request->password!=='111111')
+        if($request->password1!=='111111')
         {
-            $user->password = Hash::make($request->password);
+            $user->password1 = Hash::make($request->password1);
         }
         if($user->phone_number!==mb_eregi_replace("[^0-9+]", '', $request->phone_number))
         {
@@ -72,7 +72,7 @@ class UserController extends Controller
         $user->phone_number = mb_eregi_replace("[^0-9+]", '', $request->phone_number);
         $user->auth_token = hash('sha256', $token);
         $user->access = $request->access;
-        $user->password = Hash::make($request->password);
+        $user->password1 = Hash::make($request->password1);
         $user->role_id = $request->role;
         $user->save();
         return redirect('admin/dashboard');
