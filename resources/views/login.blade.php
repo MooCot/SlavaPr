@@ -24,11 +24,8 @@
                 </div>
                 <label class="input-group__label-email">Логин (E-mail)</label>
                 <input type="email" name="email" class="input-group__login form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" placeholder="">
-                @if ($errors->has('email'))
-                    <span id="email-error" class="error text-danger" for="input-email">{{ $errors->first('email') }}</span>
-                @endif
             </div>
-            <div class="input-group{{ $errors->has('password') ? ' has-danger' : '' }}">
+            <div class="input-group{{ $errors->has('email') ? ' has-danger' : '' }}">
                 <div class="input-group-prepend">
                     <div class="input-group-text">
                         <i class="tim-icons icon-lock-circle"></i>
@@ -36,8 +33,8 @@
                 </div>
                 <label class="input-group__label-password">Пароль</label>
                 <input id="password-input" type="password" placeholder="" name="password" class="input-group__input form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" minlength="1" required>
-                @if ($errors->has('password'))
-                    <span id="name-error" class="error text-danger" for="input-name">{{ $errors->first('password') }}</span>
+                @if ($errors->has('email'))
+                    <span id="name-error" class="error text-danger" for="input-name">{{ $errors->first('email') }}</span>
                 @endif
                 <button type="button" id="input-group__button-visible" class="input-group__img-visible">
                 </button>                

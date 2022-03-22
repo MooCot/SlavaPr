@@ -155,7 +155,20 @@
     font-size: 16px;
     border-radius: 24px;
 }
+.has-danger input {
+    border-color: red;
+}
 
+.has-danger .error-label {
+    border: 1px solid red;
+}
+
+.container-login .has-danger input {
+    border-color: red;
+}
+.has-danger .text-danger {
+    color: red;
+}
 
 // ///////////////////
 // App page
@@ -189,8 +202,8 @@
 }
 
 .aside-content__img{
-    width: 40px;
-    height: 40px;
+    width: 90%;
+    height: 90%;
     margin-left: 24px;
     margin-right: 8px;
 }

@@ -55,11 +55,11 @@
                                     <div class="form_toggle form__input_indent">
                                             <div class="form_toggle-item item-2">
                                                 <input id="access-2" type="radio" name="access" value="1">
-                                                <label for="access-2">Да</label>
+                                                <label class="error-label" for="access-2">Да</label>
                                             </div>
                                             <div class="form_toggle-item item-1">
                                                 <input id="access-1" type="radio" name="access" value="0">
-                                                <label for="access-1">Нет</label>
+                                                <label class="error-label" for="access-1">Нет</label>
                                             </div>                           
                                     </div>
                                     @if ($errors->has('access'))
@@ -87,7 +87,7 @@
                                         @foreach ($roles as $role)
                                         <div class="form_toggle-item item-{{ $role['id'] }}">
                                             <input id="role-{{ $role['id'] }}" type="radio" name="role" value="{{ $role['id'] }}">
-                                            <label for="role-{{ $role['id'] }}">{{ $role['role_name'] }}</label>
+                                            <label class="error-label" for="role-{{ $role['id'] }}">{{ $role['role_name'] }}</label>
                                         </div>
                                         @endforeach
                                     </div>
