@@ -169,19 +169,43 @@ class Task extends Model
     }
 
     public static function countUrgentTask(int $user_id) {
-        return Task::where('priority', 'high')->where('executor_id', $user_id)->orWhere('executor_id', NULL)->count();
+        return Task::where('priority', 'high')
+            ->where(function ($query) use ($user_id) {
+                $query->where('executor_id', NULL)
+                    ->orWhere('executor_id', $user_id);
+            })
+            ->where('end_task', NULL)
+            ->count();
     }
 
     public static function countEndDeadline(int $user_id) {
-        return Task::whereDate('must_end_task', '=', date('Y-m-d', strtotime(now())))->orWhere('executor_id', NULL)->count();
+        return Task::whereDate('must_end_task', '=', date('Y-m-d', strtotime(now())))
+            ->where(function ($query) use ($user_id) {
+                $query->where('executor_id', NULL)
+                    ->orWhere('executor_id', $user_id);
+            })
+            ->where('end_task', NULL)
+            ->count();
     }
 
     public static function countNotUrgentTask(int $user_id) {
-        return Task::where('priority', 'normal')->where('executor_id', $user_id)->orWhere('executor_id', NULL)->count();
+        return Task::where('priority', 'normal')
+            ->where(function ($query) use ($user_id) {
+                $query->where('executor_id', NULL)
+                    ->orWhere('executor_id', $user_id);
+            })
+            ->where('end_task', NULL)
+            ->count();
     }
 
     public static function countOverdueDeadline(int $user_id) {
-        return Task::whereDate('must_end_task','<', date('Y-m-d', strtotime(now())))->where('executor_id', $user_id)->where('end_task', NULL)->orWhere('executor_id', NULL)->count();
+        return Task::whereDate('must_end_task','<', date('Y-m-d', strtotime(now())))
+            ->where(function ($query) use ($user_id) {
+                $query->where('executor_id', NULL)
+                    ->orWhere('executor_id', $user_id);
+            })
+            ->where('end_task', NULL)
+            ->count();
     }
 
 }
