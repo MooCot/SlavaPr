@@ -30,6 +30,34 @@
                     
                 </div>
             </form>
+            <form method="post" action="{{ route('admin.active') }}" enctype="multipart/form-data" autocomplete="off" class="form-horizontal">
+                @csrf
+                <div class="form__create-text-style">
+                    @include('alerts.success')
+                    <div class="form__create_title">
+                        <h4 class="card-title">{{ __('активные push') }}</h4>
+                    </div>
+                    <div class="form__create-container">
+                        <div class="card-footer ml-auto mr-auto">
+                            <button type="submit" class="form__button form__button_save">{{ __('Отправить') }}</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+            <form method="post" action="{{ route('admin.overdue') }}" enctype="multipart/form-data" autocomplete="off" class="form-horizontal">
+                @csrf
+                <div class="form__create-text-style">
+                    @include('alerts.success')
+                    <div class="form__create_title">
+                        <h4 class="card-title">{{ __('просроченые push') }}</h4>
+                    </div>
+                    <div class="form__create-container">
+                        <div class="card-footer ml-auto mr-auto">
+                            <button type="submit" class="form__button form__button_save">{{ __('Отправить') }}</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
         </div>
     </div>
 </div>

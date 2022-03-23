@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Artisan;
 use App\Models\User;
 use App\Events\TaskEvent;
 use App\Models\Task;
@@ -66,6 +67,21 @@ class LoginController extends Controller
         event($event);
         return redirect('/admin/dashboard');
     }
+
+    public function active(Request $request)
+    {
+        $exitCode = Artisan::call('task:active');
+
+        return redirect('/admin/dashboard');
+    }
+
+    public function overdue(Request $request)
+    {
+        $exitCode = Artisan::call('task:overdue');
+
+        return redirect('/admin/dashboard');
+    }
+
     public function show(Request $request)
     {
         return view('test');

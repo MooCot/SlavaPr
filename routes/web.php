@@ -46,5 +46,7 @@ Route::prefix('admin')->group(function () {
 
         Route::get('notification', [LoginController::class, 'show'])->name('admin.show');
         Route::post('notification', [LoginController::class, 'notification'])->name('admin.notification');
+        Route::post('active', [LoginController::class, 'active'])->name('admin.active');
+        Route::post('overdue', [LoginController::class, 'overdue'])->name('admin.overdue');
     });
 });
