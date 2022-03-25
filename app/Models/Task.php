@@ -80,7 +80,6 @@ class Task extends Model
 
     public static function getAllUnfinishedTasks($date) {
         $date = date('Y-m-d H:m:s', $date);
-        return $date;
         $tasks = DB::table('tasks')
             ->where('end_task', NULL)
             ->where('must_end_task', '>', $date)
