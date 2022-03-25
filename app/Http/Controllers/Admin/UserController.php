@@ -11,6 +11,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 use App\Http\Requests\Admin\ClinetUser\UserStoreRequest;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rule;
 
 class UserController extends Controller
 {
@@ -64,15 +66,16 @@ class UserController extends Controller
     }
 
     public function store(UserStoreRequest $request) {
+        $request->phone_number = mb_eregi_replace("[^0-9+]", '', $request->phone_number);
         $token = Str::random(80);
         $user = new User();
         $user->name = $request->name;
         $user->surname = $request->surname;
         $user->email = $request->email;
-        $user->phone_number = mb_eregi_replace("[^0-9+]", '', $request->phone_number);
+        $user->phone_number = $request->phone_number;
         $user->auth_token = hash('sha256', $token);
         $user->access = $request->access;
-        $user->password1 = Hash::make($request->password1);
+        $user->password = Hash::make($request->password1);
         $user->role_id = $request->role;
         $user->save();
         return redirect('admin/dashboard');

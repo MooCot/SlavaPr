@@ -38,7 +38,7 @@ class AdminController extends Controller
         $admin->name = $request->name;
         $admin->surname = $request->surname;
         $admin->email = $request->email;
-        $admin->password1 = Hash::make($request->password1);
+        $admin->password = Hash::make($request->password1);
         $admin->save();
         return redirect('admin/admin');
     }
@@ -50,7 +50,7 @@ class AdminController extends Controller
         $admin->email = $request->email;
         if($request->password1!=='111111')
         {
-            $admin->password1 = Hash::make($request->password1);
+            $admin->password = Hash::make($request->password1);
         }
         $admin->save();
         return redirect('admin/admin');

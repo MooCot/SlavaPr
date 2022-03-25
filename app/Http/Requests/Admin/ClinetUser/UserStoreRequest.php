@@ -31,15 +31,17 @@ class UserStoreRequest extends FormRequest
             'access' => ['required'],
             'role' => ['required'],
             'email' => ['required', 'unique:users,email'],
-            'phone_number' => ['required', 'unique:users,phone_number'],
-            'password1' => ['required', 'min:6', 'confirmed'],
-            'password_confirmation1' => ['required', 'min:6'],
+            'phone_number' => ['min:14', 'required', 'unique:users,phone_number'],
+            'password1' => ['required', 'min:6|required_with:password_confirmation1|same:password_confirmation'],
+            'password_confirmation1' => ['required', 'min:6', 'same:password1'],
         ];
     }
     
     public function messages()
     {
         return [
+            'phone_number.required' => 'Не передано обязательное поле',
+            'phone_number.unique' => 'Такой телефон уже зарегистрирован',
             'name.required' => 'Не передано обязательное поле',
             'access.required' => 'Не передано обязательное поле',
             'role.required' => 'Не передано обязательное поле',
@@ -49,6 +51,9 @@ class UserStoreRequest extends FormRequest
             'email.required' => 'Не передано обязательное поле',
             'password1.confirmed' => 'Пароли не совпадают',
             'password1.min' => 'Пароль должен быть минимум 6 символов',
+            'password_confirmation1.min' => 'Пароль должен быть минимум 6 символов',
+            'password_confirmation1.confirmed' => 'Пароли не совпадают',
+            'password_confirmation1.same' => 'Пароли не совпадают',
             'email.unique' => 'Такой емейл уже зарегистрирован',
         ];
     }

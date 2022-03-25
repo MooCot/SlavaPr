@@ -52,7 +52,7 @@
                             </div>
                             <div class="form__input_block">
                                 <label class="form__label-title">Разрешить доступ</label>
-                                <div class="form-group{{ $errors->has('access') ? ' has-danger' : '' }}">
+                                <div class="form-group{{ $errors->has('access1') ? ' has-danger' : '' }}">
                                     <div class="form_toggle form__input_indent">
                                         <div class="form_toggle-item item-2">
                                             <input id="access-2" type="radio" name="access" value="1"  {{ $user->access==1 ? 'checked' : '' }}>
@@ -83,7 +83,7 @@
                             </div>
                             <div class="form__input_block">
                                 <label class="form__label-title">Роль</label>
-                                <div class="form-group{{ $errors->has('role') ? ' has-danger' : '' }}">
+                                <div class="form-group{{ $errors->has('role1') ? ' has-danger' : '' }}">
                                     <div class="form_toggle form__input_indent">
                                         @foreach ($roles as $role)
                                         <div class="form_toggle-item item-{{ $role['id'] }}">
