@@ -16,7 +16,7 @@ class NotificationController extends Controller
 {
     public function index(Request $request) {
         $user = $request->user();
-        $notifications = Notification::where('user_id', $user->id)->orderByDesc('id')->get();
+        $notifications = Notification::where('user_id', $user->id)->orderByDesc('id')->limit(1)->get();
         foreach($notifications as $notification) {
             $notification->date = date("d.m.Y", strtotime($notification->created_at));
             $notification->time = date("H:i", strtotime($notification->created_at));
