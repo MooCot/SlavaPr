@@ -105,7 +105,7 @@
                                         <input class="form__input_indent form__input form__input_password form-control{{ $errors->has('password1') ? ' is-invalid' : '' }}" name="password1" id="input-password" type="password" placeholder="" value="{{ old('password1') }}" required />
                                         <button type="button" id="form__input-password__button-visible" class="input-group__img-visible"></button> 
                                         @if ($errors->has('password1'))
-                                            <span id="password-error" class="error text-danger" for="input-password">{{ $errors->first('password') }}</span>
+                                            <span id="password-error" class="error text-danger" for="input-password">{{ $errors->first('password1') }}</span>
                                         @endif
                                     </div>
                                 </div>

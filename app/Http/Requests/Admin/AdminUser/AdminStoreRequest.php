@@ -43,7 +43,7 @@ class AdminStoreRequest extends FormRequest
             'email.required' => 'Не передано обязательное поле',
             'password1.confirmed' => 'Пароли не совпадают',
             'password1.min' => 'Пароль должен быть минимум 6 символов',
-            'email.confirmed' => 'Такой емейл уже зарегистрирован',
+            'email.unique' => 'Такой емейл уже зарегистрирован',
         ];
     }
 }

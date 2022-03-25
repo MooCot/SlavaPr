@@ -32,7 +32,7 @@ class UserStoreRequest extends FormRequest
             'role' => ['required'],
             'email' => ['required', 'unique:users,email'],
             'phone_number' => ['required', 'unique:users,phone_number'],
-            'password1' => ['required', Password::min(6), 'confirmed'],
+            'password1' => ['required', 'min:6', 'confirmed'],
             'password_confirmation1' => ['required', 'min:6'],
         ];
     }
@@ -41,13 +41,15 @@ class UserStoreRequest extends FormRequest
     {
         return [
             'name.required' => 'Не передано обязательное поле',
+            'access.required' => 'Не передано обязательное поле',
+            'role.required' => 'Не передано обязательное поле',
             'surname.required' => 'Не передано обязательное поле',
             'password1.required' => 'Не передано обязательное поле',
             'password_confirmation1.required' => 'Не передано обязательное поле',
             'email.required' => 'Не передано обязательное поле',
             'password1.confirmed' => 'Пароли не совпадают',
             'password1.min' => 'Пароль должен быть минимум 6 символов',
-            'email.confirmed' => 'Такой емейл уже зарегистрирован',
+            'email.unique' => 'Такой емейл уже зарегистрирован',
         ];
     }
 }
