@@ -115,7 +115,7 @@
                                 <label class="form__label-title" for="input-password-confirmation">{{ __('Повторить пароль') }}</label>
                                 <div class="col-sm-7">
                                     <div class="form__input_position form-group">
-                                        <input class="form__input_indent form__input form-control" name="password_confirmation" id="input-password-confirmation1" type="password" placeholder="" value="111111" required />
+                                        <input class="form__input_indent form__input form-control" name="password_confirmation" id="input-password-confirmation" type="password" placeholder="" value="111111" required />
                                         <button type="button" id="form__input-password-confirm__button-visible" class="input-group__img-visible"></button> 
                                     </div>
                                 </div>
