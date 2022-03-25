@@ -32,12 +32,10 @@ class TaskController extends Controller
                 $task->end_task_date = date("d.m.y", strtotime($task->end_task));
                 $task->end_task_time = date("H:i", strtotime($task->end_task));
             }
-            else{
+            else {
                 $task->end_task_date = null;
                 $task->end_task_time = null;
             }
-
-
         }
         return view('task.index', [
             'tasks' => $tasks,

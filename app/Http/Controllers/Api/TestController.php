@@ -22,6 +22,6 @@ class TestController extends Controller
     use Firebase;
 
     public function index(Request $request) {
-    }
 
+    }
 }
