@@ -27,9 +27,9 @@ Route::prefix('admin')->group(function () {
 
         Route::get('dashboard', [UserController::class, 'index'])->name('home');
         Route::get('user/edit/{user}', [UserController::class, 'edit'])->name('user.edit');
-        Route::put('user/edit/{user}', [UserController::class, 'update'])->name('user.update');
+        Route::put('user/edit/{user}', [UserController::class, 'update'])->name('user.update')->middleware('clear');
         Route::get('user/create', [UserController::class, 'create'])->name('user.create');
-        Route::post('user/create', [UserController::class, 'store'])->name('user.store');
+        Route::post('user/create', [UserController::class, 'store'])->name('user.store')->middleware('clear');
         Route::delete('/user/destroy/{user}', [UserController::class, 'destroy'])->name('user.destroy');
 
         Route::get('task', [TaskController::class, 'index'])->name('tasks');

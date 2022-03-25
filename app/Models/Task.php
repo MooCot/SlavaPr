@@ -55,33 +55,35 @@ class Task extends Model
 
     public static function groupTasksByDate($user_role, $user_id) {
         $data = [];
-        $daytask['date'] = date('Y-m-d H:i', strtotime(now()));
+        $daytask['date'] = strtotime(now());
         if($user_role === 1) {
             for($i=0; $i<=6; $i++) {
                 $daytask['task'] = self::getAllUnfinishedTasks($daytask['date']);
                 array_push($data, $daytask);
-                $daytask['date'] = date('Y-m-d H:i', strtotime($daytask['date'].'+ 1 days'));
+                $daytask['date'] = $daytask['date']+86400;
             }
         }
         else {
             for($i=0; $i<=6; $i++) {
                 $daytask['task'] = self::getUserUnfinishedTasks($daytask['date'], $user_id);
                 array_push($data, $daytask);
-                $daytask['date'] = date('Y-m-d H:i', strtotime($daytask['date'].'+ 1 days'));
+                $daytask['date'] = $daytask['date']+86400;
             }
         }
 
         for($i=0; $i<count($data); $i++){
-            $data[$i]['date'] = date('Y.m.d', strtotime($data[$i]['date']));
-         }
+            $data[$i]['date'] = date('d.m.Y', $data[$i]['date']);
+        }
 
         return $data;
     }
 
     public static function getAllUnfinishedTasks($date) {
+        $date = date('Y-m-d H:m:s', $date);
+        return $date;
         $tasks = DB::table('tasks')
             ->where('end_task', NULL)
-            ->whereDate('must_end_task', '>', $date)
+            ->where('must_end_task', '>', $date)
             ->join('users as creator', 'creator.id', '=', 'tasks.creator_id')
             ->leftJoin('users as executor', 'executor.id', '=', 'tasks.executor_id')
             ->orderBy('priority', 'asc')  
@@ -124,13 +126,14 @@ class Task extends Model
     }
 
     public static function getUserUnfinishedTasks($date, $user_id) {
+        $date = date('Y-m-d H:m:s', $date);
         $tasks = DB::table('tasks')
             ->where('end_task', NULL)
             ->where(function ($query) use ($user_id) {
                 $query->where('executor_id', NULL)
                       ->orWhere('executor_id', $user_id);
             })
-            ->whereDate('must_end_task', '>', $date)
+            ->where('must_end_task', '>', $date)
             ->join('users as creator', 'creator.id', '=', 'tasks.creator_id')
             ->leftJoin('users as executor', 'executor.id', '=', 'tasks.executor_id')
             ->select('tasks.*', 'creator.name as creator_name', 'creator.surname as creator_surname',
