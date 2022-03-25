@@ -55,27 +55,30 @@ class Task extends Model
 
     public static function groupTasksByDate($user_role, $user_id) {
         $data = [];
-        $daytask['date'] = date('d.m.Y', strtotime(now()));
+        $daytask['date'] = date('Y-m-d H:i', strtotime(now()));
         if($user_role === 1) {
             for($i=0; $i<=6; $i++) {
-                $daytask['task'] = self::getAllUnfinishedTasks(strtotime($daytask['date']));
+                $daytask['task'] = self::getAllUnfinishedTasks($daytask['date']);
                 array_push($data, $daytask);
-                $daytask['date'] = date('d.m.Y', strtotime($daytask['date'].'+ 1 days'));
+                $daytask['date'] = date('Y-m-d H:i', strtotime($daytask['date'].'+ 1 days'));
             }
         }
         else {
             for($i=0; $i<=6; $i++) {
-                $daytask['task'] = self::getUserUnfinishedTasks(strtotime($daytask['date']), $user_id);
+                $daytask['task'] = self::getUserUnfinishedTasks($daytask['date'], $user_id);
                 array_push($data, $daytask);
-                $daytask['date'] = date('d.m.Y', strtotime($daytask['date'].'+ 1 days'));
+                $daytask['date'] = date('Y-m-d H:i', strtotime($daytask['date'].'+ 1 days'));
             }
         }
+
+        for($i=0; $i<count($data); $i++){
+            $data[$i]['date'] = date('Y.m.d', strtotime($data[$i]['date']));
+         }
 
         return $data;
     }
 
     public static function getAllUnfinishedTasks($date) {
-        $date = Date('d.m.Y H:i',$date);
         $tasks = DB::table('tasks')
             ->where('end_task', NULL)
             ->whereDate('must_end_task', '>', $date)
@@ -121,7 +124,6 @@ class Task extends Model
     }
 
     public static function getUserUnfinishedTasks($date, $user_id) {
-        $date = Date('d.m.Y H:i',$date);
         $tasks = DB::table('tasks')
             ->where('end_task', NULL)
             ->where(function ($query) use ($user_id) {
