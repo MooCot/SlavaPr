@@ -31,7 +31,7 @@ class UserStoreRequest extends FormRequest
             'access' => ['required'],
             'role' => ['required'],
             'email' => ['required', 'unique:users,email'],
-            'phone_number' => ['min:14', 'required', 'unique:users,phone_number'],
+            'phone_number' => ['min:13', 'required', 'unique:users,phone_number'],
             'password1' => ['required', 'min:6|required_with:password_confirmation1|same:password_confirmation'],
             'password_confirmation1' => ['required', 'min:6', 'same:password1'],
         ];

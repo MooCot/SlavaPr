@@ -52,10 +52,9 @@ class UserController extends Controller
         {
             $user->password1 = Hash::make($request->password1);
         }
-        if($user->phone_number!==mb_eregi_replace("[^0-9+]", '', $request->phone_number))
-        {
-            $user->phone_number = mb_eregi_replace("[^0-9+]", '', $request->phone_number);
-        }
+
+        $user->phone_number = $request->phone_number;
+
         if($user->email!==$request->email)
         {
             $user->email = $request->email;
@@ -66,7 +65,6 @@ class UserController extends Controller
     }
 
     public function store(UserStoreRequest $request) {
-        $request->phone_number = mb_eregi_replace("[^0-9+]", '', $request->phone_number);
         $token = Str::random(80);
         $user = new User();
         $user->name = $request->name;
@@ -77,6 +75,7 @@ class UserController extends Controller
         $user->access = $request->access;
         $user->password = Hash::make($request->password1);
         $user->role_id = $request->role;
+        dd($request->phone_number);
         $user->save();
         return redirect('admin/dashboard');
     }
