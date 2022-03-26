@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Admin;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\Admin\AdminUser\AdminStoreRequest;
+use App\Http\Requests\Admin\AdminUser\AdminUpdateRequest;
 
 class AdminController extends Controller
 {
@@ -43,7 +44,7 @@ class AdminController extends Controller
         return redirect('admin/admin');
     }
 
-    public function update(AdminStoreRequest $request, Admin $admin)
+    public function update(AdminUpdateRequest $request, Admin $admin)
     {
         $admin->name = $request->name;
         $admin->surname = $request->surname;

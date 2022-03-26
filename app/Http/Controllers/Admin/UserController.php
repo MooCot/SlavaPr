@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 use App\Http\Requests\Admin\ClinetUser\UserStoreRequest;
+use App\Http\Requests\Admin\ClinetUser\UserUpdateRequest;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 
@@ -41,7 +42,7 @@ class UserController extends Controller
         ]);
     }
 
-    public function update(UserStoreRequest $request, User $user)
+    public function update(UserUpdateRequest $request, User $user)
     {
         $user->name = $request->name;
         $user->surname = $request->surname;

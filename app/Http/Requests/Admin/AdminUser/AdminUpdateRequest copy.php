@@ -7,7 +7,7 @@ use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rules\Password;
 use Illuminate\Validation\Rule;
 
-class AdminStoreRequest extends FormRequest
+class AdminUpdateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -31,7 +31,7 @@ class AdminStoreRequest extends FormRequest
             'surname' => ['required'],
             'password1' => ['required', 'min:6|required_with:password_confirmation1|same:password_confirmation'],
             'password_confirmation1' => ['required', 'min:6', 'same:password1'],
-            'email' => ['required', 'unique:admins,email'],
+            'email' => ['required', 'unique:admins,email,'.$this->admin->id],
         ];
     }
     public function messages()
