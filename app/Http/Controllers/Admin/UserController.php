@@ -76,7 +76,6 @@ class UserController extends Controller
         $user->access = $request->access;
         $user->password = Hash::make($request->password1);
         $user->role_id = $request->role;
-        dd($request->phone_number);
         $user->save();
         return redirect('admin/dashboard');
     }
