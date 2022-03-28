@@ -15,8 +15,8 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        $schedule->command('task:overdue')->dailyAt('9:45');
-        $schedule->command('task:active')->dailyAt('10:00');
+        $schedule->command('task:overdue')->dailyAt('10:00');
+        $schedule->command('task:active')->dailyAt('9:45');
     }
 
     /**
