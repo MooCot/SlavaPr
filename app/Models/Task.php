@@ -103,8 +103,8 @@ class Task extends Model
                     $task->creator_name = $task->creator_name.' '.$task->creator_surname;
                     $task->start_date = (string)date("d.m.Y", strtotime($task->start_task));
                     $task->start_time = (string)date("H:i", strtotime($task->start_task));
-                    $task->deadline_date = (string)date("d.m.Y", strtotime($task->must_end_task));
-                    $task->deadline_time = (string)date("H:i", strtotime($task->must_end_task));
+                    $task->deadline_date = (string)date("d.m.Y", strtotime($task->deadline_time));
+                    $task->deadline_time = (string)date("H:i", strtotime($task->deadline_time));
                     $task->accepted = (boolean)$task->accepted;
                     $task->deadline_expired = (boolean)$task->deadline_expired;
                     unset($task->executor_surname);
@@ -153,8 +153,8 @@ class Task extends Model
                 $task->creator_name = $task->creator_name.' '.$task->creator_surname;
                 $task->start_date = (string)date("d.m.Y", strtotime($task->start_task));
                 $task->start_time = (string)date("H:i", strtotime($task->start_task));
-                $task->deadline_date = (string)date("d.m.Y", strtotime($task->must_end_task));
-                $task->deadline_time = (string)date("H:i", strtotime($task->must_end_task));
+                $task->deadline_date = (string)date("d.m.Y", strtotime($task->deadline_time));
+                $task->deadline_time = (string)date("H:i", strtotime($task->deadline_time));
                 $task->accepted = (boolean)$task->accepted;
                 $task->deadline_expired = (boolean)$task->deadline_expired;
                 unset($task->executor_surname);

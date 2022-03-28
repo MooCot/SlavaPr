@@ -58,6 +58,7 @@ class TaskController extends Controller
         $task->task_name = $request->name;
         $deadline_date = strtotime("+23 hour", strtotime($request->deadline_date)); // с фронта приходит 00
         $task->must_end_task = date('Y-m-d H:i:s', $deadline_date);
+        $task->deadline_time = date('Y-m-d H:i:s', $deadline_date);
         $task->start_task = now();
         $task->task_description = $request->description;
         $task->executor_id = $request->executor_id;
