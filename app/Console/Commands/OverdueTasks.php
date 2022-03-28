@@ -42,7 +42,12 @@ class OverdueTasks extends Command
      */
     public function handle()
     {
-            $findTasks = Task::where('end_task', NULL)->whereDate('must_end_task', '<', date('Y-m-d H:i', strtotime(now())))->get();
+            $findTasks = Task::where(function ($query) {
+                $query->where('end_task', NULL)
+                    ->where('must_end_task', '<', date('Y-m-d H:i', strtotime(now())));
+            })
+            ->get();
+            
             if(!empty($findTasks)){
                 foreach($findTasks as $task){
                     try {
