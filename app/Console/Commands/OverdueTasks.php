@@ -66,7 +66,7 @@ class OverdueTasks extends Command
                         $event->sendAll($task, $users, $tokens, 'Задача просрочена!', 'Задача: “'.$task->task_name.'” просрочена исполнителем: Все“');
                         event($event);
                     }
-                    $task->must_end_task = date('Y-m-d H:i', strtotime(now().'+ 1 days'));
+                    $task->must_end_task = date('Y-m-d H:i', strtotime(now()) + 86400);
                     $task->save();
                     }
                     catch (Exception $e) {

@@ -40,15 +40,15 @@ class UserStoreRequest extends FormRequest
     public function messages()
     {
         return [
-            'phone_number.required' => 'Не передано обязательное поле',
+            'phone_number.required' => 'Обязательное поле',
             'phone_number.unique' => 'Такой телефон уже зарегистрирован',
-            'name.required' => 'Не передано обязательное поле',
-            'access.required' => 'Не передано обязательное поле',
-            'role.required' => 'Не передано обязательное поле',
-            'surname.required' => 'Не передано обязательное поле',
-            'password1.required' => 'Не передано обязательное поле',
-            'password_confirmation1.required' => 'Не передано обязательное поле',
-            'email.required' => 'Не передано обязательное поле',
+            'name.required' => 'Обязательное поле',
+            'access.required' => 'Обязательное поле',
+            'role.required' => 'Обязательное поле',
+            'surname.required' => 'Обязательное поле',
+            'password1.required' => 'Обязательное поле',
+            'password_confirmation1.required' => 'Обязательное поле',
+            'email.required' => 'Обязательное поле',
             'password1.confirmed' => 'Пароли не совпадают',
             'password1.min' => 'Пароль должен быть минимум 6 символов',
             'password_confirmation1.min' => 'Пароль должен быть минимум 6 символов',

@@ -22,6 +22,10 @@ class TestController extends Controller
     use Firebase;
 
     public function index(Request $request) {
+        return self::countEndDeadline(5);
+    }
+
+    public static function countEndDeadline(int $user_id) {
 
     }
 
