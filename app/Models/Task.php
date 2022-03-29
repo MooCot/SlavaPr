@@ -186,11 +186,11 @@ class Task extends Model
 
     public static function countEndDeadline(int $user_id) {
         $last = strtotime(now()) - 86400;
-        $next = strtotime(now()) + 86400 ;
+        $next = strtotime(now()) + 86400;
         return Task::
               where(function ($query) use ($user_id, $last, $next) {
-                $query->where('must_end_task', '>', date('Y-m-d H:i', $last))
-                      ->where('must_end_task', '<', date('Y-m-d H:i', $next));
+                $query->where('must_end_task', '<', date('Y-m-d H:i', $last))
+                      ->where('must_end_task', '>', date('Y-m-d H:i', $next));
             })
             ->where(function ($query) use ($user_id) {
                 $query->where('executor_id', NULL)
@@ -211,7 +211,7 @@ class Task extends Model
     }
 
     public static function countOverdueDeadline(int $user_id) {
-        return Task::where('must_end_task','<', date('Y-m-d', strtotime(now())))
+        return Task::where('deadline_time','<', date('Y-m-d', strtotime(now())))
             ->where(function ($query) use ($user_id) {
                 $query->where('executor_id', NULL)
                     ->orWhere('executor_id', $user_id);
