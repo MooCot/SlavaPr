@@ -51,15 +51,15 @@
                             </div>
                             <div class="form__input_block">
                                 <label class="form__label-title">Разрешить доступ</label>
-                                <div class="form-group{{ $errors->has('access1') ? ' has-danger' : '' }}">
+                                <div class="form-group{{ $errors->has('access') ? ' has-danger' : '' }}">
                                     <div class="form_toggle form__input_indent">
                                             <div class="form_toggle-item item-2">
                                                 <input id="access-2" type="radio" name="access" value="1" {{ old('access')==1 ? 'checked' : '' }}>
-                                                <label class="error-label" for="access-2">Да</label>
+                                                <label class="error-label error-label" for="access-2">Да</label>
                                             </div>
                                             <div class="form_toggle-item item-1">
                                                 <input id="access-1" type="radio" name="access" value="0" {{ old('access')==2 ? 'checked' : '' }}>
-                                                <label class="error-label" for="access-1">Нет</label>
+                                                <label class="error-label error-label" for="access-1">Нет</label>
                                             </div>                           
                                     </div>
                                     @if ($errors->has('access'))
@@ -82,12 +82,12 @@
                             </div>
                             <div class="form__input_block">
                                 <label class="form__label-title">Роль</label>
-                                <div class="form-group{{ $errors->has('access1') ? ' has-danger' : '' }}">
+                                <div class="form-group{{ $errors->has('role') ? ' has-danger' : '' }}">
                                     <div class="form_toggle form__input_indent">
                                         @foreach ($roles as $role)
                                         <div class="form_toggle-item item-{{ $role['id'] }}">
                                             <input id="role-{{ $role['id'] }}" type="radio" name="role" value="{{ $role['id'] }}" {{ old('role')==$role['id'] ? 'checked' : '' }}>
-                                            <label class="error-label" for="role-{{ $role['id'] }}">{{ $role['role_name'] }}</label>
+                                            <label class="error-label error-label" for="role-{{ $role['id'] }}">{{ $role['role_name'] }}</label>
                                         </div>
                                         @endforeach
                                     </div>
