@@ -40,9 +40,9 @@ class SendFirebaseNotification
         }
         foreach($event->tokens as $token) {
             $answer = $this->firebaseNotification($this->setAndroidConfig($token, $event->notification, $event->extraNotificationData));
-            Log::info('firebase: '.$answer.' '.$token.' '.$event->notification.' '.$event->usersid);
+            Log::info('firebase: '.$answer.' '.$token.' '.$event->notification);
             $answer = $this->firebaseNotification($this->setApnsConfig($token, $event->notification, $event->extraNotificationData)); 
-            Log::info('firebase: '.$answer.' '.$token.' '.$event->notification.' '.$event->usersid);
+            Log::info('firebase: '.$answer.' '.$token.' '.$event->notification);
         }
     }
 }
